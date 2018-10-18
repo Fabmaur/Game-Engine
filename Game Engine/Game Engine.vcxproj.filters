@@ -32,5 +32,8 @@
     <ClInclude Include="source\core\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\maths\Vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
