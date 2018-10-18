@@ -1,9 +1,8 @@
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-
-
+#include "core/Engine.h"
 
 int main()
 {
-	return 0;
+	core::Engine engine;
+	engine.Start();
+	engine.Stop();
 }

@@ -2,7 +2,6 @@
 
 using namespace graphics;
 
-
 Window::Window()
 {
 	glfwInit();
@@ -15,7 +14,7 @@ Window::Window()
 	#endif
 }
 
-graphics::Window::Window(const char * titleIn, int widthIn, int heightIn)
+Window::Window(const char * titleIn, int widthIn, int heightIn)
 {
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -29,7 +28,7 @@ graphics::Window::Window(const char * titleIn, int widthIn, int heightIn)
 
 }
 
-Window::~Window()
+void graphics::Window::Terminate()
 {
 	window = nullptr;
 	glfwTerminate();
@@ -41,7 +40,7 @@ void Window::CreateWindow(const char* titleIn, int widthIn, int heightIn)
 	width = widthIn;
 	height = heightIn;
 	window = glfwCreateWindow(widthIn, heightIn, titleIn, NULL, NULL);
-	if (window == NULL)
+	if (!window)
 	{
 		std::cout << "GLFW window failed to be created!" << std::endl;
 		glfwTerminate();
@@ -50,12 +49,28 @@ void Window::CreateWindow(const char* titleIn, int widthIn, int heightIn)
 	
 }
 
-
-
-void Window::Resize(int width, int height) const
+bool Window::IsWindowClosed() const
 {
-	glfwSetFramebufferSizeCallback(window, [](){});
+	return glfwWindowShouldClose(window);
+}
 
+
+
+void Window::Resize() const
+{
+	glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int width, int height) { glViewport(0, 0, width, height); });
+}
+
+void Window::SetColour(const float r, const float g, const float b, const float a) const
+{
+	glClearColor(r, g, b, a);
+}
+
+void Window::Clear() const
+{
+	glfwSwapBuffers(window);
+	glfwPollEvents();
+	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 
