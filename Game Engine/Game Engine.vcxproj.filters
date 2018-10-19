@@ -24,12 +24,18 @@
     <ClCompile Include="source\core\Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\maths\Matrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\graphics\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\core\Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\maths\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\maths\Vector.h">

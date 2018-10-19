@@ -13,6 +13,5 @@ namespace core {
 
 	private:
 		graphics::Window window;
-
 	};
 }

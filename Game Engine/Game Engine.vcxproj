@@ -153,10 +153,12 @@
     <ClCompile Include="game\source\main.cpp" />
     <ClCompile Include="source\core\Engine.cpp" />
     <ClCompile Include="source\graphics\Window.cpp" />
+    <ClCompile Include="source\maths\Matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\Engine.h" />
     <ClInclude Include="source\graphics\Window.h" />
+    <ClInclude Include="source\maths\Matrix.h" />
     <ClInclude Include="source\maths\Vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
