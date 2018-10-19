@@ -66,6 +66,11 @@ void Window::SetColour(const float r, const float g, const float b, const float 
 	glClearColor(r, g, b, a);
 }
 
+void graphics::Window::SetColour(const maths::vec4<float> colour) const
+{
+	glClearColor(colour.x, colour.y, colour.z, colour.w);
+}
+
 void Window::Clear() const
 {
 	glfwSwapBuffers(window);

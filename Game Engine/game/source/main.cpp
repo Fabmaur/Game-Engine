@@ -1,4 +1,5 @@
 #include "core/Engine.h"
+#include "maths/Vector.h"
 
 int main()
 {

@@ -80,7 +80,7 @@ namespace maths {
 		//Variables
 		T x, y, z;
 		//Methods
-		vec3 = default;
+		vec3() = default;
 		Vec2(T x, T y, T z)
 			:x(x),
 			y(y),
@@ -154,8 +154,8 @@ namespace maths {
 		//Variables
 		T x, y, z, w;
 		//Methods
-		vec4 = default;
-		Vec4(T x, T y, T z)
+		vec4() = default;
+		Vec4(T x, T y, T z, T w)
 			:x(x),
 			y(y),
 			z(z)
