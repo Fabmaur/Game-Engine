@@ -1,77 +1,83 @@
 #pragma once
 
 #include <cmath>
+#include <iostream>
+
 namespace maths {
 	template <typename T>
 	struct vec2
 	{
 		//Variables
 		T x, y;
+
 		//Methods
 		vec2() = default;
 		vec2(T x, T y)
 			:x(x),
 			y(y)
 		{};
-		inline T operator +(const Vec2<T>& rhs) const
+		inline vec2<T> operator +(const vec2<T>& rhs) const
 		{
-			return Vec2(x + rhs.x, y + rhs.y);
+			return { x + rhs.x, y + rhs.y };
 		};
-		inline T operator -(const Vec2<T>& rhs) const
+		inline vec2<T> operator -(const vec2<T>& rhs) const
 		{
-			return Vec2(x - rhs.x, y - rhs.y);
+			return vec2(x - rhs.x, y - rhs.y);
 		};
-		inline T operator *(const Vec2<T>& rhs) const
-
+		inline vec2<T> operator *(const vec2<T>& rhs) const
 		{
-			return Vec2(x * rhs.x, y * rhs.y);
+			return { x * rhs.x, y * rhs.y };
 		};
-		inline T operator *(const T& rhs) const
+		inline vec2<T> operator *(const T& rhs) const
 		{
-			return Vec2(x*rhs, y*rhs);
+			return {x*rhs, y*rhs};
 		}
-		inline float operator /(const Vec2<T>& rhs) const
+		inline vec2<T> operator /(const vec2<T>& rhs) const
 		{
-			return Vec2(x / rhs.x, y / rhs.y);
+			return { x / rhs.x, y / rhs.y };
 		};
-		inline float operator /(const T& rhs) const
+		inline vec2<T> operator /(const T& rhs) const
 		{
-			return Vec2(x / rhs, y / rhs);
+			return {x / rhs, y / rhs};
 		};
-		inline operator +=(const Vec2<T>& rhs)
+		inline void operator +=(const vec2<T>& rhs)
 		{
 			*this = *this + rhs;
 		};
-		inline operator -=(const Vec2<T>& rhs)
+		inline void operator-=(const vec2<T>& rhs)
 		{
 			*this = *this - rhs;
 		};
-		inline operator *=(const Vec2<T>& rhs)
+		inline void operator*=(const vec2<T>& rhs)
 		{
 			*this = *this * rhs;
 		};
-		inline operator /=(const Vec2<T>& rhs)
+		inline void operator/=(const vec2<T>& rhs)
 		{
 			*this = *this / rhs;
 		};
 		inline T lenSqr() const
 		{
-			x * x + y * y;
+			return x * x + y * y;
 		}
 		inline float len()
 		{
 			return sqrt((float)lenSqr());
 		};
-		inline T normalize(const Vec2<T>& rhs)
+		inline T normalize(const vec2<T>& rhs)
 		{
 			const T l = len();
 			return l != (T)0 ? *this * (1 / l) : (T)0;
 		};
-		inline T dotProduct(const Vec2<T>& rhs) const
+		inline T dotProduct(const vec2<T>& rhs) const
 		{
 			return x*rhs.x + y*rhs.y;
 		};
 	};
+
+	typedef vec2<int> vec2i;
+	typedef vec2<float> vec2f;
+
 
 	template <typename T>
 
@@ -81,71 +87,73 @@ namespace maths {
 		T x, y, z;
 		//Methods
 		vec3() = default;
-		Vec2(T x, T y, T z)
+		vec3(T x, T y, T z)
 			:x(x),
 			y(y),
 			z(z)
 		{};
-		inline T operator +(const Vec2<T>& rhs) const
+		inline vec3<T> operator +(const vec3<T>& rhs) const
 		{
-			return Vec2(x + rhs.x, y + rhs.y, z + rhs.z);
+			return { x + rhs.x, y + rhs.y, z + rhs.z };
 		};
-		inline T operator -(const Vec2<T>& rhs) const
+		inline vec3<T> operator -(const vec2<T>& rhs) const
 		{
-			return Vec2(x - rhs.x, y - rhs.y, z - rhs.z);
+			return { x - rhs.x, y - rhs.y, z - rhs.z };
 		};
-		inline T operator *(const Vec2<T>& rhs) const
+		inline vec3<T> operator *(const vec3<T>& rhs) const
 
 		{
-			return Vec2(x * rhs.x, y * rhs.y, z * rhs.z);
+			return { x * rhs.x, y * rhs.y, z * rhs.z };
 		};
-		inline T operator *(const T& rhs) const
+		inline vec3<T> operator *(const T& rhs) const
 		{
-			return Vec2(x*rhs, y*rhs, z*rhs);
+			return { x*rhs, y*rhs, z*rhs };
 		}
-		inline float operator /(const Vec2<T>& rhs) const
+		inline vec3<T> operator /(const vec3<T>& rhs) const
 		{
-			return Vec2(x / rhs.x, y / rhs.y, z / rhs.z);
+			return { x / rhs.x, y / rhs.y, z / rhs.z };
 		};
-		inline float operator /(const T& rhs) const
+		inline vec3<T> operator /(const T& rhs) const
 		{
-			return Vec2(x / rhs, y / rhs, z / rhs);
+			return { x / rhs, y / rhs, z / rhs };
 		};
-		inline operator +=(const Vec2<T>& rhs)
+		inline void operator +=(const vec3<T>& rhs)
 		{
 			*this = *this + rhs;
 		};
-		inline operator -=(const Vec2<T>& rhs)
+		inline void operator -=(const vec3<T>& rhs)
 		{
 			*this = *this - rhs;
 		};
-		inline operator *=(const Vec2<T>& rhs)
+		inline void operator *=(const vec3<T>& rhs)
 		{
 			*this = *this * rhs;
 		};
-		inline operator /=(const Vec2<T>& rhs)
+		inline void operator /=(const vec3<T>& rhs)
 		{
 			*this = *this / rhs;
 		};
 		inline T lenSqr() const
 		{
-			x * x + y * y + z * z;
+			return x * x + y * y + z * z;
 		}
 		inline float len()
 		{
 			return sqrt((float)lenSqr());
 		};
-		inline T normalize(const Vec2<T>& rhs)
+		inline T normalize(const vec3<T>& rhs)
 		{
 			const T l = len();
 			return l != (T)0 ? *this * ((T)1 / l) : (T)0;
 		};
-		inline T dotProduct(const Vec2<T>& rhs) const
+		inline T dotProduct(const vec3<T>& rhs) const
 		{
 			return x*rhs.x + y*rhs.y + z*rhs.z;
 		};
 	};
 
+	typedef vec3<int> vec3i;
+	typedef vec3<float> vec3f;
 
 	template <typename T>
 
@@ -155,68 +163,70 @@ namespace maths {
 		T x, y, z, w;
 		//Methods
 		vec4() = default;
-		Vec4(T x, T y, T z, T w)
+		vec4(T x, T y, T z, T w)
 			:x(x),
 			y(y),
 			z(z)
 		{};
-		inline T operator +(const Vec2<T>& rhs) const
+		inline vec4<T> operator +(const vec4<T>& rhs) const
 		{
-			return Vec2(x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w);
+			return { x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w };
 		};
-		inline T operator -(const Vec2<T>& rhs) const
+		inline vec4<T> operator -(const vec4<T>& rhs) const
 		{
-			return Vec2(x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w);
+			return { x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w };
 		};
-		inline T operator *(const Vec2<T>& rhs) const
-
+		inline T operator *(const vec4<T>& rhs) const
 		{
-			return Vec2(x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w);
+			return { x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w };
 		};
 		inline T operator *(const T& rhs) const
 		{
-			return Vec2(x*rhs, y*rhs, z*rhs, w*rhs.w);
+			return { x*rhs, y*rhs, z*rhs, w*rhs.w };
 		}
-		inline float operator /(const T& rhs) const
+		inline vec4<T> operator /(const vec4<T>& rhs) const
 		{
-			return Vec2(x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w);
+			return { x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w };
 		};
-		inline float operator /(const T& rhs) const
+		inline vec4<T> operator /(const T& rhs) const
 		{
-			return Vec2(x / rhs, y / rhs, z / rhs, w / rhs);
+			return { x / rhs, y / rhs, z / rhs, w / rhs };
 		};
-		inline operator +=(const Vec2<T>& rhs)
+		inline void operator +=(const vec4<T>& rhs)
 		{
 			*this = *this + rhs;
 		};
-		inline operator -=(const Vec2<T>& rhs)
+		inline void operator -=(const vec4<T>& rhs)
 		{
 			*this = *this - rhs;
 		};
-		inline operator *=(const Vec2<T>& rhs)
+		inline void operator *=(const vec4<T>& rhs)
 		{
 			*this = *this * rhs;
 		};
-		inline operator /=(const Vec2<T>& rhs)
+		inline void operator /=(const vec4<T>& rhs)
 		{
 			*this = *this / rhs;
 		};
-		inline float lenSqr() const
+		inline T lenSqr() const
 		{
-			x*x + y * y + z * z + w * w;
+			return x*x + y * y + z * z + w * w;
 		}
 		inline float len()
 		{
 			return sqrt((float)lenSqr());
 		};
-		inline T normalize(const Vec2<T>& rhs)
+		inline T normalize(const vec4<T>& rhs)
 		{
 			const T l = len();
 			return l != (T)0 ? *this * ((T)1 / l) : (T)0;
 		};
-		inline T dotProduct(const Vec2<T>& rhs) const
+		inline T dotProduct(const vec4<T>& rhs) const
 		{
 			return x*rhs.x + y*rhs.y + z*rhs.z + w*rhs.w;
 		};
 	};
+
+	typedef vec4<int> vec4i;
+	typedef vec4<float> vec4f;
 }

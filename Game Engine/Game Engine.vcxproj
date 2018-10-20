@@ -172,6 +172,9 @@
     <ClInclude Include="source\graphics\Texture.h" />
     <ClInclude Include="source\graphics\Window.h" />
     <ClInclude Include="source\maths\Matrix.h" />
+    <ClInclude Include="source\maths\Matrix2.h" />
+    <ClInclude Include="source\maths\Matrix3.h" />
+    <ClInclude Include="source\maths\Matrix4.h" />
     <ClInclude Include="source\maths\Vector.h" />
     <ClInclude Include="source\vendor\stb_image\stb_image.h" />
   </ItemGroup>
