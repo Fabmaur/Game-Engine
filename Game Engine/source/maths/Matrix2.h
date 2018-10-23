@@ -1,6 +1,5 @@
 #pragma once
 #include "Matrix.h"
-#include "Vector.h"
 
 namespace maths
 {
@@ -17,7 +16,6 @@ namespace maths
 	};
 
 	template<typename T>
-
 	static mat2<T> RotateMatrix(const T theta)
 	{
 		mat2<T> ans;
@@ -33,7 +31,7 @@ namespace maths
 	template<typename T>
 	inline mat2<T> mat2<T>::Rotate(const float rad) const
 	{
-		return RotateMatrix(rad) * *this;
+		return RotateMatrix<T>(rad) * *this;
 	}
 
 	template<typename T>

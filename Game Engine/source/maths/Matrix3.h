@@ -1,7 +1,9 @@
 #pragma once
-#include "Matrix.h"
+#include "maths/Matrix.h"
 
 namespace maths {
+
+	
 	template <typename T>
 	struct mat3 : public mat<T, 3>
 	{
@@ -16,7 +18,7 @@ namespace maths {
 	};
 
 	template<typename T>
-	inline mat3<T> RotateXMatrix(const float rad)
+	static mat3<T> RotateXMatrix(const float rad)
 	{
 		mat3<T> ans;
 		const T sinTheta = sin(rad);
@@ -34,7 +36,7 @@ namespace maths {
 	}
 
 	template<typename T>
-	inline mat3<T> RotateYMatrix(const float rad)
+	static mat3<T> RotateYMatrix(const float rad)
 	{
 		mat3<T> ans;
 		const T sinTheta = sin(rad);
@@ -52,7 +54,7 @@ namespace maths {
 	}
 
 	template<typename T>
-	inline mat3<T> RotateZMatrix(const float rad)
+	static mat3<T> RotateZMatrix(const float rad)
 	{
 		mat3<T> ans;
 		const T sinTheta = sin(rad);
@@ -72,17 +74,17 @@ namespace maths {
 	template<typename T>
 	inline mat3<T> mat3<T>::RotateX(const float rad)
 	{
-		return *this * RotateXMatrix(rad);
+		return *this * RotateXMatrix<T>(rad);
 	}
 	template<typename T>
 	inline mat3<T> mat3<T>::RotateY(const float rad)
 	{
-		return *this * RotateYMatrix(rad)
+		return *this * RotateYMatrix<T>(rad);
 	}
 	template<typename T>
 	inline mat3<T> mat3<T>::RotateZ(const float rad)
 	{
-		return *this * RotatezMatrix(rad)
+		return *this * RotateZMatrix<T>(rad);
 	}
 
 	typedef mat3<int> mat3i;

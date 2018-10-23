@@ -1,6 +1,8 @@
 #include "Shader.h"
 
 
+using namespace graphics;
+
 Shader::Shader(const std::string filename)
 	:id(0)
 {
@@ -107,14 +109,14 @@ void Shader::SetUniform3f(const std::string & name, const float & v0, const floa
 	GLCall(glUniform3f(GetUniformLoc(name), v0, v1, v2));
 }
 
-void Shader::SetUniform4(const std::string & name, glm::vec4& val)
+void Shader::SetUniform4v(const std::string & name, maths::vec4f& val)
 {
-	GLCall(glUniform4fv(GetUniformLoc(name), 1, &val[0]));
+	GLCall(glUniform4fv(GetUniformLoc(name), 1, &val.x));
 }
 
-void Shader::SetUniform3(const std::string & name, glm::vec3& val)
+void Shader::SetUniform3v(const std::string & name, maths::vec3f& val)
 {
-	GLCall(glUniform3fv(GetUniformLoc(name), 1, &val[0]));
+	GLCall(glUniform3fv(GetUniformLoc(name), 1, &val.x));
 }
 
 void Shader::SetUniform1i(const std::string & name, int value)
@@ -122,9 +124,9 @@ void Shader::SetUniform1i(const std::string & name, int value)
 	GLCall(glUniform1i(GetUniformLoc(name), value));
 }
 
-void Shader::SetUniformMat4f(const std::string & name, const glm::mat4 & matrix)
+void Shader::SetUniformMat4f(const std::string & name, const maths::mat4f& matrix)
 {
-	GLCall(glUniformMatrix4fv(GetUniformLoc(name), 1, GL_FALSE, &matrix[0][0]));
+	GLCall(glUniformMatrix4fv(GetUniformLoc(name), 1, GL_FALSE, &matrix.elements[0]));
 }
 
 void Shader::Bind() const

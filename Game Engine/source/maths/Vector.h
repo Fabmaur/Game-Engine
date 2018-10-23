@@ -73,6 +73,11 @@ namespace maths {
 		{
 			return x*rhs.x + y*rhs.y;
 		};
+		inline T operator[](const int index) const
+		{
+			return (index == 0) ? x : y;
+		}
+
 	};
 
 	typedef vec2<int> vec2i;
@@ -225,6 +230,21 @@ namespace maths {
 		{
 			return x*rhs.x + y*rhs.y + z*rhs.z + w*rhs.w;
 		};
+
+		inline T operator[](const int index) const
+		{
+			switch (index)
+			{
+			case 0: return x;
+				break;
+			case 1: return y;
+				break;
+			case 2: return z;
+				break;
+			case 3: return w;
+				break;
+			}
+		}
 	};
 
 	typedef vec4<int> vec4i;

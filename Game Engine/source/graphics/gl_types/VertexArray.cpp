@@ -1,5 +1,7 @@
 #include "VertexArray.h"
 
+using namespace graphics;
+
 VertexArray::VertexArray()
 	:id(0), stride(0)
 {

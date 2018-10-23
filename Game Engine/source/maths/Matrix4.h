@@ -1,8 +1,10 @@
 #pragma once
+#include "maths/Matrix.h"
+
 
 namespace maths {
 	template <typename T>
-	struct mat4
+	struct mat4 : public mat<T, 4>
 	{
 		//Calling parent constructor
 		mat4(const T scalar = T())
@@ -12,6 +14,7 @@ namespace maths {
 		inline mat4<T> RotateX(const float rad);
 		inline mat4<T> RotateY(const float rad);
 		inline mat4<T> RotateZ(const float rad);
+
 		//Predefined matrices	
 
 		//inline mat4<float> ortho(float top, float left, float right, float bottom, float far, float near) const;
@@ -100,26 +103,24 @@ namespace maths {
 		ans.elements[15] = (T)1;
 
 		return ans;
-
-		{ cosTheta, sinTheta, (T)0, (T)0, -sinTheta, cosTheta, T(0), T(0), (T)0, T(0), (T)1, (T)0, (T)0, (T)0, (T)0, (T)1 };
 	};
 
 	template<typename T>
 	inline mat4<T> mat4<T>::RotateX(const float rad)
 	{
-		return *this * RotateXMatrix(rad);
+		return *this * RotateXMatrix<T>(rad);
 	}
 
 	template<typename T>
 	inline mat4<T> mat4<T>::RotateY(const float rad)
 	{
-		return *this * RotateYMatrix(rad)
+		return *this * RotateYMatrix<T>(rad);
 	}
 
 	template<typename T>
 	inline mat4<T> mat4<T>::RotateZ(const float rad)
 	{
-		return *this * RotatezMatrix(rad)
+		return *this * RotateZMatrix<T>(rad);
 	}
 
 

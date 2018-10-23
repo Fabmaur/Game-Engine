@@ -1,5 +1,7 @@
 #include "VertexBuffer.h"
 
+using namespace graphics;
+
 VertexBuffer::VertexBuffer(const void* vertices, const unsigned int size)
 {
 	GLCall(glGenBuffers(1, &id));

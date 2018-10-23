@@ -2,6 +2,8 @@
 #include "GL/glew.h"
 #include "debug/GLDebug.h"
 
+using namespace graphics;
+
 IndexBuffer::IndexBuffer(const void* indices, const unsigned int count)
 {
 	GLCall(glGenBuffers(1, &id));

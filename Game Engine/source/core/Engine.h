@@ -1,6 +1,6 @@
 #pragma once
 #include <GL/glew.h>
-#include "../graphics/Window.h"
+#include "graphics/renderer/window.h"
 
 namespace core {
 	class Engine {

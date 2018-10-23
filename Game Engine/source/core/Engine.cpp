@@ -2,7 +2,7 @@
 using namespace core;
 
 
-Engine::Engine(const int width = 800, const int height = 600)
+Engine::Engine(const int width, const int height)
 {
 	graphics::Window newWindow("Hello World!", width, height);
 	window = newWindow;
@@ -19,9 +19,9 @@ Engine::Engine(const char* title, const int width, const int height)
 
 void Engine::Start()
 {
-	window.Resize();
 	while(!window.IsWindowClosed())
 	{
+		std::cout << window.IsButtonClicked(GLFW_MOUSE_BUTTON_1) << std::endl;
 		window.Clear();
 	}
 }
