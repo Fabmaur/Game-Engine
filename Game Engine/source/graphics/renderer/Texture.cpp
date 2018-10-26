@@ -32,9 +32,9 @@ Texture::Texture(const std::string path)
 }
 
 
-Texture::~Texture()
+void Texture::Delete()
 {
-		GLCall(glDeleteTextures(1, &id));
+	GLCall(glDeleteTextures(1, &id));
 }
 
 void Texture::Bind(unsigned int slot) const

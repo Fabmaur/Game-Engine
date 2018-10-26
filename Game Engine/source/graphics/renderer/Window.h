@@ -1,7 +1,9 @@
 #pragma once
+#include "GL/glew.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "maths/Vector.h"
+
 
 namespace graphics 
 {
@@ -14,7 +16,7 @@ namespace graphics
 		void CreateWindow(const char* title, int width, int height);
 		void SetColour(const float r, const float g, const float b, const float a) const;
 		void SetColour(const maths::vec4<float> colour) const;
-		void Clear() const;
+		void Update() const;
 		bool isKeyPressed(const unsigned int keycode) const;
 		bool IsWindowClosed() const;
 		inline int GetWidth() const { return width; };

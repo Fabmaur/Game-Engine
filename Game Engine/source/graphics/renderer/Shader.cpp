@@ -1,5 +1,5 @@
 #include "Shader.h"
-
+#include <assert.h>
 
 using namespace graphics;
 
@@ -46,6 +46,7 @@ ShaderContainer Shader::ParseShader(const std::string& filename)
 		}
 		else
 		{
+			assert((int)shader != -1);
 			ss[(int)shader] << line << "\n";
 		}
 	}
@@ -116,7 +117,7 @@ void Shader::SetUniform4v(const std::string & name, maths::vec4f& val)
 
 void Shader::SetUniform3v(const std::string & name, maths::vec3f& val)
 {
-	GLCall(glUniform3fv(GetUniformLoc(name), 1, &val.x));
+	GLCall(glUniform3fv(GetUniformLoc(name), 1,&val.x));
 }
 
 void Shader::SetUniform1i(const std::string & name, int value)
@@ -124,9 +125,23 @@ void Shader::SetUniform1i(const std::string & name, int value)
 	GLCall(glUniform1i(GetUniformLoc(name), value));
 }
 
+void Shader::SetUniform1f(const std::string & name, float value)
+{
+	GLCall(glUniform1f(GetUniformLoc(name), value));
+}
+
 void Shader::SetUniformMat4f(const std::string & name, const maths::mat4f& matrix)
 {
 	GLCall(glUniformMatrix4fv(GetUniformLoc(name), 1, GL_FALSE, &matrix.elements[0]));
+}
+
+void graphics::Shader::SetUniformMaterial(const std::string& name, const Material& mat)
+{
+	using namespace std::string_literals;
+	GLCall(glUniform3fv(GetUniformLoc(name + ".ambient"s), 1, &mat.ambient.x));
+	GLCall(glUniform3fv(GetUniformLoc(name + ".diffuse"s), 1, &mat.diffuse.x));
+	GLCall(glUniform3fv(GetUniformLoc(name + ".specular"s), 1, &mat.specular.x));
+	GLCall(glUniform1f(GetUniformLoc(name + ".shininess"s),  mat.shininess));
 }
 
 void Shader::Bind() const

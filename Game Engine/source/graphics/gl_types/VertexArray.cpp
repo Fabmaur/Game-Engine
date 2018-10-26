@@ -8,7 +8,7 @@ VertexArray::VertexArray()
 	GLCall(glGenVertexArrays(1, &id));
 }
 
-VertexArray::~VertexArray()
+void VertexArray::Delete()
 {
 	GLCall(glDeleteVertexArrays(1, &id));
 }
@@ -23,16 +23,37 @@ void VertexArray::Unbind() const
 	GLCall(glBindVertexArray(0));
 }
 
-void VertexArray::Set(const VertexBuffer& vb, const VBLayout& vbl)
+void VertexArray::SetInOne(const VertexBuffer& vb)
 {
 	Bind();
 	vb.Bind();
-	const auto& layout = vbl.GetElements();
+	const auto& layout = vb.GetLayout();
 	unsigned int offset = 0;
-	for (unsigned int i = 0; i < layout.size(); i++)
+	for (std::size_t i = 0; i < layout.size(); i++)
 	{
-	glVertexAttribPointer(i, layout[i].size, layout[i].type,  layout[i].normalized, vbl.GetStride(), (const void*)offset);
-	GLCall(glEnableVertexAttribArray(i));
-	offset += VBElements::GetSizeOfType(layout[i].type) * layout[i].size;
+		const auto& [layoutSize, type, normalized] = layout[i];
+		GLCall(glVertexAttribPointer(i, layoutSize, type,  normalized, stride, (const void*)offset));
+		GLCall(glEnableVertexAttribArray(i));
+		offset += layoutSize * graphics::VertexBuffer::GetSizeOfType(type);
 	}
+	vb.Unbind();
+	Unbind();
+}
+
+void graphics::VertexArray::Set(const VertexBuffer& vb, const int vertexArrayPos)
+{
+	Bind();
+	vb.Bind();
+	static int offset = 0;
+	const auto& layout = vb.GetLayout();
+	const auto& [layoutSize, type, normalized] = layout[0];
+	GLCall(glVertexAttribPointer(vertexArrayPos,
+		layoutSize,
+		type,
+		normalized,
+		layoutSize*graphics::VertexBuffer::GetSizeOfType(type), 
+		(void*)(vertexArrayPos*graphics::VertexBuffer::GetSizeOfType(type))));
+	
+	GLCall(glEnableVertexAttribArray(vertexArrayPos));
+	offset += layoutSize * graphics::VertexBuffer::GetSizeOfType(type);
 }

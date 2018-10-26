@@ -46,6 +46,8 @@ void graphics::Window::Terminate()
 
 void Window::CreateWindow(const char* titleIn, int widthIn, int heightIn)
 {
+
+	
 	title = titleIn;
 	width = widthIn;
 	height = heightIn;
@@ -55,9 +57,22 @@ void Window::CreateWindow(const char* titleIn, int widthIn, int heightIn)
 		std::cout << "GLFW window failed to be created!" << std::endl;
 		glfwTerminate();
 	}
+
+
+	
+
 	glfwMakeContextCurrent(window);
+
 	glfwSetWindowUserPointer(window, this);
-	std::cout << window << std::endl;
+
+	GLenum err = glewInit();
+
+	if (GLEW_OK != err)
+	{
+		/* Problem: glewInit failed, something is seriously wrong. */
+		fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
+	}
+	fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
 	glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int widthIn, int heightIn)
 	{
@@ -65,8 +80,6 @@ void Window::CreateWindow(const char* titleIn, int widthIn, int heightIn)
 		glViewport(0, 0, widthIn, heightIn);
 		mw->height = heightIn;
 		mw->width = widthIn;
-		std::cout << mw << std::endl;
-
 	});
 
 	glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -94,7 +107,7 @@ void Window::CreateWindow(const char* titleIn, int widthIn, int heightIn)
 	for (int i = 0; i < MAX_BUTTONS; i++)
 		keys[i] = 0;
 
-	
+
 }
 
 bool Window::IsWindowClosed() const
@@ -112,7 +125,7 @@ void Window::SetColour(const maths::vec4<float> colour) const
 	glClearColor(colour.x, colour.y, colour.z, colour.w);
 }
 
-void Window::Clear() const
+void Window::Update() const
 {
 	glfwSwapBuffers(window);
 	glfwPollEvents();

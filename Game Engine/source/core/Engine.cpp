@@ -1,6 +1,7 @@
 #include "Engine.h"
-using namespace core;
 
+using namespace core;
+using namespace graphics;
 
 Engine::Engine(const int width, const int height)
 {
@@ -16,15 +17,14 @@ Engine::Engine(const char* title, const int width, const int height)
 	window.SetColour(0.2f, 0.4f, 0.3f, 1.0f);
 }
 
-
-void Engine::Start()
-{
-	while(!window.IsWindowClosed())
-	{
-		std::cout << window.IsButtonClicked(GLFW_MOUSE_BUTTON_1) << std::endl;
-		window.Clear();
-	}
-}
+    void Engine::Start()
+    {
+	
+		while (!window.IsWindowClosed())
+		{
+			window.Update();
+    	}
+    }
 
 void core::Engine::Stop()
 {

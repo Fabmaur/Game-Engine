@@ -93,6 +93,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Game Engine\Source</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
@@ -107,6 +108,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Game Engine\Source</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
@@ -123,6 +125,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Game Engine\Source</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -141,6 +144,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Game Engine\Source</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -155,7 +159,10 @@
     <ClCompile Include="source\graphics\gl_types\IndexBuffer.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexArray.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexBuffer.cpp" />
+    <ClCompile Include="source\graphics\renderer\Renderer.cpp" />
     <ClCompile Include="source\graphics\renderer\Shader.cpp" />
+    <ClCompile Include="source\graphics\renderer\Sprite.cpp" />
+    <ClCompile Include="source\graphics\renderer\SpriteRenderer.cpp" />
     <ClCompile Include="source\graphics\renderer\Texture.cpp" />
     <ClCompile Include="source\graphics\renderer\Window.cpp" />
     <ClCompile Include="source\vendor\stb_image\stb_image.cpp" />
@@ -163,11 +170,16 @@
   <ItemGroup>
     <ClInclude Include="source\core\Engine.h" />
     <ClInclude Include="source\debug\GLDebug.h" />
+    <ClInclude Include="source\graphics\gl_types\Buffers.h" />
     <ClInclude Include="source\graphics\gl_types\IndexBuffer.h" />
-    <ClInclude Include="source\graphics\gl_types\VBLayout.h" />
     <ClInclude Include="source\graphics\gl_types\VertexArray.h" />
     <ClInclude Include="source\graphics\gl_types\VertexBuffer.h" />
     <ClInclude Include="source\graphics\renderer\Shader.h" />
+    <ClInclude Include="source\graphics\renderer\simple_shapes\Shapes.h" />
+    <ClInclude Include="source\graphics\renderer\simple_shapes\Square.h" />
+    <ClInclude Include="source\graphics\renderer\simple_shapes\Triangle.h" />
+    <ClInclude Include="source\graphics\renderer\Sprite.h" />
+    <ClInclude Include="source\graphics\renderer\SpriteRenderer.h" />
     <ClInclude Include="source\graphics\renderer\Texture.h" />
     <ClInclude Include="source\graphics\renderer\Window.h" />
     <ClInclude Include="source\maths\maths.h" />
@@ -180,6 +192,10 @@
     <ClInclude Include="source\graphics\renderer\Renderer.h" />
     <ClInclude Include="source\graphics\renderer\Material.h" />
     <ClInclude Include="source\vendor\stb_image\stb_image.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source\graphics\renderer\resources\Default.shader" />
+    <None Include="source\graphics\renderer\resources\Material2D.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

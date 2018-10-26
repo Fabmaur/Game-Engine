@@ -11,7 +11,7 @@ IndexBuffer::IndexBuffer(const void* indices, const unsigned int count)
 	GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(unsigned int), indices, GL_STATIC_DRAW));
 }
 
-IndexBuffer::~IndexBuffer()
+void IndexBuffer::Delete()
 {
 	GLCall(glDeleteBuffers(1, &id));
 }

@@ -1,8 +1,9 @@
 #pragma once
 
-#include "graphics/renderer/simple_shapes/Cube.h"
+#include "graphics/renderer/simple_shapes/Shapes.h"
 #include "graphics/renderer/Shader.h"
-
+#include "graphics/gl_types/Buffers.h"
+#include <queue>
 
 namespace graphics
 {
@@ -10,16 +11,16 @@ namespace graphics
 	class Renderer
 	{
 	public:
-		Renderer();
-		void CreateLine();
-		void CreateTriangle();
-		void CreateRectangle();
-		void CreateCube(graphics::CubePlain c, Shader s);
-		void DrawSquare();
-		void DrawTriangle();
 		void DrawRectangle();
 		void DrawCube();
-	private:
+		void CreateShape(unsigned int shapeID);
+		void SetShader(const char* string);
 
+		void DrawTriangle();
+		void DrawSquare();
+		void Draw();
+	private:
+		std::vector<unsigned int> renderObjects;
+	
 	};
 }

@@ -1,6 +1,5 @@
 #pragma once
 #include "VertexBuffer.h"
-#include "VBLayout.h"
 #include "debug/GLDebug.h"
 
 namespace graphics {
@@ -9,13 +8,15 @@ namespace graphics {
 	{
 	public:
 		VertexArray();
-		~VertexArray();
+		void Delete();
 		void Bind() const;
 		void Unbind() const;
-		void Set(const VertexBuffer& vb, const VBLayout& vbl);
+		void SetInOne(const VertexBuffer& vb);
+		void Set(const VertexBuffer& vb, const int vertexArrayPos);
+		inline GLuint GetId() const { return id; };
 
 	private:
-		unsigned int id;
+		GLuint id;
 		unsigned int stride;
 
 	};
