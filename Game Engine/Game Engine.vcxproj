@@ -159,10 +159,7 @@
     <ClCompile Include="source\graphics\gl_types\IndexBuffer.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexArray.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexBuffer.cpp" />
-    <ClCompile Include="source\graphics\renderer\Renderer.cpp" />
     <ClCompile Include="source\graphics\renderer\Shader.cpp" />
-    <ClCompile Include="source\graphics\renderer\Sprite.cpp" />
-    <ClCompile Include="source\graphics\renderer\SpriteRenderer.cpp" />
     <ClCompile Include="source\graphics\renderer\Texture.cpp" />
     <ClCompile Include="source\graphics\renderer\Window.cpp" />
     <ClCompile Include="source\vendor\stb_image\stb_image.cpp" />
@@ -178,8 +175,6 @@
     <ClInclude Include="source\graphics\renderer\simple_shapes\Shapes.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Square.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Triangle.h" />
-    <ClInclude Include="source\graphics\renderer\Sprite.h" />
-    <ClInclude Include="source\graphics\renderer\SpriteRenderer.h" />
     <ClInclude Include="source\graphics\renderer\Texture.h" />
     <ClInclude Include="source\graphics\renderer\Window.h" />
     <ClInclude Include="source\maths\maths.h" />
@@ -189,13 +184,14 @@
     <ClInclude Include="source\maths\Matrix4.h" />
     <ClInclude Include="source\maths\Vector.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Cube.h" />
-    <ClInclude Include="source\graphics\renderer\Renderer.h" />
-    <ClInclude Include="source\graphics\renderer\Material.h" />
     <ClInclude Include="source\vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="source\graphics\renderer\resources\Default.shader" />
     <None Include="source\graphics\renderer\resources\Material2D.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="source\graphics\renderer\resources\LogoRealFinal.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

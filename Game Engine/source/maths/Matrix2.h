@@ -10,6 +10,8 @@ namespace maths
 		mat2(const T scalar = T())
 			:mat<T, 2>{scalar}
 		{};
+		mat4(const mat<T, 2>& rhs)
+			: mat<T, 2>(rhs) {}
 		
 		inline mat2<T> Rotate(const float rad) const;
 		inline T Det() const;

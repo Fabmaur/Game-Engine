@@ -11,7 +11,7 @@ namespace maths {
 	|m2 m5 m8|
 	|__    __|
 	*/
-
+	
 
 
 	////////////////
@@ -21,6 +21,7 @@ namespace maths {
 	template <typename T, int width>
 	struct mat
 	{
+		
 		static const int cells = width * width;
 		T elements[cells];
 
@@ -31,9 +32,11 @@ namespace maths {
 		inline mat<T, width> operator+(const mat<T, width>& rhs) const;
 		inline mat<T, width> operator-(const mat<T, width>& rhs) const;
 		inline mat<T, width> operator*(const mat<T, width>& rhs) const;
+		inline void operator=(const mat<T, width>& rhs);
 		inline void operator+=(const mat<T, width>& rhs);
 		inline void operator-=(const mat<T, width>& rhs);
 		inline void operator*=(const mat<T, width>& rhs);
+
 	};
 
 	////////////////
@@ -76,7 +79,7 @@ namespace maths {
 	template<typename T, int width>
 	inline mat<T, width> mat<T, width>::operator*(const mat<T, width>& rhs) const
 	{
-		mat<T, width> ans;
+		mat<T, 4> ans;
 
 		for (int y = 0; y < width; y++)
 		{
@@ -91,6 +94,14 @@ namespace maths {
 		return ans;
 
 	}
+
+	template<typename T, int width>
+	inline void mat<T, width>::operator=(const mat<T, width>& rhs)
+	{
+		for (int i = 0; i < cells; i++)
+			this->elements[i] = rhs.elements[i];
+	}
+
 
 	template<typename T, int width>
 	inline void mat<T, width>::operator+=(const mat<T, width>& rhs)
@@ -109,4 +120,6 @@ namespace maths {
 	{
 		this = *this * rhs;
 	}
+
+	
 }

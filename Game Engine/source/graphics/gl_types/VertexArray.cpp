@@ -32,7 +32,7 @@ void VertexArray::SetInOne(const VertexBuffer& vb)
 	for (std::size_t i = 0; i < layout.size(); i++)
 	{
 		const auto& [layoutSize, type, normalized] = layout[i];
-		GLCall(glVertexAttribPointer(i, layoutSize, type,  normalized, stride, (const void*)offset));
+		GLCall(glVertexAttribPointer(i, layoutSize, type,  normalized, vb.GetStride(), (const void*)offset));
 		GLCall(glEnableVertexAttribArray(i));
 		offset += layoutSize * graphics::VertexBuffer::GetSizeOfType(type);
 	}
@@ -51,9 +51,12 @@ void graphics::VertexArray::Set(const VertexBuffer& vb, const int vertexArrayPos
 		layoutSize,
 		type,
 		normalized,
-		layoutSize*graphics::VertexBuffer::GetSizeOfType(type), 
+		vb.GetStride(), 
 		(void*)(vertexArrayPos*graphics::VertexBuffer::GetSizeOfType(type))));
 	
 	GLCall(glEnableVertexAttribArray(vertexArrayPos));
 	offset += layoutSize * graphics::VertexBuffer::GetSizeOfType(type);
+	vb.Bind();
+	Unbind();
+
 }

@@ -14,6 +14,7 @@ namespace graphics {
 		void Unbind() const;
 		void PushLayout(unsigned int layoutSize, unsigned int type, bool normalized = false);
 		inline auto GetLayout() const { return vbLayout; };
+		inline unsigned int GetStride() const { return stride; };
 		static unsigned int GetSizeOfType(unsigned int type);
 	private:
 		std::vector<std::tuple<unsigned int, unsigned int, bool>> vbLayout;

@@ -3,8 +3,9 @@
 #include "graphics/renderer/window.h"
 #include "graphics/gl_types/Buffers.h"
 #include "graphics/renderer/simple_shapes/Shapes.h"
-#include "graphics/renderer/SpriteRenderer.h"
-#include "graphics/renderer/Sprite.h"
+#include "graphics/renderer/Texture.h"
+#include "graphics/renderer/Shader.h"
+#include "maths/Matrix4.h"
 
 namespace core {
 	class Engine {

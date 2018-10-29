@@ -8,17 +8,18 @@ namespace maths {
 	{
 		//Calling parent constructor
 		mat4(const T scalar = T())
-			:mat<T, 3>{ scalar }
+			:mat<T, 4>{ scalar }
 		{};
+		mat4(const mat<T, 4>& rhs)
+			: mat<T, 4>(rhs) {}
+
 		//Matrix Rotation
-		inline mat4<T> RotateX(const float rad);
-		inline mat4<T> RotateY(const float rad);
-		inline mat4<T> RotateZ(const float rad);
-
-		//Predefined matrices	
-
-		//inline mat4<float> ortho(float top, float left, float right, float bottom, float far, float near) const;
-		//inline mat4<T> persp();
+		inline void Translate(const T x, const T y, const T z);
+		inline void Translate(const vec3<T> vec);
+		inline void RotateX(const float rad);
+		inline void RotateY(const float rad);
+		inline void RotateZ(const float rad);
+	
 	};
 
 	template <typename T>
@@ -105,24 +106,89 @@ namespace maths {
 		return ans;
 	};
 
-	template<typename T>
-	inline mat4<T> mat4<T>::RotateX(const float rad)
+	template <typename T>
+	static inline mat4<T> Ortho(T left, T right, T top, T bottom, T far, T near)
 	{
-		return *this * RotateXMatrix<T>(rad);
+		mat4<T> ans(0);
+
+		ans.elements[0] = (T)2 / right - left;
+		ans.elements[5] = (T)2 / top - bottom;
+		ans.elements[10] = (T)-2 / far - near;
+		ans.elements[12] = -(right + left) / (right - left);
+		ans.elements[13] = -(top + bottom) / (top - bottom);
+		ans.elements[14] = -(far + near) / (far - near);
+		ans.elements[15] = (T)1;
+
+		return ans;
+	}
+
+	template <typename T>
+	static inline mat4<T> Perspective(T left, T right, T top, T bottom, T far, T near)
+	{
+		mat4<T> ans(0);
+
+		ans.elements[0] = (T)2 / right - left;
+		ans.elements[5] = (T)2 / top - bottom;
+		ans.elements[10] = (T)-2 / far - near;
+		ans.elements[12] = -(right + left) / (right - left);
+		ans.elements[13] = -(top + bottom) / (top - bottom);
+		ans.elements[14] = -(far + near) / (far - near);
+		ans.elements[15] = (T)1;
+
+		return ans;
+	}
+
+	template <typename T>
+	static inline mat4<T> TranslateMat(const T x, const T y, const T z)
+	{
+		mat4<T> ans(1);
+		ans.elements[12] = x;
+		ans.elements[13] = y;
+		ans.elements[14] = z;
+
+		return ans;
+	}
+
+	template <typename T>
+	static inline mat4<T> TranslateMat(vec3<T> vec3)
+	{
+		mat4<T> ans(1);
+		ans.elements[12] = vec3.x;
+		ans.elements[13] = vec3.y;
+		ans.elements[14] = vec3.z;
+
+		return ans;
+	}
+
+	template <typename T>
+	inline void mat4<T>::Translate(const T x, const T y, const T z)
+	{
+		*this = *this * TranslateMat<T>(x, y, z);
+	}
+
+	template <typename T>
+	inline void mat4<T>::Translate(const vec3<T> vec)
+	{
+		*this = *this * TranslateMat<T>(vec);
+	}
+		
+	template<typename T>
+	inline void mat4<T>::RotateX(const float rad)
+	{
+		*this = *this * RotateXMatrix<T>(rad);
 	}
 
 	template<typename T>
-	inline mat4<T> mat4<T>::RotateY(const float rad)
+	inline void mat4<T>::RotateY(const float rad)
 	{
-		return *this * RotateYMatrix<T>(rad);
+		*this = *this * RotateYMatrix<T>(rad);
 	}
 
 	template<typename T>
-	inline mat4<T> mat4<T>::RotateZ(const float rad)
+	inline void mat4<T>::RotateZ(const float rad)
 	{
-		return *this * RotateZMatrix<T>(rad);
+		*this = *this * RotateZMatrix<T>(rad);
 	}
-
 
 	typedef mat4<int> mat4i;
 	typedef mat4<float> mat4f;

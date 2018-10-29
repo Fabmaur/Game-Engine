@@ -135,15 +135,6 @@ void Shader::SetUniformMat4f(const std::string & name, const maths::mat4f& matri
 	GLCall(glUniformMatrix4fv(GetUniformLoc(name), 1, GL_FALSE, &matrix.elements[0]));
 }
 
-void graphics::Shader::SetUniformMaterial(const std::string& name, const Material& mat)
-{
-	using namespace std::string_literals;
-	GLCall(glUniform3fv(GetUniformLoc(name + ".ambient"s), 1, &mat.ambient.x));
-	GLCall(glUniform3fv(GetUniformLoc(name + ".diffuse"s), 1, &mat.diffuse.x));
-	GLCall(glUniform3fv(GetUniformLoc(name + ".specular"s), 1, &mat.specular.x));
-	GLCall(glUniform1f(GetUniformLoc(name + ".shininess"s),  mat.shininess));
-}
-
 void Shader::Bind() const
 {
 	GLCall(glUseProgram(id));

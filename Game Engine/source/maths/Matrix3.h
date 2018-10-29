@@ -11,6 +11,9 @@ namespace maths {
 		mat3(const T scalar = T())
 			:mat<T, 3>{ scalar }
 		{};
+		mat4(const mat<T, 3>& rhs)
+			: mat<T, 3>(rhs) {}
+
 		//Matrix Rotation
 		inline mat3<T> RotateX(const float rad);
 		inline mat3<T> RotateY(const float rad);
