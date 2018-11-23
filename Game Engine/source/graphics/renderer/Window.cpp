@@ -18,7 +18,7 @@ Window::Window()
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	#ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	#endif 
+	#endif
 }
 
 Window::Window(const char * titleIn, int widthIn, int heightIn)
@@ -66,6 +66,8 @@ void Window::CreateWindow(const char* titleIn, int widthIn, int heightIn)
 	glfwSetWindowUserPointer(window, this);
 
 	GLenum err = glewInit();
+	glfwInit();
+	glEnable(GL_DEPTH_TEST);
 
 	if (GLEW_OK != err)
 	{
@@ -127,9 +129,10 @@ void Window::SetColour(const maths::vec4<float> colour) const
 
 void Window::Update() const
 {
+
 	glfwSwapBuffers(window);
 	glfwPollEvents();
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 bool Window::isKeyPressed(const unsigned int keycode) const

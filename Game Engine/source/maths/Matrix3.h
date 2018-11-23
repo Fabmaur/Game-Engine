@@ -11,17 +11,20 @@ namespace maths {
 		mat3(const T scalar = T())
 			:mat<T, 3>{ scalar }
 		{};
-		mat4(const mat<T, 3>& rhs)
+		mat3(const mat<T, 3> rhs)
 			: mat<T, 3>(rhs) {}
 
 		//Matrix Rotation
+		static mat3<T> RotateXMatrix(const float rad);
+		static mat3<T> RotateYMatrix(const float rad);
+		static mat3<T> RotateZMatrix(const float rad);
 		inline mat3<T> RotateX(const float rad);
 		inline mat3<T> RotateY(const float rad);
 		inline mat3<T> RotateZ(const float rad);
 	};
 
 	template<typename T>
-	static mat3<T> RotateXMatrix(const float rad)
+	mat3<T> mat3<T>::RotateXMatrix(const float rad)
 	{
 		mat3<T> ans;
 		const T sinTheta = sin(rad);
@@ -37,9 +40,9 @@ namespace maths {
 		ans.elements[8] = (T)cosTheta;
 		return ans;
 	}
-
+	
 	template<typename T>
-	static mat3<T> RotateYMatrix(const float rad)
+	mat3<T> mat3<T>::RotateYMatrix(const float rad)
 	{
 		mat3<T> ans;
 		const T sinTheta = sin(rad);
@@ -55,9 +58,9 @@ namespace maths {
 		ans.elements[8] = (T)cosTheta;
 		return ans;
 	}
-
+	
 	template<typename T>
-	static mat3<T> RotateZMatrix(const float rad)
+	mat3<T> mat3<T>::RotateZMatrix(const float rad)
 	{
 		mat3<T> ans;
 		const T sinTheta = sin(rad);
@@ -73,21 +76,21 @@ namespace maths {
 		ans.elements[8] = (T)1;
 		return ans;
 	}
-
+	
 	template<typename T>
 	inline mat3<T> mat3<T>::RotateX(const float rad)
 	{
-		return *this * RotateXMatrix<T>(rad);
+		return RotateXMatrix(rad) * *this;
 	}
 	template<typename T>
 	inline mat3<T> mat3<T>::RotateY(const float rad)
 	{
-		return *this * RotateYMatrix<T>(rad);
+		return RotateYMatrix(rad) * *this;
 	}
 	template<typename T>
 	inline mat3<T> mat3<T>::RotateZ(const float rad)
 	{
-		return *this * RotateZMatrix<T>(rad);
+		return RotateZMatrix(rad) * *this;
 	}
 
 	typedef mat3<int> mat3i;

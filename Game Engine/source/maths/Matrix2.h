@@ -10,15 +10,16 @@ namespace maths
 		mat2(const T scalar = T())
 			:mat<T, 2>{scalar}
 		{};
-		mat4(const mat<T, 2>& rhs)
+		mat2(const mat<T, 2> rhs)
 			: mat<T, 2>(rhs) {}
 		
+		static mat2<T> RotateMat(const T theta);
 		inline mat2<T> Rotate(const float rad) const;
 		inline T Det() const;
 	};
 
 	template<typename T>
-	static mat2<T> RotateMatrix(const T theta)
+	mat2<T> mat2<T>::RotateMat(const T theta)
 	{
 		mat2<T> ans;
 		const T sinTheta = sin(theta);
@@ -33,7 +34,7 @@ namespace maths
 	template<typename T>
 	inline mat2<T> mat2<T>::Rotate(const float rad) const
 	{
-		return RotateMatrix<T>(rad) * *this;
+		return RotateMat(rad) * *this;
 	}
 
 	template<typename T>

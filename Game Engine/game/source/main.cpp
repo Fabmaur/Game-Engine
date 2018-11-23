@@ -2,8 +2,7 @@
 
 int main()
 {
-	core::Engine engine;
+	core::Engine engine("Awesome Game Engine!", 1000, 1000);
 	engine.Start();
-	
 	engine.Stop();
 }

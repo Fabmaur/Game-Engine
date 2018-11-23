@@ -32,10 +32,12 @@ namespace maths {
 		inline mat<T, width> operator+(const mat<T, width>& rhs) const;
 		inline mat<T, width> operator-(const mat<T, width>& rhs) const;
 		inline mat<T, width> operator*(const mat<T, width>& rhs) const;
+		inline mat<T, width> operator*(const T& scale) const;
 		inline void operator=(const mat<T, width>& rhs);
 		inline void operator+=(const mat<T, width>& rhs);
 		inline void operator-=(const mat<T, width>& rhs);
 		inline void operator*=(const mat<T, width>& rhs);
+		inline void operator*=(const T& scale);
 
 	};
 
@@ -79,7 +81,7 @@ namespace maths {
 	template<typename T, int width>
 	inline mat<T, width> mat<T, width>::operator*(const mat<T, width>& rhs) const
 	{
-		mat<T, 4> ans;
+		mat<T, width> ans;
 
 		for (int y = 0; y < width; y++)
 		{
@@ -92,14 +94,22 @@ namespace maths {
 			}
 		}
 		return ans;
-
 	}
 
 	template<typename T, int width>
-	inline void mat<T, width>::operator=(const mat<T, width>& rhs)
+	inline mat<T, width> mat<T, width>::operator*(const T & scale) const
+	{
+		mat<T, width> ans;
+		for (int i = 0; i < cells; i++)
+			ans.elements[i] = elements[i] * scale;
+		return ans;
+	}
+
+	template<typename T, int width>
+	inline  void mat<T, width>::operator=(const mat<T, width>& rhs)
 	{
 		for (int i = 0; i < cells; i++)
-			this->elements[i] = rhs.elements[i];
+			elements[i] = rhs.elements[i];
 	}
 
 
@@ -119,6 +129,12 @@ namespace maths {
 	inline void mat<T, width>::operator*=(const mat<T, width>& rhs)
 	{
 		this = *this * rhs;
+	}
+
+	template<typename T, int width>
+	inline void mat<T, width>::operator*=(const T & scale)
+	{
+		*this = *this * scale;
 	}
 
 	

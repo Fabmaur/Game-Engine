@@ -5,7 +5,7 @@
 #include "graphics/renderer/simple_shapes/Shapes.h"
 #include "graphics/renderer/Texture.h"
 #include "graphics/renderer/Shader.h"
-#include "maths/Matrix4.h"
+#include "maths/maths.h"
 
 namespace core {
 	class Engine {
