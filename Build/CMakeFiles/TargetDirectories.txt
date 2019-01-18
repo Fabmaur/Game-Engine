@@ -1,4 +1,0 @@
-C:/GL/GameEngine/Build/CMakeFiles/engine.dir
-C:/GL/GameEngine/Build/CMakeFiles/engine_game.dir
-C:/GL/GameEngine/Build/CMakeFiles/ALL_BUILD.dir
-C:/GL/GameEngine/Build/CMakeFiles/ZERO_CHECK.dir
