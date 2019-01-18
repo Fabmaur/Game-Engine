@@ -1,8 +1,9 @@
+
 #pragma once
 #include <GL/glew.h>
 #include "graphics/renderer/window.h"
 #include "graphics/gl_types/Buffers.h"
-#include "graphics/renderer/simple_shapes/Shapes.h"
+#include "graphics/simple_shapes/Shapes.h"
 #include "graphics/renderer/Texture.h"
 #include "graphics/renderer/Shader.h"
 #include "maths/maths.h"
