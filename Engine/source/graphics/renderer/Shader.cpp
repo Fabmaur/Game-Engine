@@ -18,15 +18,7 @@ Shader::~Shader()
 ShaderContainer Shader::ParseShader(const std::string& filename)
 {
 	std::ifstream in(filename);
-
-	if (!in) {
-		HP_ASSERT(in, "The file could not be found");
-	}
-	else {
-		HP_SUCCESS("Found shader file: ", filename);
-	}
-
-	
+	ASSERT(in, "The file could not be found")
 
 	enum class type {
 		NONE = -1, VERTEX = 0, FRAGMENT = 1

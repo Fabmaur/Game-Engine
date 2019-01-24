@@ -5,7 +5,7 @@
 int main()
 {
 	static debug::ProjectLog log;
-	GAME_SUCCESS("It works!");
+	GAME_STATUS("Loading Game...");
 	core::Engine engine("Hyperion Engine", 1920, 1080);
 	engine.Start();
 	engine.Stop();

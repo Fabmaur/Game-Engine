@@ -14,7 +14,7 @@ Engine::Engine(const int width, const int height)
 
 Engine::Engine(const char* title, const int width, const int height)
 {
-	HP_SUCCESS("Initializing Engine");
+	HP_STATUS("Initializing Engine");
 	graphics::Window newWindow(title, width, height);
 	window = newWindow;
 	window.SetColour(0.2f, 0.4f, 0.3f, 1.0f);
@@ -32,7 +32,7 @@ void Engine::Start()
 	shader.Bind();
 	Texture tex("resources/container.jpg");
 	tex.Bind();
-	shader.SetUniform1f("tex", 0);
+	shader.SetUniform1i("tex", 0);
 
 	VertexArray VAO;
 	VAO.SetInOne(VBO);

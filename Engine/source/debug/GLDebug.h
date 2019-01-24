@@ -5,16 +5,18 @@
 
 #ifdef DEBUG
 
-#define HP_ASSERT(x, ...){ if(!(x)) {HP_FATAL("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}};
-#define GAME_ASSERT(x, ...){ if(!(x)) {GAME_FATAL("Assertion Failed: {0}", __VA_ARGS__); __debugbreak();}};
+#define HP_ASSERT(x, ...){ if(!(x)) {HP_FATAL(__VA_ARGS__); __debugbreak();}}
+#define GAME_ASSERT(x, ...){ if(!(x)) {GAME_FATAL(__VA_ARGS__); __debugbreak();}}
+#define ASSERT(x) { if(!(x)) __debugbreak();}
 #define GLCall(x) debug::ClearError();\
     x;\
-    HP_ERROR(debug::LogCall(#x, __FILE__, __LINE__))
+    ASSERT(debug::LogCall(#x, __FILE__, __LINE__))
 	
 #else
 #define GLCall(x) x
-#define HZ_ASSERT(x)
+#define HP_ASSERT(x)
 #define GAME_ASSERT(x)
+#define ASSERT(x)
 #endif
 
 namespace debug
