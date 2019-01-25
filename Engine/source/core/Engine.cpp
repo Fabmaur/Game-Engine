@@ -28,7 +28,7 @@ void Engine::Start()
 
 	maths::mat4f model(1.0f);
 
-	Shader shader("resources/Default.shader");
+	Shader shader("resources/Default3D.shader");
 	shader.Bind();
 	Texture tex("resources/container.jpg");
 	tex.Bind();
@@ -38,10 +38,31 @@ void Engine::Start()
 	VAO.SetInOne(VBO);
 	VAO.Bind();
 
+	VertexBuffer VBO2D(graphics::Rect::texVertices, sizeof(graphics::Rect::texVertices));
+	VBO.PushLayout(3, GL_FLOAT);
+	VBO.PushLayout(2, GL_FLOAT);
+
+
+	VertexArray VAO2D;
+	Shader shader2D("resources/Default2D.shader");
+	shader2D.Bind();
+
+
+	Sprite square(VAO2D, shader2D, tex, maths::vec2{0.5f, 0.5f});
+	SpriteRenderer renderer;
+
 	   
 	maths::mat4f view = maths::mat4f::TranslateMat(0.0f, 0.0f, -2.0f);
 	while (!window.IsWindowClosed())
 	{
+		renderer.Push(square);
+		renderer.Flush();
+
+		VAO.Bind();
+		shader.Bind();
+		tex.Bind();
+
+
 
 		maths::mat4f proj = maths::Perspective(90.0f, (float)window.GetWidth() / (float)window.GetHeight(), 0.3f, 100.0f);
 		model.RotateY(0.0001f);

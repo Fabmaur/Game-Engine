@@ -173,6 +173,15 @@
       <Project>{38c3a781-a68e-4b31-a950-a5198d2eb03b}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\Default2D.shader" />
+    <None Include="resources\Default3D.shader" />
+    <None Include="resources\Material2D.shader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\container.jpg" />
+    <Image Include="resources\LogoRealFinal.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

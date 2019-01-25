@@ -1,9 +1,13 @@
 #pragma once
+#include "Sprite.h"
 
-class 2DRenderer
+namespace graphics
 {
-public:
-	virtual void Push() = 0;
-	virtual void Flush() = 0;
+	class Renderer2D
+	{
+	protected:
+		virtual void Push(Sprite& sprite) = 0;
+		virtual void Flush() = 0;
 
-};
+	};
+}

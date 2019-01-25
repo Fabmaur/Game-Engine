@@ -6,6 +6,7 @@ using namespace graphics;
 Shader::Shader(const std::string filename)
 	:id(0)
 {
+	HP_STATUS("Opening shader file: ", filename);
 	ShaderContainer shader = ParseShader(filename);
 	id = CreateShader(shader.vertexShaderSrc, shader.fragmentShaderSrc);
 }
@@ -34,10 +35,12 @@ ShaderContainer Shader::ParseShader(const std::string& filename)
 		{
 			if (line.find("vertex") != std::string::npos)
 			{
+				HP_STATUS("Found vertex shader");
 				shader = type::VERTEX;
 			}
 			else if (line.find("fragment") != std::string::npos)
 			{
+				HP_STATUS("Found fragment shader");
 				shader = type::FRAGMENT;
 			}
 		}
@@ -67,7 +70,7 @@ unsigned int Shader::CompileShader(const unsigned int type, const std::string& s
 		HP_ERROR("ERROR::SHADER::", (type == GL_VERTEX_SHADER ? "VERTEX" : "FRAGMENT"), "::COMPILATION_FAILED\n", infoLog);
 	}
 	else
-		HP_SUCCESS("Successful shader  ");
+		HP_SUCCESS("Successful ", (type == GL_VERTEX_SHADER ? "vertex" : "fragment"), " shader");
 
 	return id;
 }

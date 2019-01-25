@@ -16,6 +16,9 @@
 #include "graphics/gl_types/Buffers.h"
 #include "graphics/renderer/Shader.h"
 #include "graphics/renderer/Texture.h"
+#include "graphics/renderer/SpriteRenderer.h"
+#include "graphics/renderer/Sprite.h"
+#include "graphics/renderer/Renderer2D.h"
 
 //Util
 #include <iostream>

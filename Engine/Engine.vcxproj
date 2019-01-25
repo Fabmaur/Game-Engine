@@ -174,6 +174,7 @@
     <ClCompile Include="source\graphics\gl_types\VertexBuffer.cpp" />
     <ClCompile Include="source\graphics\renderer\Camera.cpp" />
     <ClCompile Include="source\graphics\renderer\Shader.cpp" />
+    <ClCompile Include="source\graphics\renderer\SpriteRenderer.cpp" />
     <ClCompile Include="source\graphics\renderer\Texture.cpp" />
     <ClCompile Include="source\graphics\renderer\Window.cpp" />
     <ClCompile Include="source\pch.cpp">
@@ -193,11 +194,15 @@
     <ClInclude Include="source\graphics\gl_types\IndexBuffer.h" />
     <ClInclude Include="source\graphics\gl_types\VertexArray.h" />
     <ClInclude Include="source\graphics\gl_types\VertexBuffer.h" />
+    <ClInclude Include="source\graphics\renderer\2DRenderer.h" />
     <ClInclude Include="source\graphics\renderer\Camera.h" />
+    <ClInclude Include="source\graphics\renderer\Renderer2D.h" />
     <ClInclude Include="source\graphics\renderer\Shader.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Shapes.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Square.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Triangle.h" />
+    <ClInclude Include="source\graphics\renderer\Sprite.h" />
+    <ClInclude Include="source\graphics\renderer\SpriteRenderer.h" />
     <ClInclude Include="source\graphics\renderer\Texture.h" />
     <ClInclude Include="source\graphics\renderer\Window.h" />
     <ClInclude Include="source\graphics\simple_shapes\Cube.h" />

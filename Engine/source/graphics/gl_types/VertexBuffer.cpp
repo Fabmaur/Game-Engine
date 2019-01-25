@@ -35,7 +35,7 @@ void VertexBuffer::PushLayout(unsigned int layoutSize, unsigned int type, bool n
 
 unsigned int VertexBuffer::GetSizeOfType(unsigned int type)
 {
-	switch (type) 
+	switch (type)
 	{
 	case GL_FLOAT:			return 4;
 	case GL_UNSIGNED_INT:   return 4;

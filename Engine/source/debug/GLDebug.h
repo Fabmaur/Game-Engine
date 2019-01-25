@@ -5,8 +5,13 @@
 
 #ifdef DEBUG
 
-#define HP_ASSERT(x, ...){ if(!(x)) {HP_FATAL(__VA_ARGS__); __debugbreak();}}
-#define GAME_ASSERT(x, ...){ if(!(x)) {GAME_FATAL(__VA_ARGS__); __debugbreak();}}
+#define HP_ASSERT(x, ...){ if(!(x)){\
+							 HP_FATAL(__VA_ARGS__);\
+							 __debugbreak();}}
+#define GAME_ASSERT(x, ...){ if(!(x)){\
+								GAME_FATAL(__VA_ARGS__);\
+								__debugbreak();}}
+
 #define ASSERT(x) { if(!(x)) __debugbreak();}
 #define GLCall(x) debug::ClearError();\
     x;\
@@ -28,10 +33,27 @@ namespace debug
 	}
 	static bool LogCall(const char* function, const char* file, int line)
 	{
-		while (GLenum error = glGetError())
+		const int totalFlagCount{ 7 };
+		int flagNum{ 0 };
+		while (GLenum errorCode = glGetError())
 		{
+			
+			std::string error;
+			switch (errorCode)
+			{
+			case GL_INVALID_ENUM:                  error = "INVALID_ENUM"; break;
+			case GL_INVALID_VALUE:                 error = "INVALID_VALUE"; break;
+			case GL_INVALID_OPERATION:             error = "INVALID_OPERATION"; break;
+			case GL_STACK_OVERFLOW:                error = "STACK_OVERFLOW"; break;
+			case GL_STACK_UNDERFLOW:               error = "STACK_UNDERFLOW"; break;
+			case GL_OUT_OF_MEMORY:                 error = "OUT_OF_MEMORY"; break;
+			case GL_INVALID_FRAMEBUFFER_OPERATION: error = "INVALID_FRAMEBUFFER_OPERATION"; break;
+			}
+
 			HP_ERROR("[OpenGL Error]Code: ", error , " Function ", function, " " , file, ":", line);
-			return false;
+			flagNum++;
+			if(flagNum ==  totalFlagCount)
+				return false;
 		}
 		return true;
 	}
