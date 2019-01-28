@@ -3,10 +3,14 @@
 
 namespace graphics
 {
+	/*The texture class loads an image file and creates a texture
+	from it which can then be overlayed over an object. The texture
+	must be bound if it is to be used.*/
+
 	class Texture
 	{
 	public:
-		Texture(const std::string path);
+		Texture(const std::string& path);
 		void Delete();
 		void Bind(unsigned int slot = 0) const;
 		void Unbind() const;
@@ -15,9 +19,9 @@ namespace graphics
 
 	private:
 		unsigned int id;
-		std::string filePath;
+		const std::string& filePath;
 		unsigned char* localBuffer;
-		int width, height, BPP;
+		int width, height, numColourChannels;
 	};
 }
 

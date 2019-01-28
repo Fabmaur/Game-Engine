@@ -116,6 +116,4 @@ namespace debug
 		static constexpr int  WHITE = 15;
 
 	};
-
-	//Static variable definitions
 }

@@ -8,11 +8,17 @@
 
 namespace graphics
 {
+	/*Creates sprites which can be pushed into a sprite renderer
+	and rendered.*/
 
 	class Sprite
 	{
 	public:
 		Sprite() = delete;
+		~Sprite()
+		{
+			HP_ERROR("Desroying Sprite.");
+		}
 		Sprite(Shader& shader, Texture& tex, maths::vec3f pos, maths::vec2f size)
 			:shader(shader),
 			tex(tex),
@@ -33,7 +39,7 @@ namespace graphics
 			VBO.PushLayout(3, GL_FLOAT);
 			VBO.PushLayout(2, GL_FLOAT);
 
-			const float indices[]
+			const unsigned int indices[]
 			{
 				0, 1, 2, // triangle top left
 				0, 2, 3  // triangle bottom right
@@ -41,15 +47,14 @@ namespace graphics
 
 			IndexBuffer IBO(indices, sizeof(indices)/sizeof(float));
 			VertexArray v;
-			v.SetInOne(VBO);
+			v.SetVertexAttribArray(VBO);
 			v.BindIBO(IBO);
 			VAO = v;
-
 		}
-		inline VertexArray& GetVAO() { return VAO; };
-		inline Shader& GetShader() { return shader; };
-		inline Texture& GetTexture() { return tex; };
-		inline maths::vec3f& GetPos() { return pos; };
+		inline const VertexArray& GetVAO() const { return VAO; };
+		inline Shader& GetShader() const { return shader; };
+		inline Texture& GetTexture() const { return tex; };
+		inline maths::vec3f& GetPos() const { return pos; };
 	private:
 		maths::vec3f& pos;
 		maths::vec2f& size;

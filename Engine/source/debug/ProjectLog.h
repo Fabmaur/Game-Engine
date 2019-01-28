@@ -3,6 +3,8 @@
 #include "Console.h"
 
 namespace debug {
+	/*Creates 2 static console set ups, one which refers to the engine
+	and one which refers to the game.*/
 
 	class ProjectLog
 	{

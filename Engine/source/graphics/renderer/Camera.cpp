@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "Camera.h"
 
-
-Camera::Camera()
+namespace graphics
 {
-	pos = {0.0f, 0.0f, 3.0f};
-	
+	Camera::Camera()
+	{
+		pos = { 0.0f, 0.0f, 3.0f };
+
+	}
 }

@@ -5,6 +5,8 @@
 
 namespace graphics 
 {
+	/*Window class creates a window using glfw. Also collects events from mouse
+	and keyboard.*/
 	class Window
 	{
 	public:

@@ -4,17 +4,24 @@
 
 namespace graphics
 {
+
+	//Used as return type to ParseShader function
 	struct ShaderContainer
 	{
-		std::string vertexShaderSrc;
-		std::string fragmentShaderSrc;
+		std::string vertex;
+		std::string fragment;
 	};
+
+	/*Shader class loads and parses shaders from other files so that opengl
+	shaders can be created and compiled. The class also allows uniforms to be
+	set for the current shader program. The class must be bound when the
+	shader is to be used.*/
 
 	class Shader
 	{
 	public:
 		Shader() = default;
-		Shader(const std::string filename);
+		Shader(const std::string& filename);
 		~Shader();
 		void Bind() const;
 		void Unbind() const;

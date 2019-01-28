@@ -5,30 +5,30 @@
 
 namespace graphics
 {
-	Texture::Texture(const std::string path)
+	Texture::Texture(const std::string& path)
 		:id(0),
 		filePath(path),
 		localBuffer(nullptr),
 		width(0),
 		height(0),
-		BPP(0)
+		numColourChannels(0)
 
 	{
 		stbi_set_flip_vertically_on_load(1);
-		localBuffer = stbi_load(path.c_str(), &width, &height, &BPP, 4);
+		localBuffer = stbi_load(path.c_str(), &width, &height, &numColourChannels, 4);
 
-		GLCall(glGenTextures(1, &id));
-		GLCall(glBindTexture(GL_TEXTURE_2D, id));
+		GLCheck(glGenTextures(1, &id));
+		GLCheck(glBindTexture(GL_TEXTURE_2D, id));
 
+		//Making default settings for texture
+		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 
-		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-		GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-
-		GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer));
-		GLCall(glGenerateMipmap(GL_TEXTURE_2D));
-		GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+		GLCheck(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer));
+		GLCheck(glGenerateMipmap(GL_TEXTURE_2D));
+		GLCheck(glBindTexture(GL_TEXTURE_2D, id));
 
 		if (localBuffer) {
 			stbi_image_free(localBuffer);
@@ -41,17 +41,17 @@ namespace graphics
 
 	void Texture::Delete()
 	{
-		GLCall(glDeleteTextures(1, &id));
+		GLCheck(glDeleteTextures(1, &id));
 	}
 
 	void Texture::Bind(unsigned int slot) const
 	{
-		GLCall(glActiveTexture(GL_TEXTURE0 + slot));
-		GLCall(glBindTexture(GL_TEXTURE_2D, id));
+		GLCheck(glActiveTexture(GL_TEXTURE0 + slot));
+		GLCheck(glBindTexture(GL_TEXTURE_2D, id));
 	}
 
 	void Texture::Unbind() const
 	{
-		GLCall(glBindTexture(GL_TEXTURE_2D, 0));
+		GLCheck(glBindTexture(GL_TEXTURE_2D, 0));
 	}
 }

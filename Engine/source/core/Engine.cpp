@@ -17,7 +17,7 @@ Engine::Engine(const char* title, const int width, const int height)
 	HP_STATUS("Initializing Engine");
 	graphics::Window newWindow(title, width, height);
 	window = newWindow;
-	window.SetColour(0.2f, 0.4f, 0.3f, 1.0f);
+	window.SetColour(0.4f, 0.2f, 0.6f, 1.0f);
 }
 
 void Engine::Start()
@@ -25,13 +25,15 @@ void Engine::Start()
 	Shader shader("resources/Default.shader");
 	Texture tex("resources/container.jpg");
 
-	Sprite square(shader, tex, maths::vec3f{ 0.5f, 0.5f,0.0f }, maths::vec2f{ 0.1f, 0.1f });
+	Sprite square = Sprite(shader, tex, maths::vec3f{ 0.5f, 0.5f,0.0f }, maths::vec2f{ 0.1f, 0.1f });
+	Sprite square2 = Sprite(shader, tex, maths::vec3f{ 0.2f, 0.3f,0.0f }, maths::vec2f{ 0.1f, 0.1f });
 	SpriteRenderer renderer;
 
 
 	while (!window.IsWindowClosed())
 	{
-		renderer.Push(square);
+		renderer.Push(&square);
+		renderer.Push(&square2);
 		renderer.Flush();
 
 		window.Update();

@@ -18,9 +18,9 @@ namespace graphics
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	#ifdef __APPLE__
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	#endif
+		#ifdef __APPLE__
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+		#endif
 	}
 
 	Window::Window(const char * titleIn, int widthIn, int heightIn)
@@ -30,9 +30,9 @@ namespace graphics
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	#ifdef __APPLE__
-		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	#endif
+		#ifdef __APPLE__
+			glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+		#endif
 		CreateWin(titleIn, widthIn, heightIn);
 
 	}
@@ -83,9 +83,9 @@ namespace graphics
 			mw->width = widthIn;
 		});
 
+		// Sets glfw call back functions
 		glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
 		{
-			// Bug: Pressing right and left arrow key creates graphical glitch
 			Window* mw = static_cast<Window*>(glfwGetWindowUserPointer(window));
 			mw->keys[key] = action != GLFW_RELEASE;
 		});
@@ -108,8 +108,6 @@ namespace graphics
 			keys[i] = 0;
 		for (int i = 0; i < MAX_BUTTONS; i++)
 			keys[i] = 0;
-
-
 	}
 
 	bool Window::IsWindowClosed() const
@@ -129,7 +127,6 @@ namespace graphics
 
 	void Window::Update() const
 	{
-
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

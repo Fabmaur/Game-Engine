@@ -4,7 +4,7 @@
 namespace graphics
 {
 
-	void SpriteRenderer::Push(Sprite& sprite)
+	void SpriteRenderer::Push(const Sprite* sprite)
 	{
 		spriteQueue.push_back(sprite);
 	}
@@ -13,15 +13,16 @@ namespace graphics
 	{
 		while (!spriteQueue.empty())
 		{
-			Sprite& curSprite = spriteQueue.front();
-			curSprite.GetVAO().Bind();
-			curSprite.GetShader().Bind();
-			curSprite.GetShader().SetUniform1i("tex", 0);
+			const Sprite* curSprite = spriteQueue.front();
+			curSprite->GetTexture().Bind();
+			curSprite->GetShader().Bind();
+			curSprite->GetVAO().Bind();
 			
-			glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
-			curSprite.GetVAO().Unbind();
-			curSprite.GetShader().Unbind();
+			curSprite->GetVAO().Unbind();
+			curSprite->GetShader().Unbind();
+			curSprite->GetTexture().Unbind();
 	   	 	spriteQueue.pop_front();
 		}
 	}

@@ -6,14 +6,16 @@
 
 namespace graphics
 {
+	/*Derived class of renderer - used to render sprites*/
+
 	class SpriteRenderer : public Renderer2D
 	{
 	public:
-		void Push(Sprite& sprite)  override;
+		void Push(const Sprite* sprite)  override;
 		void Flush()  override;
 
 	private:
-		std::deque<Sprite> spriteQueue;
+		std::deque<const Sprite*> spriteQueue;
 
 	};
 }

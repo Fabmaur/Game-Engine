@@ -13,7 +13,7 @@
 								__debugbreak();}}
 
 #define ASSERT(x) { if(!(x)) __debugbreak();}
-#define GLCall(x) debug::ClearError();\
+#define GLCheck(x) debug::ClearError();\
     x;\
     ASSERT(debug::LogCall(#x, __FILE__, __LINE__))
 	
@@ -26,6 +26,7 @@
 
 namespace debug
 {
+	/*Used to debug*/
 
 	static void ClearError() // Clears the previous error flags
 	{

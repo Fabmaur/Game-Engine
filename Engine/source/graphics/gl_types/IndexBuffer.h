@@ -2,7 +2,7 @@
 
 namespace graphics 
 {
-
+	/*Stores index data of vertices*/
 	class IndexBuffer
 	{
 	public:

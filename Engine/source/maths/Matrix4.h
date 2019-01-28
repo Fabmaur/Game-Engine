@@ -199,29 +199,6 @@ namespace maths
 		ans.elements[14] = -1.0f;
 		
 		return ans;
-		//const auto fov_rad = GetRadians(fov);
-		//const auto w = (T)1.0f / std::tan(fov_rad / (T)2.0);
-		//const auto h = w * aspectRatio;
-		//
-		//ans.elements[0] = w;
-		//ans.elements[1] = (T)0.0;
-		//ans.elements[2] = (T)0.0;
-		//ans.elements[3] = (T)0.0;
-		//ans.elements[4] = (T)0.0;
-		//ans.elements[5] = h;
-		//ans.elements[6] = (T)0.0;
-		//ans.elements[8] = (T)0.0;
-		//ans.elements[7] = (T)0.0;
-		//ans.elements[8] = (T)0.0;
-		//ans.elements[9] = far_ / (far_ - near_);
-		//ans.elements[10] = -near_ * far_ / (far_ - near_);
-		//ans.elements[11] = (T)0.0;
-		//ans.elements[12] = (T)0.0;
-		//ans.elements[14] = (T)1.0;
-		//ans.elements[15] = (T)0.0;
-		//
-		//return ans;
-		//
 	}
 
 	template <typename T>

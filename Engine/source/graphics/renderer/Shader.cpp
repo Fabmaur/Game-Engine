@@ -3,23 +3,23 @@
 
 using namespace graphics;
 
-Shader::Shader(const std::string filename)
+Shader::Shader(const std::string& filename)
 	:id(0)
 {
 	HP_STATUS("Opening shader file: ", filename);
 	ShaderContainer shader = ParseShader(filename);
-	id = CreateShader(shader.vertexShaderSrc, shader.fragmentShaderSrc);
+	id = CreateShader(shader.vertex, shader.fragment);
 }
 
 Shader::~Shader()
 {
-	GLCall(glDeleteProgram(id));
+	GLCheck(glDeleteProgram(id));
 }
 
 ShaderContainer Shader::ParseShader(const std::string& filename)
 {
 	std::ifstream in(filename);
-	ASSERT(in, "The file could not be found")
+	HP_ASSERT(in, "The file could not be found")
 
 	enum class type {
 		NONE = -1, VERTEX = 0, FRAGMENT = 1
@@ -55,14 +55,14 @@ ShaderContainer Shader::ParseShader(const std::string& filename)
 
 unsigned int Shader::CompileShader(const unsigned int type, const std::string& source)
 {
-	GLCall(unsigned int id = glCreateShader(type));
+	GLCheck(unsigned int id = glCreateShader(type));
 	const char* src = source.c_str();
-	GLCall(glShaderSource(id, 1, &src, NULL));
-	GLCall(glCompileShader(id));
+	GLCheck(glShaderSource(id, 1, &src, NULL));
+	GLCheck(glCompileShader(id));
 
 	int  success;
 	char infoLog[512];
-	GLCall(glGetShaderiv(id, GL_COMPILE_STATUS, &success));
+		GLCheck(glGetShaderiv(id, GL_COMPILE_STATUS, &success));
 
 	if (!success)
 	{
@@ -77,22 +77,22 @@ unsigned int Shader::CompileShader(const unsigned int type, const std::string& s
 
 unsigned int Shader::CreateShader(const std::string& vertexSrc, const std::string& fragmentSrc)
 {
-	GLCall(unsigned int program = glCreateProgram());
+	GLCheck(unsigned int program = glCreateProgram());
 	unsigned int vertexID = CompileShader(GL_VERTEX_SHADER, vertexSrc);
 	unsigned int fragmentID = CompileShader(GL_FRAGMENT_SHADER, fragmentSrc);
-	GLCall(glAttachShader(program, vertexID));
-	GLCall(glAttachShader(program, fragmentID));
-	GLCall(glLinkProgram(program));
-	GLCall(glValidateProgram(program));
-	GLCall(glDeleteShader(vertexID));
-	GLCall(glDeleteShader(fragmentID));
+	GLCheck(glAttachShader(program, vertexID));
+	GLCheck(glAttachShader(program, fragmentID));
+	GLCheck(glLinkProgram(program));
+	GLCheck(glValidateProgram(program));
+	GLCheck(glDeleteShader(vertexID));
+	GLCheck(glDeleteShader(fragmentID));
 
 	return program;
 }
 
 const int Shader::GetUniformLoc(const std::string& name)
 {
-	GLCall(int loc =glGetUniformLocation(id, name.c_str()));
+	GLCheck(int loc =glGetUniformLocation(id, name.c_str()));
 	if (loc == -1) 
 	{ 
 		HP_ERROR("Error uniform ", name," not found!"); 
@@ -102,46 +102,46 @@ const int Shader::GetUniformLoc(const std::string& name)
 
 void Shader::SetUniform4f(const std::string& name, const float& v0, const float& v1, const float& v2, const float& v3)
 {
-	GLCall(glUniform4f(GetUniformLoc(name), v0, v1, v2, v3));
+	GLCheck(glUniform4f(GetUniformLoc(name), v0, v1, v2, v3));
 }
 
 void Shader::SetUniform3f(const std::string & name, const float & v0, const float & v1, const float & v2)
 {
-	GLCall(glUniform3f(GetUniformLoc(name), v0, v1, v2));
+	GLCheck(glUniform3f(GetUniformLoc(name), v0, v1, v2));
 }
 
 void Shader::SetUniform4v(const std::string & name, maths::vec4f& val)
 {
-	GLCall(glUniform4fv(GetUniformLoc(name), 1, &val.x));
+	GLCheck(glUniform4fv(GetUniformLoc(name), 1, &val.x));
 }
 
 void Shader::SetUniform3v(const std::string & name, maths::vec3f& val)
 {
-	GLCall(glUniform3fv(GetUniformLoc(name), 1,&val.x));
+	GLCheck(glUniform3fv(GetUniformLoc(name), 1,&val.x));
 }
 
 void Shader::SetUniform1i(const std::string & name, int value)
 {
-	GLCall(glUniform1i(GetUniformLoc(name), value));
+	GLCheck(glUniform1i(GetUniformLoc(name), value));
 }
 
 void Shader::SetUniform1f(const std::string& name, float value)
 {
-	GLCall(glUniform1f(GetUniformLoc(name), value));
+	GLCheck(glUniform1f(GetUniformLoc(name), value));
 }
 
 void Shader::SetUniformMat4f(const std::string & name, const maths::mat4f& matrix)
 {
-	GLCall(glUniformMatrix4fv(GetUniformLoc(name), 1, GL_FALSE, &matrix.elements[0]));
+	GLCheck(glUniformMatrix4fv(GetUniformLoc(name), 1, GL_FALSE, &matrix.elements[0]));
 }
 
 void Shader::Bind() const
 {
-	GLCall(glUseProgram(id));
+	GLCheck(glUseProgram(id));
 }
 
 void Shader::Unbind() const
 {
-	GLCall(glUseProgram(0));
+	GLCheck(glUseProgram(0));
 }
 

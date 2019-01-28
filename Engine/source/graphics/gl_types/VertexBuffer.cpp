@@ -7,24 +7,24 @@ using namespace graphics;
 VertexBuffer::VertexBuffer(const void* vertices, const unsigned int size)
 	:id(0)
 {
-	GLCall(glGenBuffers(1, &id));
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, id));
-	GLCall(glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW));
+	GLCheck(glGenBuffers(1, &id));
+	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, id));
+	GLCheck(glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW));
 }
 
 void VertexBuffer::Delete()
 {
-	GLCall(glDeleteBuffers(1, &id));
+	GLCheck(glDeleteBuffers(1, &id));
 }
 
 void VertexBuffer::Bind() const
 {
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, id));
+	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, id));
 }
 
 void VertexBuffer::Unbind() const
 {
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
 void VertexBuffer::PushLayout(unsigned int layoutSize, unsigned int type, bool normalized)

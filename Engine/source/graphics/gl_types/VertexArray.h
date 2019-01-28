@@ -5,6 +5,9 @@
 
 namespace graphics
 {
+	/*Vertex Array class creates an opengl vertex array object which specifies
+	how vertex data is stored in a VBO. It also holds are IBO data and should be
+	bound when you want to draw the specified object.*/
 
 	class VertexArray
 	{
@@ -14,13 +17,12 @@ namespace graphics
 		void Bind() const;
 		void Unbind() const;
 		void BindIBO(const IndexBuffer& IBO) const;
-		void SetInOne(const VertexBuffer& vb);
-		void Set(const VertexBuffer& vb, const int vertexArrayPos);
+		void SetVertexAttribArray(const VertexBuffer& vb);
+		void SetVertexAttrib(const VertexBuffer& vb, const int vertexArrayPos);
 		inline GLuint GetId() const { return id; };
 
 	private:
 		GLuint id;
-		unsigned int stride;
 
 	};
 }

@@ -4,7 +4,7 @@
 namespace maths 
 {
 
-	/* Matrix Parent Class Template
+	/* Matrix Base Class Template
 	using row major layout
 	__     __
 	|m0 m3 m6|
@@ -16,7 +16,7 @@ namespace maths
 
 
 	////////////////
-	//DECLERATION
+	//Decleration
 	////////////////
 
 	template <typename T, int width>
@@ -43,7 +43,7 @@ namespace maths
 	};
 
 	////////////////
-	//IMPLEMENTATION
+	//Implementation
 	////////////////
 
 	template<typename T, int width>
