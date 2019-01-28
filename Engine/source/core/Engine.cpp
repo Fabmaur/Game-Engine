@@ -22,51 +22,18 @@ Engine::Engine(const char* title, const int width, const int height)
 
 void Engine::Start()
 {
-	VertexBuffer VBO(graphics::CubeTextured::vertices, sizeof(graphics::CubeTextured::vertices));
-	VBO.PushLayout(3, GL_FLOAT);
-	VBO.PushLayout(2, GL_FLOAT);
-
-	maths::mat4f model(1.0f);
-
 	Shader shader("resources/Default.shader");
-	shader.Bind();
 	Texture tex("resources/container.jpg");
-	tex.Bind();
-	shader.SetUniform1i("tex", 0);
 
-	VertexArray VAO;
-	VAO.SetInOne(VBO);
-	VAO.Bind();
-
-	VertexBuffer VBO2D(graphics::Rect::texVertices, sizeof(graphics::Rect::texVertices));
-	VBO.PushLayout(3, GL_FLOAT);
-	VBO.PushLayout(2, GL_FLOAT);
-
-
-	Sprite square(VAO2D, shader, tex, maths::vec2{0.5f, 0.5f});
+	Sprite square(shader, tex, maths::vec3f{ 0.5f, 0.5f,0.0f }, maths::vec2f{ 0.1f, 0.1f });
 	SpriteRenderer renderer;
 
-	   
-	maths::mat4f view = maths::mat4f::TranslateMat(0.0f, 0.0f, -2.0f);
+
 	while (!window.IsWindowClosed())
 	{
 		renderer.Push(square);
 		renderer.Flush();
 
-		VAO.Bind();
-		shader.Bind();
-		tex.Bind();
-
-
-
-		maths::mat4f proj = maths::Perspective(90.0f, (float)window.GetWidth() / (float)window.GetHeight(), 0.3f, 100.0f);
-		model.RotateY(0.0001f);
-		model.RotateX(0.0001f);
-		
-		maths::mat4f mvp =  proj * view * model;
-
-		shader.SetUniformMat4f("mvp", mvp);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
 		window.Update();
     }
 }

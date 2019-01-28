@@ -21,7 +21,7 @@ namespace graphics
 			glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
 
 			curSprite.GetVAO().Unbind();
-			curSprite.GetTexture().Unbind();
+			curSprite.GetShader().Unbind();
 	   	 	spriteQueue.pop_front();
 		}
 	}

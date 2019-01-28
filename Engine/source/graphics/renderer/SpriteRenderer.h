@@ -9,8 +9,8 @@ namespace graphics
 	class SpriteRenderer : public Renderer2D
 	{
 	public:
-		virtual void Push(Sprite& sprite)  override;
-		virtual void Flush()  override;
+		void Push(Sprite& sprite)  override;
+		void Flush()  override;
 
 	private:
 		std::deque<Sprite> spriteQueue;

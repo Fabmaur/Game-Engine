@@ -26,6 +26,14 @@ namespace graphics
 		GLCall(glBindVertexArray(0));
 	}
 
+	void VertexArray::BindIBO(const IndexBuffer& IBO) const
+	{
+		Bind();
+		IBO.Bind();
+		Unbind();
+		IBO.Unbind();
+	}
+
 	void VertexArray::SetInOne(const VertexBuffer& vb)
 	{
 		Bind();
