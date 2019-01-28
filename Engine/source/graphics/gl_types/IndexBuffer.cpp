@@ -3,6 +3,7 @@
 using namespace graphics;
 
 IndexBuffer::IndexBuffer(const void* indices, const unsigned int count)
+	:count(count)
 {
 	GLCall(glGenBuffers(1, &id));
 	GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id));

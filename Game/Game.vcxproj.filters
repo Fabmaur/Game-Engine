@@ -4,9 +4,8 @@
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\Default2D.shader" />
-    <None Include="resources\Default3D.shader" />
     <None Include="resources\Material2D.shader" />
+    <None Include="resources\Default.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\LogoRealFinal.jpg" />

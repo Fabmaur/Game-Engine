@@ -38,7 +38,7 @@ namespace debug
 		while (GLenum errorCode = glGetError())
 		{
 			
-			std::string error;
+			std::string error{""};
 			switch (errorCode)
 			{
 			case GL_INVALID_ENUM:                  error = "INVALID_ENUM"; break;
@@ -49,11 +49,10 @@ namespace debug
 			case GL_OUT_OF_MEMORY:                 error = "OUT_OF_MEMORY"; break;
 			case GL_INVALID_FRAMEBUFFER_OPERATION: error = "INVALID_FRAMEBUFFER_OPERATION"; break;
 			}
-
-			HP_ERROR("[OpenGL Error]Code: ", error , " Function ", function, " " , file, ":", line);
 			flagNum++;
 			if(flagNum ==  totalFlagCount)
 				return false;
+			HP_ERROR("[OpenGL Error]", error, " Function ", function, " ", file, ":", line);
 		}
 		return true;
 	}

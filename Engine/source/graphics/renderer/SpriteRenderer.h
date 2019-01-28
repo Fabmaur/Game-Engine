@@ -15,9 +15,5 @@ namespace graphics
 	private:
 		std::deque<Sprite> spriteQueue;
 
-
 	};
-
-
-
 }

@@ -28,7 +28,7 @@ void Engine::Start()
 
 	maths::mat4f model(1.0f);
 
-	Shader shader("resources/Default3D.shader");
+	Shader shader("resources/Default.shader");
 	shader.Bind();
 	Texture tex("resources/container.jpg");
 	tex.Bind();
@@ -43,12 +43,7 @@ void Engine::Start()
 	VBO.PushLayout(2, GL_FLOAT);
 
 
-	VertexArray VAO2D;
-	Shader shader2D("resources/Default2D.shader");
-	shader2D.Bind();
-
-
-	Sprite square(VAO2D, shader2D, tex, maths::vec2{0.5f, 0.5f});
+	Sprite square(VAO2D, shader, tex, maths::vec2{0.5f, 0.5f});
 	SpriteRenderer renderer;
 
 	   

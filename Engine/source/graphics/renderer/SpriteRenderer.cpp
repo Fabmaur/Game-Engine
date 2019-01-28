@@ -16,13 +16,11 @@ namespace graphics
 			Sprite& curSprite = spriteQueue.front();
 			curSprite.GetVAO().Bind();
 			curSprite.GetShader().Bind();
-			curSprite.GetTexture().Bind();
 			curSprite.GetShader().SetUniform1i("tex", 0);
 			
 			glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
 
 			curSprite.GetVAO().Unbind();
-			curSprite.GetShader().Unbind();
 			curSprite.GetTexture().Unbind();
 	   	 	spriteQueue.pop_front();
 		}
