@@ -26,7 +26,7 @@ void Engine::Start()
 	Texture tex("resources/container.jpg");
 
 	Sprite square = Sprite(shader, tex, maths::vec3f{ 0.5f, 0.5f,0.0f }, maths::vec2f{ 0.1f, 0.1f });
-	Sprite square2 = Sprite(shader, tex, maths::vec3f{ 0.2f, 0.3f,0.0f }, maths::vec2f{ 0.1f, 0.1f });
+	Sprite square2 = Sprite(shader, tex, maths::vec3f{ 0.2f, 0.3f,0.0f }, maths::vec2f{ 0.1f, 0.6f });
 	SpriteRenderer renderer;
 
 
