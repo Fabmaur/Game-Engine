@@ -1,5 +1,6 @@
 #pragma once
 
+#include "graphics/renderer/Renderable2D.h"
 #include "graphics/gl_types/Buffers.h"
 #include "graphics/renderer/Shader.h"
 #include "graphics/renderer/Texture.h"
@@ -11,7 +12,7 @@ namespace graphics
 	/*Creates sprites which can be pushed into a sprite renderer
 	and rendered.*/
 
-	class Sprite
+	class Sprite : public Renderable2D
 	{
 	public:
 		Sprite() = delete;

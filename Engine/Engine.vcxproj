@@ -196,6 +196,7 @@
     <ClInclude Include="source\graphics\gl_types\VertexBuffer.h" />
     <ClInclude Include="source\graphics\renderer\2DRenderer.h" />
     <ClInclude Include="source\graphics\renderer\Camera.h" />
+    <ClInclude Include="source\graphics\renderer\Renderable2D.h" />
     <ClInclude Include="source\graphics\renderer\Renderer2D.h" />
     <ClInclude Include="source\graphics\renderer\Shader.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Shapes.h" />
