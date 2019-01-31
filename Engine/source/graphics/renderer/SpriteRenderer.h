@@ -8,12 +8,12 @@
 
 namespace graphics
 {
-	/*Derived class of renderer - used to render sprites*/
+	/*Derived class of renderer - used to render sprites and shapes*/
 
 	class SpriteRenderer : public Renderer2D
 	{
 	public:
-		void Push(const Sprite* sprite)  override;
+		void Push(const Renderable2D* sprite)  override;
 		void Flush()  override;
 		void DrawSquare(graphics::Shader& shader, maths::vec3f pos , maths::vec3f size); // colour must be defined via a uniform
 		void DrawTriangle(graphics::Shader& shader, maths::vec3f pos1, maths::vec3f pos2, maths::vec3f pos3);

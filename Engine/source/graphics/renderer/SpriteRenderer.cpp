@@ -4,9 +4,9 @@
 namespace graphics
 {
 
-	void SpriteRenderer::Push(const Sprite* sprite)
+	void SpriteRenderer::Push(const Renderable2D* sprite)
 	{
-		spriteQueue.push_back(sprite);
+		spriteQueue.push_back((Sprite*)sprite);
 	}
 
 	void SpriteRenderer::Flush()

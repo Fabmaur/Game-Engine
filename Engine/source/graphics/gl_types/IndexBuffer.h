@@ -8,6 +8,7 @@ namespace graphics
 	public:
 		IndexBuffer() = default;
 		IndexBuffer(const void* indices, const unsigned int count); // Amount of indices is the count
+		IndexBuffer(const unsigned int bufferSize); // Maximum buffer size in bytes
 		void Delete();
 		void Bind() const;
 		void Unbind() const;

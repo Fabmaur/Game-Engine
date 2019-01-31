@@ -25,6 +25,7 @@ namespace graphics
 			1, 2, 3    // second triangle
 		};
 
+		maths::vec3f colour;
 		maths::vec2f pos;
 		static constexpr unsigned int id = 2;
 

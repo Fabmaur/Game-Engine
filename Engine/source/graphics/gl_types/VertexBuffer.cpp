@@ -12,6 +12,13 @@ VertexBuffer::VertexBuffer(const void* vertices, const unsigned int size)
 	GLCheck(glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW));
 }
 
+graphics::VertexBuffer::VertexBuffer(const unsigned int bufferSize)
+{
+	GLCheck(glGenBuffers(1, &id));
+	GLCheck(glBindBuffer(GL_ARRAY_BUFFER, id));
+	GLCheck(glBufferData(GL_ARRAY_BUFFER, bufferSize, NULL, GL_DYNAMIC_DRAW));
+}
+
 void VertexBuffer::Delete()
 {
 	GLCheck(glDeleteBuffers(1, &id));

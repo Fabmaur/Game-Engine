@@ -8,7 +8,7 @@ namespace graphics
 	class Renderer2D
 	{
 	protected:
-		virtual void Push(const Sprite* sprite) = 0;
+		virtual void Push(const Renderable2D* sprite) = 0;
 		virtual void Flush() = 0;
 
 	};
