@@ -47,10 +47,8 @@ namespace graphics
 			};
 
 			IndexBuffer IBO(indices, sizeof(indices)/sizeof(float));
-			VertexArray v;
-			v.SetVertexAttribArray(VBO);
-			v.BindIBO(IBO);
-			VAO = v;
+			VAO.SetVertexAttribArray(VBO);
+			VAO.BindIBO(IBO);
 		}
 		inline const VertexArray& GetVAO() const { return VAO; };
 		inline Shader& GetShader() const { return shader; };

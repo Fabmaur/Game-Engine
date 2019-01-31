@@ -15,20 +15,16 @@ namespace graphics
 	class BatchRenderer2D : Renderer2D
 	{
 	public:
-		BatchRenderer2D(const int MAX_SHAPES, unsigned int VERTEX_SIZE);
-
+		BatchRenderer2D(const int MAX_SHAPES);
 		void Push(const Renderable2D* shape) override;
 		void Flush() override;
 	private:
 		VertexArray VAO;
 		VertexBuffer VBO;
-		IndexBuffer* IBO;
 		const int& MAX_SHAPES;
-		const int& SHAPE_SIZE = VERTEX_SIZE * SPRITE_VERTICES;
 		const int VERTEX_SIZE;
-		const int BUFFER_SIZE = SHAPE_SIZE* VERTEX_SIZE;
-		const int IBO_SIZE = VERTEX_SIZE * 6;
-		static constexpr int SPRITE_VERTICES{ 4 };
-
+		const int SHAPE_SIZE;
+		const int BUFFER_SIZE;
+		const int IBO_SIZE;
 	};
 }
