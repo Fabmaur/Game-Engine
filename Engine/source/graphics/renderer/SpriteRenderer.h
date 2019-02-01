@@ -14,7 +14,7 @@ namespace graphics
 	{
 	public:
 		void Push(const Renderable2D* sprite)  override;
-		void Flush()  override;
+		void RenderAndPop()  override;
 		void DrawSquare(graphics::Shader& shader, maths::vec3f pos , maths::vec3f size); // colour must be defined via a uniform
 		void DrawTriangle(graphics::Shader& shader, maths::vec3f pos1, maths::vec3f pos2, maths::vec3f pos3);
 		void DrawLine(maths::vec3f pos1, maths::vec3f pos2);

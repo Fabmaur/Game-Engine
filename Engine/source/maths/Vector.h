@@ -172,7 +172,8 @@ namespace maths
 		vec4(T x, T y, T z, T w)
 			:x(x),
 			y(y),
-			z(z)
+			z(z),
+			w(w)
 		{};
 		inline vec4<T> operator +(const vec4<T>& rhs) const
 		{

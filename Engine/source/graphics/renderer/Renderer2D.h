@@ -9,7 +9,7 @@ namespace graphics
 	{
 	protected:
 		virtual void Push(const Renderable2D* sprite) = 0;
-		virtual void Flush() = 0;
+		virtual void RenderAndPop() = 0;
 
 	};
 }

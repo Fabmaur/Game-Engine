@@ -6,6 +6,7 @@
   <ItemGroup>
     <None Include="resources\Material2D.shader" />
     <None Include="resources\Default.shader" />
+    <None Include="resources\Shape.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\LogoRealFinal.jpg" />

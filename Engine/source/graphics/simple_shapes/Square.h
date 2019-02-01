@@ -4,7 +4,7 @@
 
 namespace graphics
 {
-	struct Rect
+	struct Rect_
 	{
 		static constexpr float texVertices[] = {
 			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f, // top right

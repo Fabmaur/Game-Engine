@@ -17,7 +17,7 @@ namespace graphics
 	public:
 		BatchRenderer2D(const int MAX_SHAPES);
 		void Push(const Renderable2D* shape) override;
-		void Flush() override;
+		void RenderAndPop() override;
 	private:
 		VertexArray VAO;
 		VertexBuffer VBO;
@@ -26,5 +26,6 @@ namespace graphics
 		const int SHAPE_SIZE;
 		const int BUFFER_SIZE;
 		const int IBO_SIZE;
+		int offset;
 	};
 }

@@ -21,7 +21,7 @@ namespace graphics
 		VAO.SetVertexAttribArray(VBO);
 
 
-		int* indices = new int[IBO_SIZE];
+		unsigned int* indices = new unsigned int[IBO_SIZE];
 
 		int offset = 0;
 		for (int i = 0; i < MAX_SHAPES; i += 6) // For every shape
@@ -38,11 +38,12 @@ namespace graphics
 		VAO.BindIBO(IBO);
 		VAO.Unbind();
 		VBO.Bind();
+		offset = 0;
 	}
 
 	void BatchRenderer2D::Push(const Renderable2D* shape)
 	{
-		static int offset = 0;
+
 		Rect* rect = (Rect*)shape;
 
 		const float x = rect->GetPos().x;
@@ -60,18 +61,20 @@ namespace graphics
 			//position				  Colour 
 			x,		   y - sizeY, z, r, g, b, a,	//bottom left
 			x,		   y,		  z, r, g, b, a,	//top left
-			x + sizeX, y ,		  z, r, g, b, a,	//top right
+			x + sizeX, y,		  z, r, g, b, a,	//top right
 			x + sizeX, y - sizeY, z, r, g, b, a		//bottom right
 		};
-		GLCheck(glBufferSubData(GL_ARRAY_BUFFER, offset, SHAPE_SIZE, vertices));
+		GLCheck(glBufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices));
 		offset += 6;
 	}
 
-	void BatchRenderer2D::Flush()
+	void BatchRenderer2D::RenderAndPop()
 	{
+		VBO.Bind();
 		VAO.Bind();
-		glDrawArrays(GL_TRIANGLES, 0, IBO_SIZE);
+		glDrawElements(GL_TRIANGLES, IBO_SIZE, GL_UNSIGNED_INT,0);
 		VAO.Unbind();
+		offset = 0;
 	}
 
 }

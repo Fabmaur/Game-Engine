@@ -19,6 +19,8 @@
 #include "graphics/renderer/SpriteRenderer.h"
 #include "graphics/renderer/Sprite.h"
 #include "graphics/renderer/Renderer2D.h"
+#include "graphics/renderer/BatchRenderer2D.h"
+#include "graphics/simple_shapes/Shape.h"
 
 //Util
 #include <iostream>

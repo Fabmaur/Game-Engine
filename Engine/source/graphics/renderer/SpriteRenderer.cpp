@@ -9,7 +9,7 @@ namespace graphics
 		spriteQueue.push_back((Sprite*)sprite);
 	}
 
-	void SpriteRenderer::Flush()
+	void SpriteRenderer::RenderAndPop()
 	{
 		while (!spriteQueue.empty())
 		{

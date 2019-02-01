@@ -12,10 +12,10 @@ namespace graphics
 		void Delete();
 		void Bind() const;
 		void Unbind() const;
-		inline unsigned int GetCount() { return count; };
+		inline unsigned int GetCount() const { return count; };
 
 	private:
-		const unsigned int count;
+		unsigned int count;
 		unsigned int id;
 	};
 }
