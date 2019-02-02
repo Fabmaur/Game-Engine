@@ -12,7 +12,7 @@ namespace graphics
 {
 	/*Batch renderer which can be used to render 2D sprites and shapes*/
 	//Will only work with shapes at the start
-	class BatchRenderer2D : Renderer2D
+	class BatchRenderer2D : public Renderer2D
 	{
 	public:
 		BatchRenderer2D(const int MAX_SHAPES);

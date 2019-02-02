@@ -2,6 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\Material2D.shader" />
@@ -11,5 +12,8 @@
   <ItemGroup>
     <Image Include="resources\LogoRealFinal.jpg" />
     <Image Include="resources\container.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Game.h" />
   </ItemGroup>
 </Project>

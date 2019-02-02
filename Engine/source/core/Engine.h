@@ -1,10 +1,14 @@
 #pragma 
 #include "graphics/renderer/window.h"
+#include "UserApplication.h"
+#include "../../Game/Source/Game.h"
+
+extern Game* CreateApp();
 
 namespace core
 {
 	/*Controls the game engine*/
-
+	
 	class Engine 
 	{
 	public:
@@ -15,6 +19,7 @@ namespace core
 
 	private:
 		graphics::Window window;
-		
+		UserApplication* app;
+
 	};
 }

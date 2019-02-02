@@ -1,5 +1,7 @@
 #include "debug/ProjectLog.h"
 #include "core/Engine.h"
+#include "Game.h"
+
 
 
 int main()
@@ -9,4 +11,9 @@ int main()
 	core::Engine engine("Hyperion Engine", 1920, 1080);
 	engine.Start();
 	engine.Stop();
+}
+
+Game* CreateApp()
+{
+	return new Game;
 }

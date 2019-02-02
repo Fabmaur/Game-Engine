@@ -6,6 +6,7 @@ using namespace graphics;
 
 Engine::Engine(const int width, const int height)
 {
+	app = CreateApp();
 	HP_STATUS("Initializing Engine");
 	graphics::Window newWindow("Hello World!", width, height);
 	window = newWindow;
@@ -14,6 +15,7 @@ Engine::Engine(const int width, const int height)
 
 Engine::Engine(const char* title, const int width, const int height)
 {
+	app = CreateApp();
 	HP_STATUS("Initializing Engine");
 	graphics::Window newWindow(title, width, height);
 	window = newWindow;
@@ -22,25 +24,11 @@ Engine::Engine(const char* title, const int width, const int height)
 
 void Engine::Start()
 {
-	Shader shader("resources/Shape.shader");
-
-	//Texture tex("resources/container.jpg");
-	//
-	//Sprite square = Sprite(shader, tex, maths::vec3f{ 0.5f, 0.5f,0.0f }, maths::vec2f{ 0.1f, 0.1f });
-	//Sprite square2 = Sprite(shader, tex, maths::vec3f{ 0.2f, 0.3f,0.0f }, maths::vec2f{ 0.1f, 0.6f });
-	//SpriteRenderer renderer;
-	BatchRenderer2D renderer(1);
-	
-	shader.Bind();
-	Rect rect(maths::vec3f(0.0f, 0.0f, 0.0f), maths::vec2f(0.3f, 0.3f), maths::vec4f(0.3f, 0.5f, 0.2f, 1.0f));
+	app->Init();
 
 	while (!window.IsWindowClosed())
 	{
-		renderer.Push(&rect);
-		//renderer.Push(&square);
-		//renderer.Push(&square2);
-		renderer.RenderAndPop();
-
+		app->RunMain();
 		window.Update();
     }
 }

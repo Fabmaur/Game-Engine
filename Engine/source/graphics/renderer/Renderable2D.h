@@ -1,7 +1,10 @@
 #pragma once
+#include "maths/Vector.h"
 
 /* Used as base class for all renderables*/
-class Renderable2D
+namespace graphics
 {
-
-};
+	class Renderable2D
+	{
+	};
+}

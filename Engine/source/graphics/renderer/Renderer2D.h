@@ -1,5 +1,5 @@
 #pragma once
-#include "Sprite.h"
+#include "Renderable2D.h"
 
 namespace graphics
 {
@@ -7,7 +7,7 @@ namespace graphics
 	should be implemented by the derived renderer classes.*/
 	class Renderer2D
 	{
-	protected:
+	public:
 		virtual void Push(const Renderable2D* sprite) = 0;
 		virtual void RenderAndPop() = 0;
 
