@@ -24,6 +24,7 @@ namespace graphics
 		inline double GetMouseX() const { return mouseX; };
 		inline double GetMouseY() const { return mouseY; };
 		inline bool IsButtonClicked(const unsigned int keycode) const { return buttons[keycode]; };
+		inline GLFWwindow* GetPointer() const { return window; };
 	private:
 		GLFWwindow* window{nullptr};
 		static int width, height;

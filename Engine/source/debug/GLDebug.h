@@ -18,7 +18,7 @@
     ASSERT(debug::LogCall(#x, __FILE__, __LINE__))
 	
 #else
-#define GLCall(x) x
+#define GLCheck(x) x
 #define HP_ASSERT(x)
 #define GAME_ASSERT(x)
 #define ASSERT(x)

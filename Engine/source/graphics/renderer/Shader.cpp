@@ -13,6 +13,7 @@ Shader::Shader(const std::string& filename)
 
 Shader::~Shader()
 {
+	HP_ERROR("Destructing shader");
 	GLCheck(glDeleteProgram(id));
 }
 

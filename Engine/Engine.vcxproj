@@ -97,6 +97,7 @@
       <ShowIncludes>false</ShowIncludes>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>-D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
@@ -115,6 +116,7 @@
       <ShowIncludes>false</ShowIncludes>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalOptions>-D_CRT_SECURE_NO_WARNINGS %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)Dependencies\GLFW\lib-vc2015;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
@@ -184,6 +186,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="source\vendor\imgui\imgui.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="source\vendor\imgui\imgui_widgets.cpp" />
     <ClCompile Include="source\vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +231,14 @@
     <ClInclude Include="source\maths\Vector.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Cube.h" />
     <ClInclude Include="source\pch.h" />
+    <ClInclude Include="source\vendor\imgui\imconfig.h" />
+    <ClInclude Include="source\vendor\imgui\imgui.h" />
+    <ClInclude Include="source\vendor\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="source\vendor\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="source\vendor\imgui\imgui_internal.h" />
+    <ClInclude Include="source\vendor\imgui\imstb_rectpack.h" />
+    <ClInclude Include="source\vendor\imgui\imstb_textedit.h" />
+    <ClInclude Include="source\vendor\imgui\imstb_truetype.h" />
     <ClInclude Include="source\vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
