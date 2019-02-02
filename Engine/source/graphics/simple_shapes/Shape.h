@@ -18,12 +18,12 @@ namespace graphics
 			:pos(pos),
 			size(size),
 			colour(colour) {}
-		inline maths::vec3f& GetPos() const { return pos; }
-		inline maths::vec2f& GetSize() const { return size; }
-		inline maths::vec4f& GetColour() const { return colour; }
+		inline maths::vec3f GetPos() const { return pos; }
+		inline maths::vec2f GetSize() const { return size; }
+		inline maths::vec4f GetColour() const { return colour; }
 	private:
-		maths::vec3f& pos;
-		maths::vec2f& size;
-		maths::vec4f& colour;
+		maths::vec3f pos;
+		maths::vec2f size;
+		maths::vec4f colour;
 	};
 }

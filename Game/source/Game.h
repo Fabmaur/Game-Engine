@@ -14,5 +14,5 @@ public:
 private:
 	graphics::Renderer2D* renderer;
 	graphics::Rect* renderable;
-	graphics::Shader shader;
+	graphics::Shader* shader;
 };

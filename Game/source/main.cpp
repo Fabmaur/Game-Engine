@@ -2,8 +2,6 @@
 #include "core/Engine.h"
 #include "Game.h"
 
-
-
 int main()
 {
 	static debug::ProjectLog log;
