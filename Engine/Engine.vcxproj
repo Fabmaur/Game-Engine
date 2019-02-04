@@ -200,6 +200,9 @@
     <ClInclude Include="source\debug\Console.h" />
     <ClInclude Include="source\debug\GLDebug.h" />
     <ClInclude Include="source\debug\ProjectLog.h" />
+    <ClInclude Include="source\events\EventMessage.h" />
+    <ClInclude Include="source\events\KeyboardEvents.h" />
+    <ClInclude Include="source\events\MouseEvents.h" />
     <ClInclude Include="source\graphics\gl_types\Buffers.h" />
     <ClInclude Include="source\graphics\gl_types\IndexBuffer.h" />
     <ClInclude Include="source\graphics\gl_types\VertexArray.h" />
