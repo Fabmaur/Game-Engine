@@ -10,14 +10,7 @@ enum class Type
 
 class EventMessage
 {
-	bool handled;
-};
-
-class EventReciever
-{
 public:
-	void onEvent(EventMessage& event, std::function<bool(void)> func)
-	{
-		func();
-	}
+	bool handled;
+	Type type;
 };

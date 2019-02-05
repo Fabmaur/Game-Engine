@@ -1,5 +1,6 @@
 #include <pch.h>
 #include "graphics/renderer/Window.h"
+#include "events/Events.h"
 
 namespace graphics
 {
@@ -36,9 +37,6 @@ namespace graphics
 		CreateWin(titleIn, widthIn, heightIn);
 
 	}
-
-
-
 
 	void graphics::Window::Terminate()
 	{
@@ -81,6 +79,8 @@ namespace graphics
 			glViewport(0, 0, widthIn, heightIn);
 			mw->height = heightIn;
 			mw->width = widthIn;
+			WindowResize windowResizeEvent(widthIn, heightIn);
+			mw->eventCallBack(windowResizeEvent);
 		});
 
 		// Sets glfw call back functions
@@ -88,6 +88,7 @@ namespace graphics
 		{
 			Window* mw = static_cast<Window*>(glfwGetWindowUserPointer(window));
 			mw->keys[key] = action != GLFW_RELEASE;
+
 		});
 
 		glfwSetCursorPosCallback(window, [](GLFWwindow* window, double xpos, double ypos)

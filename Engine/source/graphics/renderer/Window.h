@@ -1,6 +1,7 @@
 #pragma once
 #include <GLFW/glfw3.h>
 #include "maths/Vector.h"
+#include "events/EventMessage.h"
 
 
 namespace graphics 
@@ -16,6 +17,7 @@ namespace graphics
 		void CreateWin(const char* title, int width, int height);
 		void SetColour(const float r, const float g, const float b, const float a) const;
 		void SetColour(const maths::vec4<float> colour) const;
+		void SetEventCallBack(const std::function<bool(EventMessage)>& eventCall) const { eventCallBack = eventCall; }
 		void Update() const;
 		bool isKeyPressed(const unsigned int keycode) const;
 		bool IsWindowClosed() const;
@@ -25,6 +27,7 @@ namespace graphics
 		inline double GetMouseY() const { return mouseY; };
 		inline bool IsButtonClicked(const unsigned int keycode) const { return buttons[keycode]; };
 		inline GLFWwindow* GetPointer() const { return window; };
+		
 	private:
 		GLFWwindow* window{nullptr};
 		static int width, height;
@@ -35,6 +38,8 @@ namespace graphics
 		static constexpr unsigned int MAX_BUTTONS = 32;
 		static bool keys[MAX_KEYS];
 		static bool buttons[MAX_BUTTONS];
+		std::function<bool(EventMessage)>& eventCallBack;
+		
 
 	};
 }
