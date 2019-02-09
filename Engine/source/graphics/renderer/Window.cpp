@@ -14,6 +14,7 @@ namespace graphics
 
 	Window::Window()
 	{
+		HP_STATUS("INIT WINDOW");
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -46,8 +47,6 @@ namespace graphics
 
 	void Window::CreateWin(const char* titleIn, int widthIn, int heightIn)
 	{
-
-
 		title = titleIn;
 		width = widthIn;
 		height = heightIn;

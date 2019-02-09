@@ -9,9 +9,9 @@
 class Game : public core::UserApplication
 {
 public:
-	bool EventCallBack(EventMessage& event) override;
-	void Init();
-	void RunMain();
+	virtual void EventCallBack(EventMessage& event) override;
+	virtual void Init();
+	virtual void RunMain();
 	~Game();
 private:
 	graphics::Renderer2D* renderer;

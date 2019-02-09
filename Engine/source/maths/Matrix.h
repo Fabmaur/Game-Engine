@@ -12,9 +12,6 @@ namespace maths
 	|m2 m5 m8|
 	|__    __|
 	*/
-	
-
-
 	////////////////
 	//Decleration
 	////////////////

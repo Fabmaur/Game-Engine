@@ -3,9 +3,10 @@
 #include "graphics/renderer/Renderable2D.h"
 #include "graphics/renderer/BatchRenderer2D.h"
 
-bool Game::EventCallBack(EventMessage& event)
+
+void Game::EventCallBack(EventMessage& event)
 {
-	HP_SUCCESS("Event: ", event.type);
+	HP_SUCCESS("Event");
 }
 
 void Game::Init()
@@ -15,7 +16,6 @@ void Game::Init()
 	renderer =  new graphics::BatchRenderer2D(1);
 	shader->Bind();
 	renderable = new graphics::Rect(maths::vec3f(0.0f, 0.0f, 0.0f), maths::vec2f(0.3f, 0.3f), maths::vec4f(0.3f, 0.5f, 0.2f, 1.0f));
-	SetEventCallBack(&EventCallBack);
 }
 
 void Game::RunMain()
