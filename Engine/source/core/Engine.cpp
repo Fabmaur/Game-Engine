@@ -4,20 +4,13 @@
 #include "vendor/imgui/imgui_impl_glfw.h"
 #include "vendor/imgui/imgui_impl_opengl3.h"
 
-
 namespace core
 {
-	
-	Engine::Engine(const int width, const int height)
-	{
-		Engine("Hello World!", width, height);
-	}
-
 	Engine::Engine(const char* title, const int width, const int height)
+		:window(graphics::Window(title, width, height))
 	{
 		app = CreateApp();
 		HP_STATUS("Initializing Engine");
-		window = graphics::Window(title, width, height);
 		window.SetColour(0.4f, 0.2f, 0.6f, 1.0f);
 	}
 
@@ -25,11 +18,13 @@ namespace core
 	{
 		app->Init();
 		window.SetEventCallBack(app->GetEventCallBack());
+			
 		while (!window.IsWindowClosed())
 		{
 			app->RunMain();
 			window.Update();
 		}
+
 	}
 
 	void Engine::Stop()

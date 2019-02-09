@@ -12,8 +12,7 @@ namespace core
 	class Engine 
 	{
 	public:
-		Engine(const int width = 800, const int height = 600); // Creates window
-		Engine(const char* title, const int width = 800, const int height = 600); // Creates window
+		Engine(const char* title = "Hello World", const int width = 800, const int height = 600); // Creates window
 		void Start();
 		void Stop();
 

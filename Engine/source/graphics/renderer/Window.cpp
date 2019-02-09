@@ -4,17 +4,11 @@
 
 namespace graphics
 {
-
 	int Window::height;
 	int Window::width;
-	bool Window::keys[];
-	bool Window::buttons[];
-	double Window::mouseX;
-	double Window::mouseY;
 
 	Window::Window()
 	{
-		HP_STATUS("INIT WINDOW");
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -72,6 +66,8 @@ namespace graphics
 		}
 		fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
+		// Sets glfw call back functions
+
 		glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int widthIn, int heightIn)
 		{
 			Window* mw = static_cast<Window*>(glfwGetWindowUserPointer(window));
@@ -82,32 +78,54 @@ namespace graphics
 			mw->eventCallBack(windowResizeEvent);
 		});
 
-		// Sets glfw call back functions
+		
 		glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
 		{
 			Window* mw = static_cast<Window*>(glfwGetWindowUserPointer(window));
-			mw->keys[key] = action != GLFW_RELEASE;
-
+			switch (action)
+			{
+			case(GLFW_PRESS):
+			{
+				KeyPressed keyPressedEvent(key, scancode, mods);
+				mw->eventCallBack(keyPressedEvent);
+				break;
+			}
+			case(GLFW_RELEASE):
+			{
+				KeyReleased keyReleasedEvent(key, scancode, mods);
+				mw->eventCallBack(keyReleasedEvent);
+				break;
+			}
+			}
 		});
 
 		glfwSetCursorPosCallback(window, [](GLFWwindow* window, double xpos, double ypos)
 		{
 			Window* mw = static_cast<Window*>(glfwGetWindowUserPointer(window));
-			mw->mouseX = xpos;
-			mw->mouseY = ypos;
-
+			MouseMoved mouseMovedEvent((float)xpos, (float)ypos);
+			mw->eventCallBack(mouseMovedEvent);
 		});
 
 		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods)
 		{
 			Window* mw = static_cast<Window*>(glfwGetWindowUserPointer(window));
-			mw->buttons[button] = action != GLFW_RELEASE;
+			
+			switch(action)
+			{
+			case(GLFW_PRESS):
+			{
+				MousePressed MousePressedEvent(button, mods);
+				mw->eventCallBack(MousePressedEvent);
+				break;
+			}
+			case(GLFW_RELEASE):
+			{
+				MouseReleased MouseReleasedEvent(button, mods);
+				mw->eventCallBack(MouseReleasedEvent);
+				break;
+			}
+			}	
 		});
-
-		for (int i = 0; i < MAX_KEYS; i++)
-			keys[i] = 0;
-		for (int i = 0; i < MAX_BUTTONS; i++)
-			keys[i] = 0;
 	}
 
 	bool Window::IsWindowClosed() const
@@ -132,8 +150,4 @@ namespace graphics
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	bool Window::isKeyPressed(const unsigned int keycode) const
-	{
-		return keys[keycode];
-	}
 }
