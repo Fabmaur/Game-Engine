@@ -212,6 +212,7 @@
     <ClInclude Include="source\graphics\renderer\2DRenderer.h" />
     <ClInclude Include="source\graphics\renderer\BatchRenderer2D.h" />
     <ClInclude Include="source\graphics\renderer\Camera.h" />
+    <ClInclude Include="source\graphics\renderer\Layer.h" />
     <ClInclude Include="source\graphics\renderer\Renderable2D.h" />
     <ClInclude Include="source\graphics\renderer\Renderer2D.h" />
     <ClInclude Include="source\graphics\renderer\Shader.h" />

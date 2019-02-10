@@ -180,6 +180,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
+    <ClCompile Include="source\GameLayer.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game.h" />
+    <ClInclude Include="source\GameLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

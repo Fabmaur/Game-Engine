@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Game.cpp" />
+    <ClCompile Include="source\GameLayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\Material2D.shader" />
@@ -15,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game.h" />
+    <ClInclude Include="source\GameLayer.h" />
   </ItemGroup>
 </Project>

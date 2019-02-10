@@ -24,7 +24,6 @@ namespace core
 			app->RunMain();
 			window.Update();
 		}
-
 	}
 
 	void Engine::Stop()
