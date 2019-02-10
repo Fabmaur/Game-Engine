@@ -171,6 +171,7 @@
     <ClCompile Include="source\core\Engine.cpp" />
     <ClCompile Include="source\debug\Console.cpp" />
     <ClCompile Include="source\debug\ProjectLog.cpp" />
+    <ClCompile Include="source\events\InputPoller.cpp" />
     <ClCompile Include="source\graphics\gl_types\IndexBuffer.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexArray.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexBuffer.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="source\debug\ProjectLog.h" />
     <ClInclude Include="source\events\EventMessage.h" />
     <ClInclude Include="source\events\Events.h" />
+    <ClInclude Include="source\events\InputPoller.h" />
     <ClInclude Include="source\events\WindowEvents.h" />
     <ClInclude Include="source\events\KeyboardEvents.h" />
     <ClInclude Include="source\events\MouseEvents.h" />

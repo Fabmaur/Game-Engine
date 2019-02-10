@@ -35,7 +35,10 @@ namespace core
 		virtual ~UserApplication() 
 		{
 			for (auto itr = layers.begin(); itr < layers.end(); itr++)
-				layers.erase(itr);
+			{
+				delete *itr;
+				itr = layers.erase(itr);
+			}
 		};
 	protected:
 		std::vector<graphics::Layer*> layers;

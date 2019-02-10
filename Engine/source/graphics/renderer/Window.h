@@ -23,10 +23,10 @@ namespace graphics
 		}
 		void Update() const;
 		bool IsWindowClosed() const;
-		inline GLFWwindow* GetGLFWWinPointer() const { return window; };
+		static inline GLFWwindow* GetGLFWWinPointer() { return window; };
 		
 	private:
-		GLFWwindow* window;
+		static GLFWwindow* window;
 		static int width, height;
 		const char* title;
 		std::function<void(EventMessage&)> eventCallBack;

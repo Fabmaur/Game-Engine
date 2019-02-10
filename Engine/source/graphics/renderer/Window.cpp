@@ -6,6 +6,7 @@ namespace graphics
 {
 	int Window::height;
 	int Window::width;
+	GLFWwindow* Window::window{ nullptr };
 
 	Window::Window()
 	{

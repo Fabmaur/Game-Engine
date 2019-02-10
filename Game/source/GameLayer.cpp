@@ -1,5 +1,6 @@
 #include "GameLayer.h"
 #include "events/Events.h"
+#include "events/InputPoller.h"
 
 void GameLayer::onEvent(EventMessage & event)
 {
@@ -37,6 +38,9 @@ void GameLayer::RunMain()
 {
 	renderer->Push(renderable);
 	renderer->RenderAndPop();
+	if (Input::IsKeyPressed(KEY_A))
+		HP_SUCCESS("Ayy lmao");
+	
 }
 
 GameLayer::~GameLayer()
