@@ -91,6 +91,7 @@ namespace maths
 	{
 		//Variables
 		T x, y, z;
+
 		//Methods
 		vec3() = default;
 		vec3(T x, T y, T z)
@@ -156,6 +157,19 @@ namespace maths
 		{
 			return x*rhs.x + y*rhs.y + z*rhs.z;
 		};
+		inline T operator[](const int index) const
+		{
+			switch (index)
+			{
+			case 0: return x;
+				break;
+			case 1: return y;
+				break;
+			case 2: return z;
+				break;	
+			}
+		}
+
 	};
 
 	typedef vec3<int> vec3i;

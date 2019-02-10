@@ -25,6 +25,7 @@ namespace maths
 		static inline mat4<T> RotateZMat(const T rad);
 		static inline mat4<T> RotateMat(const T rad, const vec3<T>& axis);
 		static inline mat4<T> RotateMat(const T rad, const T x, const T y, T const z);
+		inline vec3f MultiplyByVec3f(const vec3f& rhs);
 		inline void Rotate(const T rad, const vec3<T>& axis);
 		inline void Rotate(const T rad, const T x, const T y, T const z);
 		inline void Translate(const T x, const T y, const T z);
@@ -32,13 +33,13 @@ namespace maths
 		inline void RotateX(const T rad);
 		inline void RotateY(const T rad);
 		inline void RotateZ(const T rad);
-	
+
 	};
 
 	template <typename T>
 	inline mat4<T> mat4<T>::RotateXMat(const T rad)
 	{
-		
+
 		const T sinTheta = sin(rad);
 		const T cosTheta = cos(rad);
 
@@ -59,10 +60,10 @@ namespace maths
 		ans.elements[13] = (T)0;
 		ans.elements[14] = (T)0;
 		ans.elements[15] = (T)1;
-		
+
 		return ans;
 	};
-		
+
 	template <typename T>
 	inline mat4<T> mat4<T>::RotateYMat(const T rad)
 	{
@@ -169,6 +170,14 @@ namespace maths
 		return ans;
 	}
 
+	template<typename T>
+	inline vec3f mat4<T>::MultiplyByVec3f(const vec3f& rhs)
+	{
+		return { (this->elements[0] * rhs.x + this->elements[4] * rhs.y + this->elements[8] * rhs.z + this->elements[12]),
+				(this->elements[1] * rhs.x + this->elements[5] * rhs.y + this->elements[9] * rhs.z + this->elements[13]),
+				(this->elements[2] * rhs.x + this->elements[6] * rhs.y + this->elements[10] * rhs.z + this->elements[14]) };
+	}
+
 	template <typename T>
 	static inline mat4<T> Ortho(T left, T right, T top, T bottom, T far_, T near_)
 	{
@@ -191,13 +200,13 @@ namespace maths
 		mat4<T> ans;
 
 		float a = 1.0f / tan(GetRadians(0.5f * fov));
-		
+
 		ans.elements[0] = a / aspectRatio;
 		ans.elements[5] = a;
 		ans.elements[10] = (near_ + far_) / (near_ - far_);
-		ans.elements[11]  = ( 2* near_ * far_) / (near_ - far_);
+		ans.elements[11] = (2 * near_ * far_) / (near_ - far_);
 		ans.elements[14] = -1.0f;
-		
+
 		return ans;
 	}
 
@@ -238,8 +247,8 @@ namespace maths
 	template <typename T>
 	inline void mat4<T>::Translate(const T x, const T y, const T z)
 	{
-		
-		*this =  TranslateMat(x, y, z) * *this;
+
+		*this = TranslateMat(x, y, z) * *this;
 	}
 
 	template <typename T>
@@ -247,7 +256,7 @@ namespace maths
 	{
 		*this = TranslateMat(vec) * *this;
 	}
-		
+
 	template<typename T>
 	inline void mat4<T>::RotateX(const T rad)
 	{
@@ -256,7 +265,7 @@ namespace maths
 
 	template<typename T>
 	inline void mat4<T>::RotateY(const T rad)
-	{	
+	{
 		*this = RotateYMat(rad) * *this;
 	}
 
@@ -265,8 +274,6 @@ namespace maths
 	{
 		*this = RotateZMat(rad) * *this;
 	}
-
-
 
 	typedef mat4<int> mat4i;
 	typedef mat4<float> mat4f;
