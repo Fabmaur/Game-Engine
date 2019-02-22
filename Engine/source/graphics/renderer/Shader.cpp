@@ -93,7 +93,7 @@ unsigned int Shader::CreateShader(const std::string& vertexSrc, const std::strin
 
 const int Shader::GetUniformLoc(const std::string& name)
 {
-	GLCheck(int loc =glGetUniformLocation(id, name.c_str()));
+	GLCheck(int loc = glGetUniformLocation(id, name.c_str()));
 	if (loc == -1) 
 	{ 
 		HP_ERROR("Error uniform ", name," not found!"); 
@@ -130,6 +130,10 @@ void Shader::SetUniform1f(const std::string& name, float value)
 {
 	GLCheck(glUniform1f(GetUniformLoc(name), value));
 }
+void graphics::Shader::SetUniform2f(const std::string name, const float & v0, const float & v1)
+{
+	GLCheck(glUniform2f(GetUniformLoc(name), v0, v1));
+}
 
 void Shader::SetUniformMat4f(const std::string & name, const maths::mat4f& matrix)
 {
@@ -145,4 +149,5 @@ void Shader::Unbind() const
 {
 	GLCheck(glUseProgram(0));
 }
+
 

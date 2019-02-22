@@ -1,10 +1,11 @@
 #pragma once
 
 #include "graphics/renderer/Shader.h"
-#include "graphics/simple_shapes/Shape.h"
 #include "graphics/renderer/BatchRenderer2D.h"
 #include "events/Events.h"
 #include "graphics/renderer/Layer.h"
+#include "graphics/renderer/Sprite.h"
+#include "graphics/renderer/SpriteRenderer.h"
 
 class GameLayer : public graphics::Layer
 {
@@ -15,7 +16,8 @@ public:
 	~GameLayer();
 private:
 	graphics::Renderer2D* renderer;
-	graphics::Rect* renderable;
+	graphics::Renderable2D* renderable;
 	graphics::Shader* shader;
+	graphics::Texture* texture;
 
 };

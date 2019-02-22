@@ -9,22 +9,20 @@
 
 namespace graphics
 {
-	/*Creates sprites which can be pushed into a sprite renderer
-	and rendered.*/
+	/*Creates single sprites which are sprites which hold their own vertex arrays and shaders.*/
 
-	class Sprite : public Renderable2D
+	static maths::vec4f defaultColour{ 1.0f, 0.0f, 0.0f, 1.0f };
+	class SingleSprite : public Renderable2D
 	{
 	public:
-		Sprite() = delete;
-		~Sprite()
-		{
-			HP_ERROR("Desroying Sprite.");
-		}
-		Sprite(Shader& shader, Texture& tex, maths::vec3f pos, maths::vec2f size)
-			:shader(shader),
-			tex(tex),
-			pos(pos),
-			size(size)
+		SingleSprite() = delete;
+
+		// For texture
+		SingleSprite(Shader& shader, Texture& tex, maths::vec3f pos, maths::vec2f size)
+			:Renderable2D(pos, size, defaultColour),
+			shader(shader),
+			tex(&tex)
+
 		{
 			const float vertices[]
 			{
@@ -34,33 +32,82 @@ namespace graphics
 				pos.x + size.x, pos.y , pos.z,		    1.0f, 1.0f,			//top right
 				pos.x + size.x, pos.y - size.y, pos.z,  1.0f, 0.0f 			//bottom right
 			};
-
-
 			VertexBuffer VBO(vertices, sizeof(vertices));
 			VBO.PushLayout(3, GL_FLOAT);
 			VBO.PushLayout(2, GL_FLOAT);
 
+			CreateAndBindIBO(VBO);
+
+		}
+		
+		
+		//For colour
+		SingleSprite(Shader& shader, maths::vec3f pos, maths::vec2f size, maths::vec4f colour)
+			:Renderable2D(pos, size, colour),
+			shader(shader),
+			tex(nullptr)
+		
+		{
+			const float vertices[]
+			{
+				//Position							    //colour 
+				pos.x, pos.y - size.y, pos.z, 			colour.r, colour.g, colour.b, colour.a,		//bottom left
+				pos.x, pos.y, pos.z,					colour.r, colour.g, colour.b, colour.a,		//top left
+				pos.x + size.x, pos.y , pos.z,		    colour.r, colour.g, colour.b, colour.a,		//top right
+				pos.x + size.x, pos.y - size.y, pos.z,  colour.r, colour.g, colour.b, colour.a 		//bottom right
+			};
+			VertexBuffer VBO(vertices, sizeof(vertices));
+			VBO.PushLayout(3, GL_FLOAT);
+			VBO.PushLayout(4, GL_FLOAT);
+			CreateAndBindIBO(VBO);
+		}
+
+
+
+		inline const VertexArray& GetVAO() const { return VAO; };
+		inline Shader& GetShader() const { return shader; };
+		inline Texture GetTexture() const { return tex == nullptr ?  Texture() : *tex ; };
+
+	private:
+		void CreateAndBindIBO(VertexBuffer& VBO)
+		{
 			const unsigned int indices[]
 			{
 				0, 1, 2, // triangle top left
 				0, 2, 3  // triangle bottom right
 			};
 
-			IndexBuffer IBO(indices, sizeof(indices)/sizeof(float));
+			IndexBuffer IBO(indices, sizeof(indices) / sizeof(float));
 			VAO.SetVertexAttribArray(VBO);
 			VAO.BindIBO(IBO);
 		}
-		inline const VertexArray& GetVAO() const { return VAO; };
-		inline Shader& GetShader() const { return shader; };
-		inline Texture& GetTexture() const { return tex; };
-		inline maths::vec3f& GetPos() const { return pos; };
-	private:
-		maths::vec3f& pos;
-		maths::vec2f& size;
 
+	private:
 		VertexArray VAO;
 		Shader& shader;
-		Texture& tex;
+		Texture* tex;
 
+	};
+
+	/*Batch sprites are containers which hold vertex information for the sprite
+	. This data is then passed on to a batch renderer where the data is transferred 
+	into one vertex buffer where it can be rendered in one call.*/
+
+	class BatchSprite : public Renderable2D
+	{
+		//For Colour
+	public:
+		BatchSprite(maths::vec3f pos, maths::vec2f size, maths::vec4f colour)
+			:Renderable2D(pos, size, colour),
+			tex(nullptr)
+		{}
+
+		BatchSprite(maths::vec3f pos, maths::vec2f size, Texture& tex )
+			:Renderable2D(pos, size, defaultColour),
+			tex(&tex)
+		{}
+
+	private:
+		Texture* tex;
 	};
 }

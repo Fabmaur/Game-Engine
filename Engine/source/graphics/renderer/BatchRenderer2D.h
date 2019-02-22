@@ -5,8 +5,8 @@
 #include "graphics/gl_types/Buffers.h"
 #include "graphics/renderer/Shader.h"
 #include "graphics/renderer/Texture.h"
-#include "graphics/simple_shapes/Shape.h"
 #include "maths/Vector.h"
+#include "graphics/renderer/SpriteGroup.h"
 
 namespace graphics
 {

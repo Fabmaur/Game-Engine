@@ -6,14 +6,14 @@ namespace graphics
 
 	void SpriteRenderer::Push(const Renderable2D* sprite)
 	{
-		spriteQueue.push_back((Sprite*)sprite);
+		spriteQueue.push_back((SingleSprite*)sprite);
 	}
 
 	void SpriteRenderer::RenderAndPop()
 	{
 		while (!spriteQueue.empty())
 		{
-			const Sprite* curSprite = spriteQueue.front();
+			const SingleSprite* curSprite = spriteQueue.front();
 			curSprite->GetTexture().Bind();
 			curSprite->GetShader().Bind();
 			curSprite->GetVAO().Bind();

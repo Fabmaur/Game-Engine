@@ -180,7 +180,12 @@ namespace maths
 	struct vec4
 	{
 		//Variables
-		T x, y, z, w;
+		union
+		{
+			struct { T x, y, z, w; };
+			struct { T r, g, b, a; };
+		};
+
 		//Methods
 		vec4() = default;
 		vec4(T x, T y, T z, T w)

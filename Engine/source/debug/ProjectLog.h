@@ -3,30 +3,20 @@
 #include "Console.h"
 
 namespace debug {
-	/*Creates 2 static console set ups, one which refers to the engine
-	and one which refers to the game.*/
 
 	class ProjectLog
 	{
 	public:
 		static inline std::unique_ptr<Console>& GetHyperion() {
-			hyperionLog = std::make_unique<Console>("Hyperion");
+			auto static hyperionLog = std::make_unique<Console>("Hyperion");
 			return hyperionLog;
 		};
 		static inline std::unique_ptr<Console>& GetGame() {
-			gameLog = std::make_unique<Console>("Game");
+			auto static gameLog = std::make_unique<Console>("Game");
 			return gameLog;
 		}
-
-	private:
-		static std::unique_ptr<Console> hyperionLog;
-		static std::unique_ptr<Console> gameLog;
 	};
 }
-
-
-
-
 
 
 #ifdef DEBUG

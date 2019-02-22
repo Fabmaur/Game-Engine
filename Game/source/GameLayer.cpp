@@ -29,13 +29,14 @@ void GameLayer::onEvent(EventMessage & event)
 void GameLayer::Init()
 {
 	shader = new graphics::Shader("resources/Shape.shader");
-	renderer = new graphics::BatchRenderer2D(1000);
+	renderer = new graphics::SpriteRenderer;
 	shader->Bind();
-	renderable = new graphics::Rect(maths::vec3f(0.0f, 0.0f, 0.0f), maths::vec2f(0.3f, 0.3f), maths::vec4f(0.3f, 0.5f, 0.2f, 1.0f));
+	renderable = new graphics::SingleSprite(*shader, maths::vec3f(0.1f, 0.2f, 0.0f), maths::vec2f(0.3f, 0.3f), maths::vec4f(0.2f, 0.4f, 0.1f, 1.0f));
 }
 
 void GameLayer::RunMain()
 {
+	shader->Bind();
 	renderer->Push(renderable);
 	renderer->RenderAndPop();
 	if (Input::IsKeyPressed(KEY_A))
@@ -48,4 +49,5 @@ GameLayer::~GameLayer()
 	delete renderer;
 	delete renderable;
 	delete shader;
+	delete texture;
 }

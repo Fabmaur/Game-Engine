@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "BatchRenderer2D.h"
 #include "debug/GLDebug.h"
-#include "graphics/simple_shapes/Shape.h"
 
 
 namespace graphics
@@ -9,9 +8,9 @@ namespace graphics
 
 	BatchRenderer2D::BatchRenderer2D(const int MAX_SHAPES)
 		:MAX_SHAPES(MAX_SHAPES),
-		VERTEX_SIZE(sizeof(graphics::VertexInfo)),
-		SHAPE_SIZE(4 * sizeof(graphics::VertexInfo)),
-		BUFFER_SIZE(4 * sizeof(graphics::VertexInfo) * MAX_SHAPES),
+		VERTEX_SIZE(sizeof(graphics::Vertex)),
+		SHAPE_SIZE(4 * sizeof(graphics::Vertex)),
+		BUFFER_SIZE(4 * sizeof(graphics::Vertex) * MAX_SHAPES),
 		IBO_SIZE(MAX_SHAPES * 6)
 	{
 		VAO.Bind();
@@ -41,28 +40,27 @@ namespace graphics
 		offset = 0;
 	}
 
-	void BatchRenderer2D::Push(const Renderable2D* shape)
+	void BatchRenderer2D::Push(const Renderable2D* renderable)
 	{
 
-		Rect* rect = (Rect*)shape;
+		BatchSprite* rect = (BatchSprite*)renderable;
 
-		const float x = rect->GetPos().x;
-		const float y = rect->GetPos().y;
-		const float z = rect->GetPos().z;
+		maths::vec3f pos = { rect->GetPos().x, rect->GetPos().y, rect->GetPos().z };
+		pos = transMat.back().MultiplyByVec3f(pos);
 		const float sizeX = rect->GetSize().x;
 		const float sizeY = rect->GetSize().y;
-		const float r = rect->GetColour().x;
-		const float g = rect->GetColour().y;
-		const float b = rect->GetColour().z;
-		const float a = rect->GetColour().w;
+		const float r = rect->GetColour().r;
+		const float g = rect->GetColour().g;
+		const float b = rect->GetColour().b;
+		const float a = rect->GetColour().a;
 
 		const float vertices[]
 		{
 			//position				  Colour 
-			x,		   y - sizeY, z, r, g, b, a,	//bottom left
-			x,		   y,		  z, r, g, b, a,	//top left
-			x + sizeX, y,		  z, r, g, b, a,	//top right
-			x + sizeX, y - sizeY, z, r, g, b, a		//bottom right
+			pos.x,		   pos.y - sizeY, pos.z, r, g, b, a,	//bottom left
+			pos.x,		   pos.y,		  pos.z, r, g, b, a,	//top left
+			pos.x + sizeX, pos.y,		  pos.z, r, g, b, a,	//top right
+			pos.x + sizeX, pos.y - sizeY, pos.z, r, g, b, a		//bottom right
 		};
 		GLCheck(glBufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices));
 		offset += 6;

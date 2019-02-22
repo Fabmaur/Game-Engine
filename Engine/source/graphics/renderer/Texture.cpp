@@ -5,6 +5,15 @@
 
 namespace graphics
 {
+	Texture::Texture()
+		:id(0),
+		filePath("Undefined"),
+		localBuffer(nullptr),
+		width(0),
+		height(0),
+		numColourChannels(0)
+	{}
+
 	Texture::Texture(const std::string& path)
 		:id(0),
 		filePath(path),
@@ -41,17 +50,22 @@ namespace graphics
 
 	void Texture::Delete()
 	{
+		if (filePath != "Undefined")
 		GLCheck(glDeleteTextures(1, &id));
 	}
 
 	void Texture::Bind(unsigned int slot) const
 	{
-		GLCheck(glActiveTexture(GL_TEXTURE0 + slot));
-		GLCheck(glBindTexture(GL_TEXTURE_2D, id));
+		if (filePath != "Undefined")
+		{
+			GLCheck(glActiveTexture(GL_TEXTURE0 + slot));
+			GLCheck(glBindTexture(GL_TEXTURE_2D, id));
+		}
 	}
 
 	void Texture::Unbind() const
 	{
-		GLCheck(glBindTexture(GL_TEXTURE_2D, 0));
+		if (filePath != "Undefined")
+			GLCheck(glBindTexture(GL_TEXTURE_2D, 0));
 	}
 }

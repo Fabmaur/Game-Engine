@@ -8,9 +8,10 @@ out vec4 ourColour;
 uniform mat4 mvp;
 
 
+
 void main()
 {
-	ourColour = vec4(aColour);
+	ourColour = aColour;
 	gl_Position = vec4(aPos, 1.0f);
 }
 
@@ -19,9 +20,9 @@ void main()
 #version 330 core
 
 in vec4 ourColour;
-out vec4 FragColor;
+out vec4 FragColour;
 
 void main()
 {
-	FragColor = ourColour;
+	FragColour = ourColour;
 }

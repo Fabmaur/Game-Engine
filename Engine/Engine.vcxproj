@@ -170,13 +170,13 @@
   <ItemGroup>
     <ClCompile Include="source\core\Engine.cpp" />
     <ClCompile Include="source\debug\Console.cpp" />
-    <ClCompile Include="source\debug\ProjectLog.cpp" />
     <ClCompile Include="source\events\InputPoller.cpp" />
     <ClCompile Include="source\graphics\gl_types\IndexBuffer.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexArray.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexBuffer.cpp" />
     <ClCompile Include="source\graphics\renderer\BatchRenderer2D.cpp" />
     <ClCompile Include="source\graphics\renderer\Camera.cpp" />
+    <ClCompile Include="source\graphics\renderer\SpriteGroup.cpp" />
     <ClCompile Include="source\graphics\renderer\Shader.cpp" />
     <ClCompile Include="source\graphics\renderer\SpriteRenderer.cpp" />
     <ClCompile Include="source\graphics\renderer\Texture.cpp" />
@@ -214,6 +214,7 @@
     <ClInclude Include="source\graphics\renderer\2DRenderer.h" />
     <ClInclude Include="source\graphics\renderer\BatchRenderer2D.h" />
     <ClInclude Include="source\graphics\renderer\Camera.h" />
+    <ClInclude Include="source\graphics\renderer\SpriteGroup.h" />
     <ClInclude Include="source\graphics\renderer\Layer.h" />
     <ClInclude Include="source\graphics\renderer\Renderable2D.h" />
     <ClInclude Include="source\graphics\renderer\Renderer2D.h" />
@@ -225,11 +226,6 @@
     <ClInclude Include="source\graphics\renderer\SpriteRenderer.h" />
     <ClInclude Include="source\graphics\renderer\Texture.h" />
     <ClInclude Include="source\graphics\renderer\Window.h" />
-    <ClInclude Include="source\graphics\simple_shapes\Cube.h" />
-    <ClInclude Include="source\graphics\simple_shapes\Shape.h" />
-    <ClInclude Include="source\graphics\simple_shapes\Shapes.h" />
-    <ClInclude Include="source\graphics\simple_shapes\Square.h" />
-    <ClInclude Include="source\graphics\simple_shapes\Triangle.h" />
     <ClInclude Include="source\maths\maths.h" />
     <ClInclude Include="source\maths\MathsFunc.h" />
     <ClInclude Include="source\maths\Matrix.h" />

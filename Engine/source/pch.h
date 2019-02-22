@@ -12,7 +12,7 @@
 #include "GL/glew.h"
 
 //Premade classes
-#include "graphics/simple_shapes/Shapes.h"
+
 #include "graphics/gl_types/Buffers.h"
 #include "graphics/renderer/Shader.h"
 #include "graphics/renderer/Texture.h"
@@ -20,7 +20,6 @@
 #include "graphics/renderer/Sprite.h"
 #include "graphics/renderer/Renderer2D.h"
 #include "graphics/renderer/BatchRenderer2D.h"
-#include "graphics/simple_shapes/Shape.h"
 
 //Util
 #include <iostream>

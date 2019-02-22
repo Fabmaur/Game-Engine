@@ -10,6 +10,7 @@ namespace graphics
 	class Texture
 	{
 	public:
+		Texture();
 		Texture(const std::string& path);
 		void Delete();
 		void Bind(unsigned int slot = 0) const;

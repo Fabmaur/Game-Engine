@@ -44,6 +44,6 @@ namespace maths
 	}
 
 	typedef mat2<int> mat2i;
-	typedef mat2<float> matf;
+	typedef mat2<float> mat2f;
 		
 }
