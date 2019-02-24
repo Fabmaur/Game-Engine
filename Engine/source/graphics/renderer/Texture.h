@@ -19,10 +19,15 @@ namespace graphics
 		inline int GetHeight() const { return height; };
 
 	private:
+		void SetTextureSettings();
+		void LoadTexture(const std::string& path);
+
+	private:
 		unsigned int id;
 		const std::string& filePath;
 		unsigned char* localBuffer;
 		int width, height, numColourChannels;
+		static std::map<std::string, unsigned int> texMap;
 	};
 }
 
