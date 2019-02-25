@@ -15,13 +15,13 @@ namespace graphics
 	class BatchRenderer2D : public Renderer2D
 	{
 	public:
-		BatchRenderer2D(const int MAX_SHAPES);
+		BatchRenderer2D(Shader& shader, const int MAX_SHAPES);
 		void Push(const Renderable2D* shape) override;
 		void RenderAndPop() override;
 	private:
 		VertexArray VAO;
 		VertexBuffer VBO;
-		const int& MAX_SHAPES;
+		const int MAX_SHAPES;
 		const int VERTEX_SIZE;
 		const int SHAPE_SIZE;
 		const int BUFFER_SIZE;

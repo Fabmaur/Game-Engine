@@ -6,13 +6,19 @@
 namespace graphics
 {
 
-	BatchRenderer2D::BatchRenderer2D(const int MAX_SHAPES)
+	BatchRenderer2D::BatchRenderer2D(Shader& shader, const int MAX_SHAPES)
 		:MAX_SHAPES(MAX_SHAPES),
 		VERTEX_SIZE(sizeof(graphics::Vertex)),
 		SHAPE_SIZE(4 * sizeof(graphics::Vertex)),
 		BUFFER_SIZE(4 * sizeof(graphics::Vertex) * MAX_SHAPES),
 		IBO_SIZE(MAX_SHAPES * 6)
 	{
+		int texUnitID[] = {
+			0, 1, 2, 3, 4, 5, 6, 7, 8,
+			9, 10, 11, 12, 13, 14, 15
+		};
+
+		shader.SetUniformiv("textures", 16, texUnitID);
 		VAO.Bind();
 		VBO = VertexBuffer(BUFFER_SIZE);
 		VBO.PushLayout(3, GL_FLOAT); // Setting rect->GetPos()ition
@@ -33,6 +39,7 @@ namespace graphics
 			indices[i + 5] = offset;
 			offset += 4;
 		}
+
 		IndexBuffer IBO(indices, IBO_SIZE);
 		VAO.BindIBO(IBO);
 		VAO.Unbind();
@@ -53,14 +60,15 @@ namespace graphics
 		const float g = rect->GetColour().g;
 		const float b = rect->GetColour().b;
 		const float a = rect->GetColour().a;
+		const unsigned int texUnit = rect->GetTexture() == nullptr ? 0 : rect->GetTexture()->GetTexUnitID();
 
 		const float vertices[]
 		{
-			//position				  Colour 
-			pos.x,		   pos.y - sizeY, pos.z, r, g, b, a,	//bottom left
-			pos.x,		   pos.y,		  pos.z, r, g, b, a,	//top left
-			pos.x + sizeX, pos.y,		  pos.z, r, g, b, a,	//top right
-			pos.x + sizeX, pos.y - sizeY, pos.z, r, g, b, a		//bottom right
+			//position				  			   Texture Coords	TexUnit		Colour
+			pos.x,		   pos.y - sizeY, pos.z,	0.0f, 0.0f,		texUnit,	r, g, b, a,		//bottom left
+			pos.x,		   pos.y,		  pos.z,	0.0f, 1.0f,		texUnit,	r, g, b, a,		//top left
+			pos.x + sizeX, pos.y,		  pos.z,	1.0f, 1.0f,		texUnit,	r, g, b, a,		//top right
+			pos.x + sizeX, pos.y - sizeY, pos.z,	1.0f, 0.0f,		texUnit,	r, g, b, a		//bottom right
 		};
 		GLCheck(glBufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices));
 		offset += 6;
@@ -68,7 +76,6 @@ namespace graphics
 
 	void BatchRenderer2D::RenderAndPop()
 	{
-		VBO.Bind();
 		VAO.Bind();
 		glDrawElements(GL_TRIANGLES, IBO_SIZE, GL_UNSIGNED_INT,0);
 		VAO.Unbind();

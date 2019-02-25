@@ -21,7 +21,7 @@ namespace graphics
 		}
 	}
 
-	Shader::Delete()
+	void Shader::Delete()
 	{
 		HP_STATUS("Destructing shader");
 		GLCheck(glDeleteProgram(id));
@@ -111,12 +111,19 @@ namespace graphics
 		return loc;
 	}
 
-	void Shader::SetUniform4f(const std::string& name, const float v0, const float v1, const float v2, const float v3)
+	void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
 	{
 		GLCheck(glUniform4f(GetUniformLoc(name), v0, v1, v2, v3));
 	}
 
-	void Shader::SetUniform3f(const std::string& name, const float v0, const float v1, const float v2)
+	void Shader::SetUniformiv(const std::string& name, int count, int* value)
+	{
+		for (int i = 0; i < 16; i++)
+			HP_SUCCESS(*(value + i));
+		GLCheck(glUniform1iv(GetUniformLoc(name), count, value));
+	}
+
+	void Shader::SetUniform3f(const std::string& name, float v0, float v1, float v2)
 	{
 		GLCheck(glUniform3f(GetUniformLoc(name), v0, v1, v2));
 	}
@@ -140,7 +147,7 @@ namespace graphics
 	{
 		GLCheck(glUniform1f(GetUniformLoc(name), value));
 	}
-	void graphics::Shader::SetUniform2f(const std::string& name, const float v0, const float v1)
+	void graphics::Shader::SetUniform2f(const std::string& name, float v0, float v1)
 	{
 		GLCheck(glUniform2f(GetUniformLoc(name), v0, v1));
 	}

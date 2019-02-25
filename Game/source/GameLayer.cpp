@@ -1,3 +1,4 @@
+
 #include "GameLayer.h"
 #include "events/Events.h"
 #include "events/InputPoller.h"
@@ -28,10 +29,11 @@ void GameLayer::onEvent(EventMessage & event)
 
 void GameLayer::Init()
 {
-	shader = new graphics::Shader("resources/Shape.shader");
-	renderer = new graphics::SpriteRenderer;
+	shader = new graphics::Shader("resources/Batch.shader");
+	renderer = new graphics::BatchRenderer2D(*shader, 2);
+	texture = new graphics::Texture("resources/container.jpg");
 	shader->Bind();
-	renderable = new graphics::SingleSprite(*shader, maths::vec3f(0.1f, 0.2f, 0.0f), maths::vec2f(0.3f, 0.3f), maths::vec4f(0.2f, 0.4f, 0.1f, 1.0f));
+	renderable = new graphics::BatchSprite(maths::vec3f(0.1f, 0.2f, 0.0f), maths::vec2f(0.3f, 0.3f), texture);
 }
 
 void GameLayer::RunMain()

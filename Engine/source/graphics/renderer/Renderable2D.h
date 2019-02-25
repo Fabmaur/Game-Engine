@@ -9,7 +9,7 @@ namespace graphics
 	struct Vertex
 	{
 		maths::vec3f pos;
-		maths::mat2f TexCoords;
+		maths::vec2f TexCoords;
 		float TUID;
 		maths::vec4f colour;
 	};

@@ -1,30 +1,17 @@
 #include "Texture.h"
 #include "pch.h"
 #include "vendor/stb_image/stb_image.h"
-#include <map>
+
 
 
 namespace graphics
 {
 
-	std::map<std::string, unsigned int> Texture::texMap;
-
-	Texture::Texture()
-		:id(0),
-		filePath("Undefined"),
-		localBuffer(nullptr),
-		width(0),
-		height(0),
-		numColourChannels(0)
-	{ 
-		if (texMap.find("Undefined") != texMap.end())
-		{
-			texMap.insert("Undefined", 0);
-		}
-	}
+	std::map<std::string, unsigned int> Texture::texUnitMap;
 
 	Texture::Texture(const std::string& path)
 		:id(0),
+		texUnit(0),
 		filePath(path),
 		localBuffer(nullptr),
 		width(0),
@@ -33,7 +20,8 @@ namespace graphics
 
 	{
 
-		if (texMap.find(path) == texMap.end())
+		auto textureCache = texUnitMap.find(path);
+		if (textureCache == texUnitMap.end())
 		{
 			
 			LoadTexture(path);
@@ -56,30 +44,28 @@ namespace graphics
 
 		else
 		{
-
+			texUnit = textureCache->second;
 		}
 	}
 
 
 	void Texture::Delete()
 	{
-		if (filePath != "Undefined")
 		GLCheck(glDeleteTextures(1, &id));
 	}
 
-	void Texture::Bind(unsigned int slot = 0) const
+	void Texture::Bind(unsigned int unit /* = 1 */)
 	{
-		if (filePath != "Undefined")
-		{
-			GLCheck(glActiveTexture(GL_TEXTURE0 + slot));
-			GLCheck(glBindTexture(GL_TEXTURE_2D, id));
-		}
+		texUnitMap.insert(std::pair(filePath, unit));
+		texUnit = unit;
+
+		GLCheck(glActiveTexture(GL_TEXTURE0 + unit));
+		GLCheck(glBindTexture(GL_TEXTURE_2D, id));
 	}
 
 	void Texture::Unbind() const
 	{
-		if (filePath != "Undefined")
-			GLCheck(glBindTexture(GL_TEXTURE_2D, 0));
+		GLCheck(glBindTexture(GL_TEXTURE_2D, 0));
 	}
 
 	void Texture::SetTextureSettings()

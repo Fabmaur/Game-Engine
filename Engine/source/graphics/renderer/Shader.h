@@ -23,13 +23,13 @@ namespace graphics
 	public:
 		Shader() = default;
 		Shader(const std::string& filename);
-		~Shader();
 		void Bind() const;
 		void Unbind() const;
 		void Delete();
-		void SetUniform2f(const std::string& name, const float v0, const float v1);
-		void SetUniform3f(const std::string& name, const float v0, const float v1, const float v2);
-		void SetUniform4f(const std::string& name, const float v0, const float v1, const float v2, const float v3);
+		void SetUniform2f(const std::string& name, float v0, float v1);
+		void SetUniform3f(const std::string& name, float v0, float v1, float v2);
+		void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
+		void SetUniformiv(const std::string& name, int count, int* value);
 		void SetUniform4v(const std::string& name, maths::vec4f& val);
 		void SetUniform3v(const std::string& name, maths::vec3f& val);
 		void SetUniform1i(const std::string& name, int value);
