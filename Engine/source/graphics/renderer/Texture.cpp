@@ -10,8 +10,7 @@ namespace graphics
 	std::map<std::string, unsigned int> Texture::texUnitMap;
 
 	Texture::Texture(const std::string& path)
-		:id(0),
-		texUnit(0),
+		:TUID(0),
 		filePath(path),
 		localBuffer(nullptr),
 		width(0),
@@ -24,17 +23,17 @@ namespace graphics
 		if (textureCache == texUnitMap.end())
 		{
 			
+			GLCheck(glGenTextures(1, &TUID));
+			GLCheck(glBindTexture(GL_TEXTURE_2D, TUID));
+			texUnitMap.insert(std::pair(filePath, TUID));
+			HP_STATUS("TUID: ", TUID);
+
 			LoadTexture(path);
-			GLCheck(glGenTextures(1, &id));
-			GLCheck(glBindTexture(GL_TEXTURE_2D, id));
-
 			SetTextureSettings();
+			GenTexture();
 			
-			GLCheck(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer));
-			GLCheck(glGenerateMipmap(GL_TEXTURE_2D));
-			GLCheck(glBindTexture(GL_TEXTURE_2D, id));
-
-			if (localBuffer) {
+			if (localBuffer) 
+			{
 				stbi_image_free(localBuffer);
 				HP_SUCCESS("Successfully loaded texture from data path: ", path);
 			}
@@ -44,23 +43,20 @@ namespace graphics
 
 		else
 		{
-			texUnit = textureCache->second;
+			TUID = textureCache->second;
 		}
 	}
 
 
 	void Texture::Delete()
 	{
-		GLCheck(glDeleteTextures(1, &id));
+		GLCheck(glDeleteTextures(1, &TUID));
 	}
 
-	void Texture::Bind(unsigned int unit /* = 1 */)
+	void Texture::Bind()
 	{
-		texUnitMap.insert(std::pair(filePath, unit));
-		texUnit = unit;
-
-		GLCheck(glActiveTexture(GL_TEXTURE0 + unit));
-		GLCheck(glBindTexture(GL_TEXTURE_2D, id));
+		GLCheck(glActiveTexture(GL_TEXTURE0 + TUID));
+		GLCheck(glBindTexture(GL_TEXTURE_2D, TUID))
 	}
 
 	void Texture::Unbind() const
@@ -76,9 +72,14 @@ namespace graphics
 		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
 	}
 
-	void Texture::LoadTexture(const std::string & path)
+	void Texture::LoadTexture(const std::string& path)
 	{
 		stbi_set_flip_vertically_on_load(1);
 		localBuffer = stbi_load(path.c_str(), &width, &height, &numColourChannels, 4);
+	}
+	void Texture::GenTexture()
+	{
+		GLCheck(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, localBuffer));
+		GLCheck(glGenerateMipmap(GL_TEXTURE_2D));
 	}
 }

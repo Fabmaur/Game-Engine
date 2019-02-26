@@ -16,8 +16,9 @@ public:
 	~GameLayer();
 private:
 	graphics::Renderer2D* renderer;
-	graphics::Renderable2D* renderable;
+	graphics::Renderable2D* renderable[2];
 	graphics::Shader* shader;
 	graphics::Texture* texture;
+	graphics::Texture* texture2;
 
 };

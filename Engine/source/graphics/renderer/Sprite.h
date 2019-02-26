@@ -97,15 +97,26 @@ namespace graphics
 	{
 		//For Colour
 	public:
-		BatchSprite(maths::vec3f& pos, maths::vec2f& size, maths::vec4f& colour)
+		BatchSprite(maths::vec3f pos, maths::vec2f size, maths::vec4f colour)
 			:Renderable2D(pos, size, colour),
 			tex(nullptr)
 		{}
+
+		BatchSprite(maths::vec3f pos, maths::vec2f size, std::string texturePath)
+			:Renderable2D(pos, size, defaultColour),
+			tex(new Texture(texturePath))
+		{}
+
 
 		BatchSprite(maths::vec3f pos, maths::vec2f size, Texture* tex )
 			:Renderable2D(pos, size, defaultColour),
 			tex(tex)
 		{}
+
+		~BatchSprite()
+		{
+			delete tex;
+		}
 
 		inline Texture* GetTexture() const { return tex; };
 

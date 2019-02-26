@@ -10,11 +10,7 @@ void GameLayer::onEvent(EventMessage & event)
 		GAME_STATUS(resizeEvent.GetWidth());
 		GAME_STATUS(resizeEvent.GetHeight());
 	});
-	event.ifIs<MouseMoved>([](MouseMoved& movedEvent)
-	{
-		GAME_STATUS("X:", movedEvent.GetX());
-		GAME_STATUS("Y:", movedEvent.GetY());
-	});
+
 	event.ifIs<MousePressed>([](MousePressed& pressedEvent)
 	{
 		if (pressedEvent.GetButton() == MOUSE_BUTTON_1)
@@ -29,27 +25,26 @@ void GameLayer::onEvent(EventMessage & event)
 
 void GameLayer::Init()
 {
-	shader = new graphics::Shader("resources/Batch.shader");
-	renderer = new graphics::BatchRenderer2D(*shader, 2);
-	texture = new graphics::Texture("resources/container.jpg");
-	shader->Bind();
-	renderable = new graphics::BatchSprite(maths::vec3f(0.1f, 0.2f, 0.0f), maths::vec2f(0.3f, 0.3f), texture);
+	using namespace graphics;
+	shader = new Shader("resources/Batch.shader");
+	renderer = new BatchRenderer2D(shader, 3);
+	
+	renderable[0] = new BatchSprite({ 0.1f, 0.2f, 0.0f }, { 0.3f, 0.3f }, "resources/container.jpg");
+	renderable[1] = new BatchSprite({ 0.5f, 0.8f, 0.0f }, { 0.2f, 0.3f }, "resources/LogoRealFinal.jpg");
+
 }
 
 void GameLayer::RunMain()
 {
-	shader->Bind();
-	renderer->Push(renderable);
+	renderer->Push(renderable[0]);
+	renderer->Push(renderable[1]);
 	renderer->RenderAndPop();
-	if (Input::IsKeyPressed(KEY_A))
-		HP_SUCCESS("Ayy lmao");
-	
 }
 
 GameLayer::~GameLayer()
 {
 	delete renderer;
-	delete renderable;
+	delete[] renderable;
 	delete shader;
 	delete texture;
 }

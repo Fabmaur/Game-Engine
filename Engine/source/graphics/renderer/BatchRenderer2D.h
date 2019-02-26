@@ -7,6 +7,7 @@
 #include "graphics/renderer/Texture.h"
 #include "maths/Vector.h"
 #include "graphics/renderer/SpriteGroup.h"
+#include <map>
 
 namespace graphics
 {
@@ -15,17 +16,21 @@ namespace graphics
 	class BatchRenderer2D : public Renderer2D
 	{
 	public:
-		BatchRenderer2D(Shader& shader, const int MAX_SHAPES);
+		BatchRenderer2D(Shader* shader, const int MAX_SHAPES);
 		void Push(const Renderable2D* shape) override;
 		void RenderAndPop() override;
+		void SetShader(Shader* aShader);
 	private:
+		Shader* shader;
 		VertexArray VAO;
 		VertexBuffer VBO;
+		std::vector<unsigned int> usedTexUnits;
+		
 		const int MAX_SHAPES;
 		const int VERTEX_SIZE;
 		const int SHAPE_SIZE;
 		const int BUFFER_SIZE;
-		const int IBO_SIZE;
+		const int IBO_COUNT;
 		int offset;
 	};
 }
