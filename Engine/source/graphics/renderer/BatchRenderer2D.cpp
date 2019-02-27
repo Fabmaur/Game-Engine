@@ -54,12 +54,16 @@ namespace graphics
 	void BatchRenderer2D::Push(const Renderable2D* renderable)
 	{
 		BatchSprite* rect = (BatchSprite*)renderable;
-
-		HP_STATUS("Offset: ", offset);
-		maths::vec3f pos = { rect->GetPos().x, rect->GetPos().y, rect->GetPos().z };
+		
+		maths::vec3f pos = rect->GetPos();
 		pos = transMat.back().MultiplyByVec3f(pos);
 		const float sizeX = rect->GetSize().x;
 		const float sizeY = rect->GetSize().y;
+		
+		maths::vec2f texPos = rect->GetTexPos();
+		const float texSizeX = rect->GetTexSize().x;
+		const float texSizeY = rect->GetTexSize().y;
+			   
 		const float r = rect->GetColour().r;
 		const float g = rect->GetColour().g;
 		const float b = rect->GetColour().b;
@@ -78,11 +82,11 @@ namespace graphics
 
 		const float vertices[]
 		{
-			//position				  			   Texture Coords	TexUnit		Colour
-			pos.x,		   pos.y - sizeY, pos.z,	0.0f, 0.0f,		texUnit,	r, g, b, a,		//bottom left
-			pos.x,		   pos.y,		  pos.z,	0.0f, 1.0f,		texUnit,	r, g, b, a,		//top left
-			pos.x + sizeX, pos.y,		  pos.z,	1.0f, 1.0f,		texUnit,	r, g, b, a,		//top right
-			pos.x + sizeX, pos.y - sizeY, pos.z,	1.0f, 0.0f,		texUnit,	r, g, b, a		//bottom right
+			//position				  			   Texture Coords								TexUnit		Colour
+			pos.x,		   pos.y - sizeY, pos.z,	texPos.x,			 texPos.y,				texUnit,	r, g, b, a,		//bottom left
+			pos.x,		   pos.y,		  pos.z,	texPos.x,		     texPos.y + texSizeY,	texUnit,	r, g, b, a,		//top left
+			pos.x + sizeX, pos.y,		  pos.z,	texPos.x + texSizeX, texPos.y + texSizeY,	texUnit,	r, g, b, a,		//top right
+			pos.x + sizeX, pos.y - sizeY, pos.z,	texPos.x + texSizeX, texPos.y,				texUnit,	r, g, b, a		//bottom right
 		};
 		GLCheck(glBufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices));
 		offset += sizeof(vertices);

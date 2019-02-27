@@ -91,7 +91,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ShowIncludes>false</ShowIncludes>
@@ -110,7 +110,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ShowIncludes>false</ShowIncludes>
@@ -179,6 +179,7 @@
     <ClCompile Include="source\graphics\renderer\SpriteGroup.cpp" />
     <ClCompile Include="source\graphics\renderer\Shader.cpp" />
     <ClCompile Include="source\graphics\renderer\SpriteRenderer.cpp" />
+    <ClCompile Include="source\graphics\renderer\Text.cpp" />
     <ClCompile Include="source\graphics\renderer\Texture.cpp" />
     <ClCompile Include="source\graphics\renderer\Window.cpp" />
     <ClCompile Include="source\pch.cpp">
@@ -224,6 +225,7 @@
     <ClInclude Include="source\graphics\renderer\simple_shapes\Triangle.h" />
     <ClInclude Include="source\graphics\renderer\Sprite.h" />
     <ClInclude Include="source\graphics\renderer\SpriteRenderer.h" />
+    <ClInclude Include="source\graphics\renderer\Text.h" />
     <ClInclude Include="source\graphics\renderer\Texture.h" />
     <ClInclude Include="source\graphics\renderer\Window.h" />
     <ClInclude Include="source\maths\maths.h" />
@@ -232,6 +234,7 @@
     <ClInclude Include="source\maths\Matrix2.h" />
     <ClInclude Include="source\maths\Matrix3.h" />
     <ClInclude Include="source\maths\Matrix4.h" />
+    <ClInclude Include="source\maths\Quaternion.h" />
     <ClInclude Include="source\maths\Vector.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Cube.h" />
     <ClInclude Include="source\pch.h" />

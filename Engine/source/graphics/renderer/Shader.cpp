@@ -118,8 +118,6 @@ namespace graphics
 
 	void Shader::SetUniformiv(const std::string& name, int count, int* value)
 	{
-		for (int i = 0; i < 16; i++)
-			HP_SUCCESS(*(value + i));
 		GLCheck(glUniform1iv(GetUniformLoc(name), count, value));
 	}
 

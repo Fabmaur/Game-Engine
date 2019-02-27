@@ -236,7 +236,7 @@ namespace maths
 		};
 		inline T lenSqr() const
 		{
-			return x*x + y * y + z * z + w * w;
+			return x * x + y * y + z * z + w * w;
 		}
 		inline float len()
 		{

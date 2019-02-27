@@ -26,7 +26,6 @@ namespace graphics
 			GLCheck(glGenTextures(1, &TUID));
 			GLCheck(glBindTexture(GL_TEXTURE_2D, TUID));
 			texUnitMap.insert(std::pair(filePath, TUID));
-			HP_STATUS("TUID: ", TUID);
 
 			LoadTexture(path);
 			SetTextureSettings();

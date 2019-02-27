@@ -19,18 +19,32 @@ namespace graphics
 	public:
 		inline maths::vec3f GetPos() const { return pos; }
 		inline maths::vec2f GetSize() const { return size; }
+		inline maths::vec2f GetTexPos() const { return texPos; }
+		inline maths::vec2f GetTexSize() const { return texSize; }
 		inline maths::vec4f GetColour() const { return colour; }
 	
 	protected:
-		Renderable2D(maths::vec3f pos, maths::vec2f size, maths::vec4f colour)
+		Renderable2D(maths::vec3f pos, maths::vec2f size, 
+			maths::vec2f texPos, maths::vec2f texSize, maths::vec4f colour)
 			:pos(pos),
 			size(size),
-			colour(colour)
+			colour(colour),
+			texPos(texPos),
+			texSize(texSize)
 		{}
+
+		Renderable2D(maths::vec3f pos, maths::vec2f size, maths::vec4f colour)
+			:Renderable2D(pos, size, { 0.0f, 0.0f }, { 1.0f, 1.0f, }, colour)
+		{}
+
 		
 	private:
 		maths::vec3f pos;
 		maths::vec2f size;
+		
+		maths::vec2f texPos;
+		maths::vec2f texSize;
+
 		maths::vec4f colour;
 
 	};
