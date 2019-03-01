@@ -1,28 +1,29 @@
 #pragma once
 #include "maths/Vector.h"
+#include <map>
+#include "Font.h"
 
 #include <ft2build.h>
-#define FT2BUILD_H_
-#include <freetype/freetype.h>
-#include <freetype/ftglyph.h>
-
+#include FT_FREETYPE_H  
 
 namespace graphics
 {
-	struct Glyph
-	{
-		unsigned int TUID;      // ID handle of the glyph texture
-		maths::vec2f size;      // Size of glyph
-		maths::vec2f bearing;   // Offset from baseline to left/top of glyph
-		int advance;			// Horizontal offset to advance to next glyph
-	};
-
 	class Text
 	{
+
 	public:
-		Text();
+		Text(const std::string& fontPath, std::string text);
+		void Push(const std::string& atext) { text = atext; };
+		void SetFont(const std::string& fontPath);
+		void SetSize(Font& font, int size);
+		Font GetFont() const { return font; };
+		std::string GetTextStr() const { return text; };
 	private:
+		std::string text;
 		FT_Library ft;
+		Font font;
+		std::map<std::string, Font*> fonts;
+		
 	};
 	
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <map>
+#include <ft2build.h>
+#include FT_FREETYPE_H  
 
 namespace graphics
 {
@@ -13,9 +15,11 @@ namespace graphics
 	public:
 		Texture() = default;
 		Texture(const std::string& path);
+		Texture(FT_Face& font);
 		void Delete();
 		void Bind(); 
-		void Unbind() const;
+		void Unbind();
+		void GenFontTexture(FT_Face& font);
 		inline int GetWidth() const { return width; };
 		inline int GetHeight() const { return height; };
 		inline unsigned int GetTUID() const { return TUID; };

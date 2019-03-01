@@ -28,24 +28,27 @@ void GameLayer::Init()
 {
 	using namespace graphics;
 
-	Text text;
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
+
+	
 	shader = new Shader("resources/Batch.shader");
 	renderer = new BatchRenderer2D(shader, 2);
-	
+	text = new Text("resources/font.ttf", "Hello");
+
+
 	renderable[0] = new BatchSprite({ 0.1f, 0.2f, 0.0f }, { 0.3f, 0.3f }, "resources/container.jpg");
 	renderable[1] = new BatchSprite({ 0.5f, 0.8f, 0.0f }, { 0.2f, 0.3f }, "resources/LogoRealFinal.jpg");
-
-	maths::vec4f a{1,2,3,4};
-	HP_STATUS(a * 2);
 
 }
 
 void GameLayer::RunMain()
 {
-	renderer->Push(renderable[0]);
-	renderer->Push(renderable[1]);
-	renderer->RenderAndPop();
+	
+	renderer->RenderText(*text, { -0.5f, -0.5f }, { 0.0f, 0.5f, 1.0f, 1.0f });
+
 }
 
 GameLayer::~GameLayer()

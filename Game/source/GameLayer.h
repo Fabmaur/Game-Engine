@@ -6,6 +6,7 @@
 #include "graphics/renderer/Layer.h"
 #include "graphics/renderer/Sprite.h"
 #include "graphics/renderer/SpriteRenderer.h"
+#include "graphics/renderer/Text.h"
 
 class GameLayer : public graphics::Layer
 {
@@ -20,5 +21,6 @@ private:
 	graphics::Shader* shader;
 	graphics::Texture* texture;
 	graphics::Texture* texture2;
+	graphics::Text* text;
 
 };

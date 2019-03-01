@@ -193,7 +193,7 @@ namespace maths
 			y(y),
 			z(z),
 			w(w)
-		{};
+ 		{};
 		inline vec4<T> operator +(const vec4<T>& rhs) const
 		{
 			return { x + rhs.x, y + rhs.y, z + rhs.z, w + rhs.w };
@@ -202,11 +202,11 @@ namespace maths
 		{
 			return { x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w };
 		};
-		inline T operator *(const vec4<T>& rhs) const
+		inline vec4<T> operator *(const vec4<T>& rhs) const
 		{
 			return { x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w };
 		};
-		inline T operator *(const T& rhs) const
+		inline vec4<T> operator *(const T& rhs) const
 		{
 			return { x*rhs, y*rhs, z*rhs, w*rhs.w };
 		}

@@ -100,8 +100,9 @@
       <PrecompiledHeaderOutputFile>$(SolutionDir)bin\intermediates\$(Platform)$(Configuration)\Engine\</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)$(Configuration)\;$(SolutionDir)Dependencies\GLFW\lib-vc2015\Win32;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)$(Configuration);$(SolutionDir)Dependencies\GLFW\lib-vc2015\Win32;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32;$(SolutionDir)Dependencies\FreeType\win32;$(SolutionDir)Dependencies\FreeType\win32</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT  /NODEFAULTLIB:library %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -121,8 +122,9 @@
       <PrecompiledHeaderOutputFile>$(SolutionDir)bin\intermediates\$(Platform)$(Configuration)\Engine\</PrecompiledHeaderOutputFile>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)$(Configuration)\;$(SolutionDir)Dependencies\GLFW\lib-vc2015\x64;$(SolutionDir)Dependencies\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)$(Configuration)\;$(SolutionDir)Dependencies\GLFW\lib-vc2015\x64;$(SolutionDir)Dependencies\GLEW\lib\Release\x64;$(SolutionDir)Dependencies\FreeType\win64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT  /NODEFAULTLIB:library %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -146,8 +148,9 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)$(Configuration)\;$(SolutionDir)Dependencies\GLFW\lib-vc2015\Win32;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)$(Configuration)\;$(SolutionDir)Dependencies\GLFW\lib-vc2015\Win32;$(SolutionDir)Dependencies\GLEW\lib\Release\Win32;$(SolutionDir)Dependencies\FreeType\win32</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT  /NODEFAULTLIB:library %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -171,8 +174,9 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)$(Configuration)\;$(SolutionDir)Dependencies\GLFW\lib-vc2015\x64;$(SolutionDir)Dependencies\GLEW\lib\Release\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\$(Platform)$(Configuration)\;$(SolutionDir)Dependencies\GLFW\lib-vc2015\x64;$(SolutionDir)Dependencies\GLEW\lib\Release\x64;$(SolutionDir)Dependencies\FreeType\win64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;glew32s.lib;opengl32.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/NODEFAULTLIB:LIBCMT  /NODEFAULTLIB:library %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
@@ -191,6 +195,7 @@
   <ItemGroup>
     <None Include="resources\batch.shader" />
     <None Include="resources\Default.shader" />
+    <None Include="resources\Font.shader" />
     <None Include="resources\Material2D.shader" />
     <None Include="resources\Shape.shader" />
   </ItemGroup>
@@ -201,6 +206,10 @@
   <ItemGroup>
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\GameLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\..\Users\fabma\Downloads\04b_30\font.TTF" />
+    <Font Include="resources\font.TTF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

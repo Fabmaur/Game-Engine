@@ -10,6 +10,7 @@
     <None Include="resources\Default.shader" />
     <None Include="resources\Shape.shader" />
     <None Include="resources\batch.shader" />
+    <None Include="resources\Font.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\LogoRealFinal.jpg" />
@@ -18,5 +19,9 @@
   <ItemGroup>
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\GameLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\..\Users\fabma\Downloads\04b_30\font.TTF" />
+    <Font Include="resources\font.TTF" />
   </ItemGroup>
 </Project>

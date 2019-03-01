@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "BatchRenderer2D.h"
-#include "debug/GLDebug.h"
+#include "Font.h"
 
 
 namespace graphics
@@ -14,6 +14,8 @@ namespace graphics
 		BUFFER_SIZE(SHAPE_SIZE * MAX_SHAPES),
 		IBO_COUNT(MAX_SHAPES * 6)
 	{
+
+		fontShader = new Shader("../Game/resources/Font.shader");
 		int texUnitID[] = {
 			0, 1, 2, 3, 4, 5, 6, 7, 8,
 			9, 10, 11, 12, 13, 14, 15
@@ -107,6 +109,61 @@ namespace graphics
 
 		offset = 0;
 	}
+
+	void BatchRenderer2D::RenderText(Text& text, maths::vec2f pos, maths::vec4f colour)
+	{
+		
+		
+		fontShader->Bind();
+		fontShader->SetUniform3f("textColor", colour.r, colour.g, colour.b);
+		glActiveTexture(GL_TEXTURE0);
+		VertexArray aVAO;
+		aVAO.Bind();
+		VertexBuffer aVBO(sizeof(float) * 6 * 4);
+		aVBO.PushLayout(4, GL_FLOAT);
+		aVAO.SetVertexAttribArray(aVBO);
+
+		for (int i = 0; i < text.GetTextStr().length(); i++)
+		{
+			aVAO.Bind();
+			aVBO.Bind();
+			Glyph glyph = text.GetFont().GetGlyph(text.GetTextStr()[i]);
+
+			
+			float x = pos.x + glyph.bearing.x;
+			float y = pos.y - (glyph.size.y - glyph.bearing.y);
+
+			float w = glyph.size.x;
+			float h = glyph.size.y;
+			// Update VBO for each character
+			float vertices[] = 
+			{
+				 x,     y + h,   0.0, 0.0,
+				 x,     y,       0.0, 1.0,
+				 x + w, y,       1.0, 1.0,
+
+				 x,     y + h,   0.0, 0.0,
+				 x + w, y,       1.0, 1.0,
+				 x + w, y + h,   1.0, 0.0
+			};
+			// Render glyph texture over quad
+			glBindTexture(GL_TEXTURE_2D, glyph.TUID);
+			// Update content of VBO memory
+			
+			glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); 
+
+			
+			// Render quad
+			glDrawArrays(GL_TRIANGLES, 0, 6);
+			// Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
+			x += (glyph.advance >> 6); // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+		}
+		aVBO.Delete();
+		aVAO.Delete();
+		glBindTexture(GL_TEXTURE_2D, 0);
+		fontShader->Unbind();
+	}
+
 	void BatchRenderer2D::SetShader(Shader* aShader)
 	{
 		shader = aShader;

@@ -8,6 +8,7 @@
 #include "maths/Vector.h"
 #include "graphics/renderer/SpriteGroup.h"
 #include <map>
+#include "Text.h"
 
 namespace graphics
 {
@@ -19,9 +20,11 @@ namespace graphics
 		BatchRenderer2D(Shader* shader, const int MAX_SHAPES);
 		void Push(const Renderable2D* shape) override;
 		void RenderAndPop() override;
+		void RenderText(Text& text, maths::vec2f pos, maths::vec4f colour) override;
 		void SetShader(Shader* aShader);
 	private:
 		Shader* shader;
+		Shader* fontShader;
 		VertexArray VAO;
 		VertexBuffer VBO;
 		std::vector<unsigned int> usedTexUnits;

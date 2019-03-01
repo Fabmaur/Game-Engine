@@ -176,6 +176,7 @@
     <ClCompile Include="source\graphics\gl_types\VertexBuffer.cpp" />
     <ClCompile Include="source\graphics\renderer\BatchRenderer2D.cpp" />
     <ClCompile Include="source\graphics\renderer\Camera.cpp" />
+    <ClCompile Include="source\graphics\renderer\Font.cpp" />
     <ClCompile Include="source\graphics\renderer\SpriteGroup.cpp" />
     <ClCompile Include="source\graphics\renderer\Shader.cpp" />
     <ClCompile Include="source\graphics\renderer\SpriteRenderer.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="source\graphics\renderer\2DRenderer.h" />
     <ClInclude Include="source\graphics\renderer\BatchRenderer2D.h" />
     <ClInclude Include="source\graphics\renderer\Camera.h" />
+    <ClInclude Include="source\graphics\renderer\Font.h" />
     <ClInclude Include="source\graphics\renderer\SpriteGroup.h" />
     <ClInclude Include="source\graphics\renderer\Layer.h" />
     <ClInclude Include="source\graphics\renderer\Renderable2D.h" />

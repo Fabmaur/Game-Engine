@@ -46,6 +46,16 @@ namespace graphics
 		}
 	}
 
+	Texture::Texture(FT_Face& font)
+	{
+		GLCheck(glGenTextures(1, &TUID));
+		GLCheck(glBindTexture(GL_TEXTURE_2D, TUID));
+
+		SetTextureSettings();
+		GenFontTexture(font);
+		
+	}
+
 
 	void Texture::Delete()
 	{
@@ -58,7 +68,22 @@ namespace graphics
 		GLCheck(glBindTexture(GL_TEXTURE_2D, TUID))
 	}
 
-	void Texture::Unbind() const
+	void Texture::GenFontTexture(FT_Face& font)
+	{
+		GLCheck(glTexImage2D(
+			GL_TEXTURE_2D,
+			0,
+			GL_RED,
+			font->glyph->bitmap.width,
+			font->glyph->bitmap.rows,
+			0,
+			GL_RED,
+			GL_UNSIGNED_BYTE,
+			font->glyph->bitmap.buffer
+		));
+	}
+
+	void Texture::Unbind()
 	{
 		GLCheck(glBindTexture(GL_TEXTURE_2D, 0));
 	}
