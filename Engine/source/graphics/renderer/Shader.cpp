@@ -5,29 +5,7 @@ namespace graphics
 {
 
 	std::map<std::string, unsigned int> Shader::shaderMap;
-	Shader::Shader(const std::string& filename)
-	{
-		auto shaderCache = shaderMap.find(filename);
-		if (shaderCache == shaderMap.end())
-		{
-			HP_STATUS("Opening shader file: ", filename);
-			ShaderContainer shader = ParseShader(filename);
-			id = CreateShader(shader.vertex, shader.fragment);
-			shaderMap.insert(std::pair(filename, id));
-		}
-		else
-		{
-			id = shaderCache->second;
-		}
-	}
-
-	void Shader::Delete()
-	{
-		HP_STATUS("Destructing shader");
-		GLCheck(glDeleteProgram(id));
-	}
-
-	ShaderContainer Shader::ParseShader(const std::string& filename)
+	auto Shader::ParseShader(const std::string& filename)
 	{
 		std::ifstream in(filename);
 		HP_ASSERT(in, "The file could not be found")
@@ -61,8 +39,66 @@ namespace graphics
 				HP_ASSERT(((int)shader != -1), "Could not find #shader");
 			}
 		}
-		return { ss[0].str(), ss[1].str() };
+		return std::pair(ss[0].str(), ss[1].str());
 	}
+
+	auto Shader::ParseShader(const std::string &vertexShader, const std::string &fragmentShader)
+	{
+		std::stringstream ss[2];
+		std::ifstream inV(vertexShader);
+		std::string line;
+
+		while (std::getline(inV, line))
+			ss[0] << line << "\n";
+
+		std::ifstream inF(fragmentShader);
+
+		while (std::getline(inF, line))
+			ss[1] << line << "\n";
+
+		return std::pair(ss[0].str(), ss[1].str());
+	}
+
+	Shader::Shader(const std::string& filename)
+	{
+		auto shaderCache = shaderMap.find(filename);
+		if (shaderCache == shaderMap.end())
+		{
+			HP_STATUS("Opening shader file: ", filename);
+			auto [vertex, fragment] = ParseShader(filename);
+			id = CreateShader(vertex, fragment);
+			shaderMap.insert(std::pair(filename, id));
+		}
+		else
+		{
+			id = shaderCache->second;
+		}
+	}
+
+	Shader::Shader(const std::string & vertexShader, const std::string & fragmentShader)
+	{
+		auto shaderCache = shaderMap.find(vertexShader + fragmentShader);
+		if (shaderCache == shaderMap.end())
+		{
+			HP_STATUS("Opening vertex shader file: ", vertexShader);
+			HP_STATUS("Opening vertex shader file: ", fragmentShader);
+			auto [vertex, fragment] = ParseShader(vertexShader, fragmentShader);
+			id = CreateShader(vertex, fragment);
+			shaderMap.insert(std::pair(vertexShader + fragmentShader, id));
+		}
+		else
+		{
+			id = shaderCache->second;
+		}
+	}
+
+	void Shader::Delete()
+	{
+		HP_STATUS("Destructing shader");
+		GLCheck(glDeleteProgram(id));
+	}
+
+
 
 	unsigned int Shader::CompileShader(const unsigned int type, const std::string& source)
 	{

@@ -8,10 +8,8 @@ namespace maths
 	template <typename T>
 	struct vec2
 	{
-		//Variables
 		T x, y;
 
-		//Methods
 		vec2() = default;
 		vec2(T x, T y)
 			:x(x),
@@ -86,7 +84,6 @@ namespace maths
 
 
 	template <typename T>
-
 	struct vec3
 	{
 		//Variables

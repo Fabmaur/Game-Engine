@@ -38,7 +38,6 @@ void GameLayer::Init()
 	renderer = new BatchRenderer2D(shader, 2);
 	text = new Text("resources/font.ttf", "Hello");
 
-
 	renderable[0] = new BatchSprite({ 0.1f, 0.2f, 0.0f }, { 0.3f, 0.3f }, "resources/container.jpg");
 	renderable[1] = new BatchSprite({ 0.5f, 0.8f, 0.0f }, { 0.2f, 0.3f }, "resources/LogoRealFinal.jpg");
 

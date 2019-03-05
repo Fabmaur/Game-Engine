@@ -5,14 +5,6 @@
 
 namespace graphics
 {
-
-	//Used as return type to ParseShader function
-	struct ShaderContainer
-	{
-		std::string vertex;
-		std::string fragment;
-	};
-
 	/*Shader class loads and parses shaders from other files so that opengl
 	shaders can be created and compiled. The class also allows uniforms to be
 	set for the current shader program. The class must be bound when the
@@ -23,6 +15,7 @@ namespace graphics
 	public:
 		Shader() = default;
 		Shader(const std::string& filename);
+		Shader(const std::string& vertexShader, const std::string& fragmentShader);
 		void Bind() const;
 		void Unbind() const;
 		void Delete();
@@ -37,7 +30,8 @@ namespace graphics
 		void SetUniformMat4f(const std::string& name, const maths::mat4f& mat4);
 	
 	private:
-		ShaderContainer ParseShader(const std::string& filename);
+		auto ParseShader(const std::string& filename);
+		auto ParseShader(const std::string& vertexShader, const std::string& fragmentShader);
 		unsigned int CompileShader(const unsigned int type, const std::string& source);
 		unsigned int CreateShader(const std::string& vertexSrc, const std::string& fragmentSrc);
 		const int GetUniformLoc(const std::string& name);

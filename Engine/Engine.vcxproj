@@ -251,6 +251,7 @@
     <ClInclude Include="source\vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="source\graphics\renderer\resources\Default.shader" />
     <None Include="source\graphics\renderer\resources\Material2D.shader" />
   </ItemGroup>

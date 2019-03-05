@@ -5,13 +5,14 @@ namespace maths
 {
 
 	/* Matrix Base Class Template
-	using row major layout
+	using column major layout
 	__     __
 	|m0 m3 m6|
 	|m1 m4 m7|  
 	|m2 m5 m8|
 	|__    __|
 	*/
+
 	////////////////
 	//Decleration
 	////////////////
@@ -134,6 +135,4 @@ namespace maths
 	{
 		*this = *this * scale;
 	}
-
-	
 }

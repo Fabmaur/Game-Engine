@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 
 #include "graphics/renderer/Renderable2D.h"
 #include "graphics/gl_types/Buffers.h"

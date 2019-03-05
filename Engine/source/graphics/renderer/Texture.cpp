@@ -2,8 +2,6 @@
 #include "pch.h"
 #include "vendor/stb_image/stb_image.h"
 
-
-
 namespace graphics
 {
 
@@ -16,7 +14,6 @@ namespace graphics
 		width(0),
 		height(0),
 		numColourChannels(0)
-
 	{
 
 		auto textureCache = texUnitMap.find(path);
@@ -90,7 +87,7 @@ namespace graphics
 
 	void Texture::SetTextureSettings()
 	{
-		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
+		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
 		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
 		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
 		GLCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));

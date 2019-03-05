@@ -5,15 +5,13 @@ namespace graphics
 {
 	Font::Font(FT_Library& ft, const std::string& fontPath)
 	{
-		FT_Face aFont;
-		if (FT_New_Face(ft, fontPath.c_str(), 0, &aFont))
+		if (FT_New_Face(ft, fontPath.c_str(), 0, &font))
 			HP_ERROR("ERROR::FREETYPE: Failed to load font");
 		else
 			HP_SUCCESS("Successfully loaded font from data path: ", fontPath);
 		
-		font = aFont;
-		SetSize(1);
-		GenGlyphs(aFont);
+		SetSize(10);
+		GenGlyphs(font);
 	}
 
 	void Font::SetSize(int size)

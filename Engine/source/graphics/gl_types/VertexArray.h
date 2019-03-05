@@ -19,10 +19,10 @@ namespace graphics
 		void BindIBO(const IndexBuffer& IBO) const;
 		void SetVertexAttribArray(const VertexBuffer& vb);
 		void SetVertexAttrib(const VertexBuffer& vb, const int vertexArrayPos);
-		inline GLuint GetId() const { return id; };
+		inline unsigned int GetId() const { return id; };
 
 	private:
-		GLuint id;
+		unsigned int id;
 
 	};
 }
