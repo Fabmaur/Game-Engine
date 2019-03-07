@@ -183,6 +183,7 @@
     <ClCompile Include="source\graphics\renderer\Text.cpp" />
     <ClCompile Include="source\graphics\renderer\Texture.cpp" />
     <ClCompile Include="source\graphics\renderer\Window.cpp" />
+    <ClCompile Include="source\misc\Timer.cpp" />
     <ClCompile Include="source\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -239,6 +240,7 @@
     <ClInclude Include="source\maths\Quaternion.h" />
     <ClInclude Include="source\maths\Vector.h" />
     <ClInclude Include="source\graphics\renderer\simple_shapes\Cube.h" />
+    <ClInclude Include="source\misc\Timer.h" />
     <ClInclude Include="source\pch.h" />
     <ClInclude Include="source\vendor\imgui\imconfig.h" />
     <ClInclude Include="source\vendor\imgui\imgui.h" />

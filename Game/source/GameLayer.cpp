@@ -2,7 +2,8 @@
 #include "GameLayer.h"
 #include "events/Events.h"
 #include "events/InputPoller.h"
-#include "graphics/renderer/Text.h"
+
+
 
 void GameLayer::onEvent(EventMessage & event)
 {
@@ -32,21 +33,25 @@ void GameLayer::Init()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
-
-	
 	shader = new Shader("resources/Batch.shader");
+	mvp = maths::Ortho(0.0f, 1980.0f, 0.0f, 1080.0f);
+	//shader->Bind();
+	//shader->SetUniformMat4f("mvp", mvp);
+	//shader->Unbind();
 	renderer = new BatchRenderer2D(shader, 2);
-	text = new Text("resources/font.ttf", "Hello");
+	text = graphics::Text("resources/font.ttf", "FPS:" + std::to_string(timer.getFPS()));
 
-	renderable[0] = new BatchSprite({ 0.1f, 0.2f, 0.0f }, { 0.3f, 0.3f }, "resources/container.jpg");
-	renderable[1] = new BatchSprite({ 0.5f, 0.8f, 0.0f }, { 0.2f, 0.3f }, "resources/LogoRealFinal.jpg");
+	//renderable[0] = new BatchSprite({200.0f, 100.0f, 0.0f }, { 50.0f, 50.0f }, "resources/container.jpg");
+	//renderable[0] = new BatchSprite({ 0.5f, 0.8f, -0.9f }, { 0.2f, 0.3f }, "resources/LogoRealFinal.jpg");
 
 }
 
 void GameLayer::RunMain()
 {
-	
-	renderer->RenderText(*text, { -0.5f, -0.5f }, { 0.0f, 0.5f, 1.0f, 1.0f });
+	//renderer->Push(renderable[0]);
+	//renderer->RenderAndPop();
+	text.Push("FPS:" + std::to_string(timer.getFPS()));
+	renderer->RenderText(text, { 0.0f, 0.0f }, { 0.4f, 0.7f, 0.9f, 1.0f });
 
 }
 

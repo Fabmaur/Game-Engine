@@ -22,7 +22,7 @@ void main()
 	vsOut.TUID = TUID;
 	vsOut.colour = colour;
 
-	gl_Position = vec4(pos, 1.0f);
+	gl_Position = mvp * vec4(pos, 1.0f);
 }
 
 #shader fragment
@@ -47,6 +47,6 @@ void main()
 	{
 		texColour = texture(textures[int(fsIn.TUID)], fsIn.texPos);
 	}
-	
+
 	FragColour = texColour;
 }

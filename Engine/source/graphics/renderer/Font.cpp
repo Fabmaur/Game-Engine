@@ -10,7 +10,7 @@ namespace graphics
 		else
 			HP_SUCCESS("Successfully loaded font from data path: ", fontPath);
 		
-		SetSize(10);
+		SetSize(32);
 		GenGlyphs(font);
 	}
 
@@ -26,16 +26,16 @@ namespace graphics
 
 	void Font::GenGlyphs(FT_Face& font)
 	{
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 		for (unsigned char c = 0; c < 128; c++)
 		{
-			// Load character glyph 
+
 			if (FT_Load_Char(font, c, FT_LOAD_RENDER))
 			{
 				HP_ERROR("ERROR::FREETYTPE: Failed to load Glyph");
 				continue;
 			}
-			// Generate texture
 			Texture glyph(font);
 
 			// Cache glyph in map
@@ -50,7 +50,7 @@ namespace graphics
 			characters.insert(std::pair<char, Glyph>(c, character));
 		}
 
-		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+		
 	}
 
 }

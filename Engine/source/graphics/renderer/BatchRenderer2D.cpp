@@ -78,9 +78,7 @@ namespace graphics
 				found = true;
 
 		if (!found)
-		{
 			usedTexUnits.push_back(texUnit);
-		}
 
 		const float vertices[]
 		{
@@ -112,9 +110,9 @@ namespace graphics
 
 	void BatchRenderer2D::RenderText(Text& text, maths::vec2f pos, maths::vec4f colour)
 	{
-		
-		
+		maths::mat4f mvp = maths::Ortho(0.0f, 1980.0f, 0.0f, 1080.0f, -1.0f, 1.0f);
 		fontShader->Bind();
+		fontShader->SetUniformMat4f("mvp", mvp);
 		fontShader->SetUniform3f("textColor", colour.r, colour.g, colour.b);
 		glActiveTexture(GL_TEXTURE0);
 		VertexArray aVAO;
@@ -136,27 +134,26 @@ namespace graphics
 			float w = glyph.size.x;
 			float h = glyph.size.y;
 			// Update VBO for each character
-			float vertices[] = 
+			float vertices[] =	
 			{
-				 x,     y + h,   0.0, 0.0,
-				 x,     y,       0.0, 1.0,
-				 x + w, y,       1.0, 1.0,
+				 x,     y + h,   0.0, 1.0,
+				 x,     y,       0.0, 0.0,
+				 x + w, y,       1.0, 0.0,
 
-				 x,     y + h,   0.0, 0.0,
-				 x + w, y,       1.0, 1.0,
-				 x + w, y + h,   1.0, 0.0
+				 x,     y + h,   0.0, 1.0,
+				 x + w, y,       1.0, 0.0,
+				 x + w, y + h,   1.0, 1.0
 			};
-			// Render glyph texture over quad
 			glBindTexture(GL_TEXTURE_2D, glyph.TUID);
-			// Update content of VBO memory
+			// Update VBO buffer
 			
 			glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices); 
 
 			
 			// Render quad
 			glDrawArrays(GL_TRIANGLES, 0, 6);
-			// Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-			x += (glyph.advance >> 6); // Bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
+			// Add advance to position
+			pos.x += (glyph.advance >> 6); // Bitshift to get amount in pixels
 		}
 		aVBO.Delete();
 		aVAO.Delete();

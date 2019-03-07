@@ -6,10 +6,10 @@ namespace graphics
 {
 	struct Glyph
 	{
-		unsigned int TUID;      // ID handle of the glyph texture
-		maths::vec2f size;      // Size of glyph
-		maths::vec2f bearing;   // Offset from baseline to left/top of glyph
-		int advance;			// Horizontal offset to advance to next glyph
+		unsigned int TUID;      // ID of glyph texture
+		maths::vec2f size;      
+		maths::vec2f bearing;   // Offset from base to top of glyph
+		int advance;			// Offset to advance to next glyph
 	};
 
 	class Font

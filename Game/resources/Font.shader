@@ -4,11 +4,12 @@
 layout(location = 0) in vec4 vertex; // <vec2 pos, vec2 tex>
 out vec2 TexCoords;
 
-uniform mat4 projection;
+uniform mat4 mvp;
+
 
 void main()
 {
-	gl_Position = vec4(vertex.xy, 0.0, 1.0);
+	gl_Position = mvp * vec4(vertex.xy, 0.5, 1.0);
 	TexCoords = vertex.zw;
 }
 
@@ -23,6 +24,6 @@ uniform vec3 textColor;
 
 void main()
 {
-	vec4 sampled = vec4(1.0, 1.0, 1.0, texture(text, TexCoords).b);
+	vec4 sampled = vec4(1.0, 1.0, 1.0, texture(text, TexCoords).r);
 	color = vec4(textColor, 1.0) * sampled;
 }

@@ -4,9 +4,6 @@
 
 namespace graphics
 {
-
-
-
 	Text::Text(const std::string& fontPath, std::string text)
 		:text(text)
 	{

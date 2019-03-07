@@ -179,17 +179,16 @@ namespace maths
 	}
 
 	template <typename T>
-	static inline mat4<T> Ortho(T left, T right, T top, T bottom, T far_, T near_)
+	static inline mat4<T> Ortho(T left, T right, T top, T bottom, T near_ = -1, T far_ = 1)
 	{
 		mat4<T> ans((T)1);
 
-		ans.elements[0] = (T)2 / right - left;
-		ans.elements[5] = (T)2 / top - bottom;
-		ans.elements[10] = (T)-2 / far_ - near_;
+		ans.elements[0] = (T)2 / (right - left);
+		ans.elements[5] = (T)2 / (top - bottom);
+		ans.elements[10] = -(T)2 / (far_ - near_);
 		ans.elements[12] = -(right + left) / (right - left);
 		ans.elements[13] = -(top + bottom) / (top - bottom);
 		ans.elements[14] = -(far_ + near_) / (far_ - near_);
-		ans.elements[15] = (T)1; // may be 0 or -1
 
 		return ans;
 	}

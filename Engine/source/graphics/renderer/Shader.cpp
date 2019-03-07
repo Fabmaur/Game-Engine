@@ -35,8 +35,8 @@ namespace graphics
 			}
 			else
 			{
-				ss[(int)shader] << line << "\n";
 				HP_ASSERT(((int)shader != -1), "Could not find #shader");
+				ss[(int)shader] << line << "\n";
 			}
 		}
 		return std::pair(ss[0].str(), ss[1].str());

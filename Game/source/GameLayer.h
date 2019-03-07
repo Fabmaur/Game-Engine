@@ -7,6 +7,7 @@
 #include "graphics/renderer/Sprite.h"
 #include "graphics/renderer/SpriteRenderer.h"
 #include "graphics/renderer/Text.h"
+#include "misc/Timer.h"
 
 class GameLayer : public graphics::Layer
 {
@@ -21,6 +22,9 @@ private:
 	graphics::Shader* shader;
 	graphics::Texture* texture;
 	graphics::Texture* texture2;
-	graphics::Text* text;
+	graphics::Text text;
+	misc::Timer timer;
+	maths::mat4f mvp;
+
 
 };

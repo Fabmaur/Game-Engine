@@ -12,6 +12,7 @@ namespace graphics
 	{
 
 	public:
+		Text() = default;
 		Text(const std::string& fontPath, std::string text);
 		void Push(const std::string& atext) { text = atext; };
 		void SetFont(const std::string& fontPath);
