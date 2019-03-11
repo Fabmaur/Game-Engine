@@ -10,8 +10,13 @@ namespace graphics
 		virtual void onEvent(EventMessage& event) = 0;
 		virtual void Init() = 0;
 		virtual void RunMain() = 0;
-		virtual ~Layer() {};
+		void SetActive(bool active_) { active = active_; };
+		
+		bool IsActive() const { return active; }
+		virtual ~Layer() {}
+
 	private:
 		maths::mat4f projMat;
+		bool active = false;
 	};
 }

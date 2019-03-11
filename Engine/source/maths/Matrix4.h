@@ -18,8 +18,6 @@ namespace maths
 			: mat<T, 4>(rhs) {}
 
 		//Matrix Rotation
-		static inline mat4<T> TranslateMat(const T x, const T y, const T z);
-		static inline mat4<T> TranslateMat(const vec3<T> vec3);
 		static inline mat4<T> RotateXMat(const T rad);
 		static inline mat4<T> RotateYMat(const T rad);
 		static inline mat4<T> RotateZMat(const T rad);
@@ -210,7 +208,7 @@ namespace maths
 	}
 
 	template <typename T>
-	inline mat4<T> mat4<T>::TranslateMat(const T x, const T y, const T z)
+	inline mat4<T> TranslateMat(const T x, const T y, const T z)
 	{
 		mat4<T> ans((T)1);
 		ans.elements[12] = x;
@@ -221,7 +219,7 @@ namespace maths
 	}
 
 	template <typename T>
-	inline mat4<T> mat4<T>::TranslateMat(const vec3<T> vec3)
+	inline mat4<T> TranslateMat(const vec3<T> vec3)
 	{
 		mat4<T> ans((T)1);
 		ans.elements[12] = vec3.x;

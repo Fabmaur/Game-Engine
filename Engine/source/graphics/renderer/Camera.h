@@ -10,7 +10,7 @@ namespace graphics
 	public:
 		Camera();
 
-	private:
+	protected:
 		maths::vec3f pos;
 		maths::vec3f target;
 		maths::vec3f up;

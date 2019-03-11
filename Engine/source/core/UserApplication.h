@@ -11,7 +11,8 @@ namespace core
 		{
 			for (auto& layer : layers)
 			{
-				layer->onEvent(event);
+				if (layer->IsActive())
+					layer->onEvent(event);
 			}
 		}
 		std::function<void(EventMessage&)> GetEventCallBack() 
@@ -26,7 +27,8 @@ namespace core
 		virtual void RunMain()
 		{
 			for (auto& layer : layers)
-				layer->RunMain();
+				if (layer->IsActive())
+					layer->RunMain();
 		}
 		virtual void PushLayer(graphics::Layer* layer)
 		{

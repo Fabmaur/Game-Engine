@@ -91,8 +91,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source;$(SolutionDir)Dependencies\assimp\include;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;DEBUG;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ShowIncludes>false</ShowIncludes>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -110,8 +110,8 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>DEBUG;GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source;$(SolutionDir)Dependencies\assimp\include;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;DEBUG;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ShowIncludes>false</ShowIncludes>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -131,8 +131,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source;$(SolutionDir)Dependencies\assimp\include;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ShowIncludes>false</ShowIncludes>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -153,8 +153,8 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLEW_STATIC;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Engine\Source;$(SolutionDir)Dependencies\assimp\include;$(SolutionDir)Dependencies\FreeType\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLEW_STATIC;;_CRT_SECURE_NO_WARNINGS</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ShowIncludes>false</ShowIncludes>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -175,8 +175,9 @@
     <ClCompile Include="source\graphics\gl_types\VertexArray.cpp" />
     <ClCompile Include="source\graphics\gl_types\VertexBuffer.cpp" />
     <ClCompile Include="source\graphics\renderer\BatchRenderer2D.cpp" />
-    <ClCompile Include="source\graphics\renderer\Camera.cpp" />
+    <ClCompile Include="source\graphics\renderer\CameraFPS.cpp" />
     <ClCompile Include="source\graphics\renderer\Font.cpp" />
+    <ClCompile Include="source\graphics\renderer\Mesh.cpp" />
     <ClCompile Include="source\graphics\renderer\SpriteGroup.cpp" />
     <ClCompile Include="source\graphics\renderer\Shader.cpp" />
     <ClCompile Include="source\graphics\renderer\SpriteRenderer.cpp" />
@@ -217,7 +218,10 @@
     <ClInclude Include="source\graphics\renderer\2DRenderer.h" />
     <ClInclude Include="source\graphics\renderer\BatchRenderer2D.h" />
     <ClInclude Include="source\graphics\renderer\Camera.h" />
+    <ClInclude Include="source\graphics\renderer\CameraFPS.h" />
     <ClInclude Include="source\graphics\renderer\Font.h" />
+    <ClInclude Include="source\graphics\renderer\Mesh.h" />
+    <ClInclude Include="source\graphics\renderer\Renderable3D.h" />
     <ClInclude Include="source\graphics\renderer\SpriteGroup.h" />
     <ClInclude Include="source\graphics\renderer\Layer.h" />
     <ClInclude Include="source\graphics\renderer\Renderable2D.h" />
@@ -228,6 +232,7 @@
     <ClInclude Include="source\graphics\renderer\simple_shapes\Triangle.h" />
     <ClInclude Include="source\graphics\renderer\Sprite.h" />
     <ClInclude Include="source\graphics\renderer\SpriteRenderer.h" />
+    <ClInclude Include="source\Start.h" />
     <ClInclude Include="source\graphics\renderer\Text.h" />
     <ClInclude Include="source\graphics\renderer\Texture.h" />
     <ClInclude Include="source\graphics\renderer\Window.h" />

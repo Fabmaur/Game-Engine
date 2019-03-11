@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 
 namespace graphics 
 {
@@ -8,6 +10,7 @@ namespace graphics
 	public:
 		IndexBuffer() = default;
 		IndexBuffer(const void* indices, const unsigned int count); // Amount of indices is the count
+		IndexBuffer(std::vector<unsigned int>& indices);
 		IndexBuffer(const unsigned int bufferSize); // Maximum buffer size in bytes
 		void Delete();
 		void Bind() const;

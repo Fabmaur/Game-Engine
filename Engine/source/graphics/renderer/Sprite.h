@@ -71,7 +71,7 @@ namespace graphics
 	private:
 		void CreateAndBindIBO(VertexBuffer& VBO)
 		{
-			const unsigned int indices[]
+			int indices[]
 			{
 				0, 1, 2, // triangle top left
 				0, 2, 3  // triangle bottom right

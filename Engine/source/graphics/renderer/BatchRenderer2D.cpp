@@ -80,7 +80,7 @@ namespace graphics
 		if (!found)
 			usedTexUnits.push_back(texUnit);
 
-		const float vertices[]
+		float vertices[]
 		{
 			//position				  			   Texture Coords								TexUnit		Colour
 			pos.x,		   pos.y - sizeY, pos.z,	texPos.x,			 texPos.y,				texUnit,	r, g, b, a,		//bottom left

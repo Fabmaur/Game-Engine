@@ -62,7 +62,7 @@ namespace graphics
 	void Texture::Bind()
 	{
 		GLCheck(glActiveTexture(GL_TEXTURE0 + TUID));
-		GLCheck(glBindTexture(GL_TEXTURE_2D, TUID))
+		GLCheck(glBindTexture(GL_TEXTURE_2D, TUID));
 	}
 
 	void Texture::GenFontTexture(FT_Face& font)

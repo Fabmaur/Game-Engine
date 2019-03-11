@@ -5,7 +5,6 @@
 /* Base class for all 2D brenderables*/
 namespace graphics
 {
-	
 	struct Vertex
 	{
 		maths::vec3f pos;
