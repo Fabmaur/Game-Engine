@@ -95,9 +95,6 @@ void DemoMenu::RunMain()
 		if (demo.first != currentDemo)
 			demo.second->SetActive(false);
 	}
-
-
-
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }

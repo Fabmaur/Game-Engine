@@ -34,6 +34,17 @@ namespace maths
 
 	};
 
+
+	template <typename T>
+	static inline vec4<T> times(mat4<T> thi, const vec4<T> rhs)
+	{
+		vec4<T> ans;
+		ans.x = thi.elements[0] * rhs.x + thi.elements[4] * rhs.y + thi.elements[8] * rhs.z + thi.elements[12] * rhs.w;
+		ans.y = thi.elements[1] * rhs.x + thi.elements[5] * rhs.y + thi.elements[9] * rhs.z + thi.elements[13] * rhs.w;
+		ans.z = thi.elements[2] * rhs.x + thi.elements[6] * rhs.y + thi.elements[10] * rhs.z + thi.elements[14] * rhs.w;
+		ans.w = thi.elements[3] * rhs.x + thi.elements[7] * rhs.y + thi.elements[11] * rhs.z + thi.elements[15] * rhs.w;
+		return ans;
+	}
 	template <typename T>
 	inline mat4<T> mat4<T>::RotateXMat(const T rad)
 	{
@@ -177,33 +188,69 @@ namespace maths
 	}
 
 	template <typename T>
-	static inline mat4<T> Ortho(T left, T right, T top, T bottom, T near_ = -1, T far_ = 1)
+	static inline mat4<T> Ortho(T left, T right, T top, T bottom, T zNear = -1, T zFar = 1)
 	{
 		mat4<T> ans((T)1);
 
 		ans.elements[0] = (T)2 / (right - left);
 		ans.elements[5] = (T)2 / (top - bottom);
-		ans.elements[10] = -(T)2 / (far_ - near_);
+		ans.elements[10] = -(T)2 / (zFar - zNear);
 		ans.elements[12] = -(right + left) / (right - left);
 		ans.elements[13] = -(top + bottom) / (top - bottom);
-		ans.elements[14] = -(far_ + near_) / (far_ - near_);
+		ans.elements[14] = -(zFar + zNear) / (zFar - zNear);
 
 		return ans;
 	}
 
 	template <typename T>
-	static inline mat4<T> Perspective(T fov, T aspectRatio, T near_, T far_)
+	static inline mat4<T> lookAt(vec3<T> pos, vec3<T> target, vec3<T> up)
 	{
-		mat4<T> ans;
+		// function to convert world space into view space coordinates
+		// positive z is pointing towards you
+		// positive x is pointing to the right
+		// positive y is pointing upwards
+		// The axis are being calculated relative to the camera (view space)
 
-		float a = 1.0f / tan(GetRadians(0.5f * fov));
+		vec3<T> zDir = pos - target;
+		vec3<T> positiveZDir = normalize(zDir);
+		vec3<T> positiveXDir = normalize(cross(zDir, up));
+		vec3<T> positiveYDir = cross(positiveXDir, positiveZDir);
+		
+		mat4<T> translation((T)1);
+		translation.elements[12] = -pos.x;
+		translation.elements[13] = -pos.y;
+		translation.elements[14] = -pos.z;
 
-		ans.elements[0] = a / aspectRatio;
-		ans.elements[5] = a;
-		ans.elements[10] = (near_ + far_) / (near_ - far_);
-		ans.elements[11] = (2 * near_ * far_) / (near_ - far_);
-		ans.elements[14] = -1.0f;
+		mat4<T> rotation((T)1);
+		rotation.elements[0] = positiveXDir.x;
+		rotation.elements[4] = positiveXDir.y;
+		rotation.elements[8] = positiveXDir.z;
 
+		rotation.elements[1] = positiveYDir.x;
+		rotation.elements[5] = positiveYDir.y;
+		rotation.elements[9] = positiveYDir.z;
+
+		rotation.elements[2] = positiveZDir.x;
+		rotation.elements[6] = positiveZDir.y;
+		rotation.elements[10] = positiveZDir.z;
+
+		return rotation * translation;
+	}
+
+
+	template <typename T>
+	static inline mat4<T> Perspective(T fov, T aspectRatio, T zNear, T zFar)
+	{
+		mat4<T> ans(0);
+		
+		float cotHalfFOV = (T)1 / tan(GetRadians((T)0.5 * fov));
+		
+		ans.elements[0] = cotHalfFOV / aspectRatio;
+		ans.elements[5] = cotHalfFOV;
+		ans.elements[10] = (zNear + zFar) / (zNear - zFar);
+		ans.elements[11] = - (T)1;
+		ans.elements[14] = ((T)2 * zNear * zFar) / (zNear - zFar);
+		
 		return ans;
 	}
 

@@ -63,12 +63,12 @@ namespace maths
 		{
 			return sqrt((float)lenSqr());
 		};
-		inline T normalize(const vec2<T>& rhs)
+		inline void normalize()
 		{
 			const T l = len();
-			return l != (T)0 ? *this * (1 / l) : (T)0;
+			l != (T)0 ? *this * (1 / l) : (T)0;
 		};
-		inline T dotProduct(const vec2<T>& rhs) const
+		inline T dot(const vec2<T>& rhs) const
 		{
 			return x*rhs.x + y*rhs.y;
 		};
@@ -96,11 +96,16 @@ namespace maths
 			y(y),
 			z(z)
 		{};
+
+		vec3(const vec3<T>& rhs) = default;
+		vec3<T>& operator=(const vec3<T>& rhs) = default;
+		
+	
 		inline vec3<T> operator +(const vec3<T>& rhs) const
 		{
 			return { x + rhs.x, y + rhs.y, z + rhs.z };
 		};
-		inline vec3<T> operator -(const vec2<T>& rhs) const
+		inline vec3<T> operator -(const vec3<T>& rhs) const
 		{
 			return { x - rhs.x, y - rhs.y, z - rhs.z };
 		};
@@ -145,15 +150,21 @@ namespace maths
 		{
 			return sqrt((float)lenSqr());
 		};
-		inline T normalize(const vec3<T>& rhs)
+		inline void normalize()
 		{
 			const T l = len();
-			return l != (T)0 ? *this * ((T)1 / l) : (T)0;
+			l != (T)0 ? *this * ((T)1 / l) : (T)0;
 		};
-		inline T dotProduct(const vec3<T>& rhs) const
+		inline T dot(const vec3<T>& rhs) const
 		{
 			return x*rhs.x + y*rhs.y + z*rhs.z;
 		};
+
+		inline vec3<T> cross(const vec3<T>& rhs)
+		{
+			*this = cross(*this, rhs);
+		};
+
 		inline T operator[](const int index) const
 		{
 			switch (index)
@@ -167,6 +178,25 @@ namespace maths
 			}
 		}
 
+	};
+
+	template <typename T>
+	vec3<T> normalize(vec3<T> vec)
+	{
+		const T l = vec.len();
+		return vec * ((T)1 / l);
+	};
+
+	template <typename T>
+	vec3<T> cross(const vec3<T>& lhs, const vec3<T>& rhs)
+	{
+		maths::vec3<T> ans;
+
+		ans.x = lhs.y * rhs.z - lhs.z * rhs.y;
+		ans.y = lhs.z * rhs.x - lhs.x * rhs.z;
+		ans.z = lhs.x * rhs.y - lhs.y * rhs.x;
+
+		return ans;
 	};
 
 	typedef vec3<int> vec3i;
@@ -239,12 +269,12 @@ namespace maths
 		{
 			return sqrt((float)lenSqr());
 		};
-		inline T normalize(const vec4<T>& rhs)
+		inline void normalize()
 		{
 			const T l = len();
-			return l != (T)0 ? *this * ((T)1 / l) : (T)0;
+			l != (T)0 ? *this * ((T)1 / l) : (T)0;
 		};
-		inline T dotProduct(const vec4<T>& rhs) const
+		inline T dot(const vec4<T>& rhs) const
 		{
 			return x*rhs.x + y*rhs.y + z*rhs.z + w*rhs.w;
 		};

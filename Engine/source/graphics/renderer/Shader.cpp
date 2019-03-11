@@ -167,7 +167,7 @@ namespace graphics
 		GLCheck(glUniform4fv(GetUniformLoc(name), 1, &val.x));
 	}
 
-	void Shader::SetUniform3v(const std::string & name, maths::vec3f& val)
+	void Shader::SetUniform3v(const std::string & name, maths::vec3f&& val)
 	{
 		GLCheck(glUniform3fv(GetUniformLoc(name), 1, &val.x));
 	}

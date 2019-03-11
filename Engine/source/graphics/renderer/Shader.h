@@ -24,7 +24,7 @@ namespace graphics
 		void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
 		void SetUniformiv(const std::string& name, int count, int* value);
 		void SetUniform4v(const std::string& name, maths::vec4f& val);
-		void SetUniform3v(const std::string& name, maths::vec3f& val);
+		void SetUniform3v(const std::string& name, maths::vec3f&& val);
 		void SetUniform1i(const std::string& name, int value);
 		void SetUniform1f(const std::string& name, float value);
 		void SetUniformMat4f(const std::string& name, const maths::mat4f& mat4);

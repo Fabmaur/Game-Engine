@@ -11,7 +11,6 @@ namespace graphics
 		virtual void Init() = 0;
 		virtual void RunMain() = 0;
 		void SetActive(bool active_) { active = active_; };
-		
 		bool IsActive() const { return active; }
 		virtual ~Layer() {}
 

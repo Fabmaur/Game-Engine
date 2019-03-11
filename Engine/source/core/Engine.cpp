@@ -7,6 +7,7 @@ namespace core
 		:window(graphics::Window(title, width, height))
 	{
 		app = CreateApp();
+		
 		HP_STATUS("Initializing Engine");
 		window.SetColour(0.4f, 0.2f, 0.6f, 1.0f);
 	}

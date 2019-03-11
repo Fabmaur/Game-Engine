@@ -232,6 +232,7 @@
     <ClInclude Include="source\graphics\renderer\simple_shapes\Triangle.h" />
     <ClInclude Include="source\graphics\renderer\Sprite.h" />
     <ClInclude Include="source\graphics\renderer\SpriteRenderer.h" />
+    <ClInclude Include="source\graphics\shapes\Cube.h" />
     <ClInclude Include="source\Start.h" />
     <ClInclude Include="source\graphics\renderer\Text.h" />
     <ClInclude Include="source\graphics\renderer\Texture.h" />
