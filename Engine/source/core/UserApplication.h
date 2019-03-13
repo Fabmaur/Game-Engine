@@ -7,14 +7,7 @@ namespace core
 	class UserApplication
 	{
 	public:
-		virtual void EventCallBack(EventMessage& event)
-		{
-			for (auto& layer : layers)
-			{
-				if (layer->IsActive())
-					layer->onEvent(event);
-			}
-		}
+		virtual void EventCallBack(EventMessage& event);
 		std::function<void(EventMessage&)> GetEventCallBack() 
 		{
 			return std::bind(&UserApplication::EventCallBack, this, std::placeholders::_1);

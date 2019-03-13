@@ -248,7 +248,7 @@ namespace maths
 		ans.elements[0] = cotHalfFOV / aspectRatio;
 		ans.elements[5] = cotHalfFOV;
 		ans.elements[10] = (zNear + zFar) / (zNear - zFar);
-		ans.elements[11] = - (T)1;
+		ans.elements[11] = -(T)1;
 		ans.elements[14] = ((T)2 * zNear * zFar) / (zNear - zFar);
 		
 		return ans;

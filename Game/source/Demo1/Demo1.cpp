@@ -19,24 +19,23 @@ void Demo1::Init()
 	shader = Shader("resources/Shape.shader");
 	//proj = maths::Ortho(0.0f, 1920.0f, 0.0f, 1080.0f);
 
-	proj = maths::Perspective(90.0f, (1920.0f / 1080.0f), 0.0f, 100.0f) * maths::TranslateMat(0.0f, 0.0f, -0.5f);
-
-	maths::vec4f vertex{ 0.5f, 0.5f, 0.0f, 1.0f };
-	vertex = maths::times(proj, vertex);
-	HP_STATUS("X:",vertex.x);
+	proj = maths::Perspective(120.0f, (1920.0f / 1080.0f), 0.2f, 100.0f) * maths::TranslateMat(0.0f, 0.0f, -1.0f);
+	maths::vec4f vertex = maths::times(proj, { 0.5, 0.5f, 0.5f, 1.0f });
+	vertex = vertex / vertex.w;
+	HP_STATUS("X:", vertex.x);
 	HP_STATUS("Y:", vertex.y);
 	HP_STATUS("Z:", vertex.z);
 	HP_STATUS("W:", vertex.w);
-	
-	
+
+
 	shader.Bind();
 	shader.SetUniformMat4f("mvp", proj);
-	shader.SetUniform3v("colour", {0.8f, 0.5f, 0.5f});
+	shader.SetUniform3v("colour", {0.5f, 0.5f, 1.0f});
+	cube = graphics::Mesh(cube::vertices, cube::indices);
 }
 
 void Demo1::RunMain()
 {
-	proj.RotateY(0.0001f);
 	cube.Draw(shader);
 }
 

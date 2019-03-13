@@ -6,19 +6,26 @@ namespace core
 	Engine::Engine(const char* title, const int width, const int height)
 		:window(graphics::Window(title, width, height))
 	{
-		app = CreateApp();
+		/* Assigns UserApplication* app to the returned game instance
+		from the external CreateApp() function */
+		app = CreateApp(); 
 		
 		HP_STATUS("Initializing Engine");
-		window.SetColour(0.4f, 0.2f, 0.6f, 1.0f);
+		// Sets default colour for window
+		window.SetColour(0.4f, 0.2f, 0.6f, 1.0f); 
 	}
 
 	void Engine::Start()
 	{
+		// Sends an event call back defined in the app to the window
 		window.SetEventCallBack(app->GetEventCallBack());
+		// Initializes the application/game
 		app->Init();
 	
+		// Game Loop
 		while (!window.IsWindowClosed())
 		{
+			// Runs the game loop code for the application
 			app->RunMain();
 			window.Update();
 		}

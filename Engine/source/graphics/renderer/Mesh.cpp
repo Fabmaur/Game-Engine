@@ -19,7 +19,7 @@ namespace graphics
 	void Mesh::Draw(Shader& shader)
 	{
 		VAO.Bind();
-		glDrawElements(GL_TRIANGLES, sizeof(indices), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 		VAO.Unbind();
 		
 	}

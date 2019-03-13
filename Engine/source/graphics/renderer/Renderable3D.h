@@ -17,7 +17,7 @@ namespace graphics
 	{
 	public:
 		Renderable3D() = default;
-		Renderable3D(std::vector<float>& vertices, std::vector<unsigned int>& indices)
+		Renderable3D(std::vector<float> vertices, std::vector<unsigned int> indices)
 			:vertices(vertices),
 			indices(indices)
 		{}

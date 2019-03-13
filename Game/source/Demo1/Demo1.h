@@ -3,7 +3,6 @@
 #include "graphics/renderer/Layer.h"
 #include "graphics/renderer/Shader.h"
 #include "graphics/renderer/Mesh.h"
-#include "graphics//gl_types/Buffers.h"
 
 class Demo1 : public graphics::Layer
 {
