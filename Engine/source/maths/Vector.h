@@ -5,6 +5,7 @@
 
 namespace maths
 {
+
 	template <typename T>
 	struct vec2
 	{
@@ -65,6 +66,7 @@ namespace maths
 		};
 		inline void normalize()
 		{
+			// normalizes the vector
 			const T l = len();
 			l != (T)0 ? *this * (1 / l) : (T)0;
 		};
@@ -74,6 +76,7 @@ namespace maths
 		};
 		inline T operator[](const int index) const
 		{
+			// overloads the [] operator so it works with the vector
 			return (index == 0) ? x : y;
 		}
 
@@ -206,7 +209,8 @@ namespace maths
 
 	struct vec4
 	{
-		//Variables
+		/* Creates a union so that the vector elements can be refered to 
+		 with different names. */
 		union
 		{
 			struct { T x, y, z, w; };

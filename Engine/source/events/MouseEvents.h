@@ -55,6 +55,8 @@ private:
 	int mods;
 };
 
+//Mouse codes mapped to macros
+
 #define MOUSE_BUTTON_1   0
 #define MOUSE_BUTTON_2   1
 #define MOUSE_BUTTON_3   2

@@ -11,10 +11,12 @@ namespace misc
 
 	int Timer::getFPS()
 	{
+		/* Checks the difference between the last time and the
+		current time and stores it in timeElapsed*/
 		auto lastStart = start;
 		start = std::chrono::steady_clock::now();
 		timeElapsed = start - lastStart;
-
+	
 		return  int(1 / timeElapsed.count());
 	}
 }

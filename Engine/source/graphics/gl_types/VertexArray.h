@@ -5,8 +5,8 @@
 
 namespace graphics
 {
-	/*Vertex Array class creates an opengl vertex array object which specifies
-	how vertex data is stored in a VBO. It also holds are IBO data and should be
+	/*Vertex Array class creates an opengl vertex array object which holds 
+	a VBO and formats its memory. It also holds are IBO data and should be
 	bound when you want to draw the specified object.*/
 
 	class VertexArray

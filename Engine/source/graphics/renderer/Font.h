@@ -7,7 +7,7 @@ namespace graphics
 	struct Glyph
 	{
 		unsigned int TUID;      // ID of glyph texture
-		maths::vec2f size;      
+		maths::vec2f size;      // Size of glyph
 		maths::vec2f bearing;   // Offset from base to top of glyph
 		int advance;			// Offset to advance to next glyph
 	};
@@ -26,7 +26,7 @@ namespace graphics
 
 	private:
 		FT_Face font;
-		std::map<char, Glyph> characters;
+		std::map<char, Glyph> characters; // Map of characters glyphs to chars
 	}; 
 
 }

@@ -4,6 +4,8 @@
 
 namespace debug {
 
+	/* Log singleton class which holds a pointer for a log for the engine
+	and a log for the game. */
 	class ProjectLog
 	{
 	public:
@@ -19,6 +21,9 @@ namespace debug {
 }
 
 
+/* Setting console macros to console functions if the DEBUG macro has been defined.
+Otherwise if the console is in release mode nothing will be printed onto the console.
+This helps improve performance in release mode. */
 #ifdef DEBUG
 #define HP_STATUS(...)  ::debug::ProjectLog::GetHyperion()->Status(__VA_ARGS__)
 #define HP_SUCCESS(...) ::debug::ProjectLog::GetHyperion()->Success(__VA_ARGS__)
@@ -32,6 +37,7 @@ namespace debug {
 #define GAME_ERROR(...)   ::debug::ProjectLog::GetGame()->Error(__VA_ARGS__)
 #define GAME_FATAL(...)   ::debug::ProjectLog::GetGame()->Fatal(__VA_ARGS__)
 #else
+
 #define HP_STATUS(...)
 #define	HP_SUCCESS(...)
 #define	HP_WARNING(...)

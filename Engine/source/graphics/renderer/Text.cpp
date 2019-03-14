@@ -18,6 +18,7 @@ namespace graphics
 
 	void Text::SetFont(const std::string & fontPath)
 	{
+		// Caches fonts if they haven't been created
 		auto fontCache = fonts.find(fontPath);
 		if (fontCache == fonts.end())
 		{

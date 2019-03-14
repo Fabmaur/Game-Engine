@@ -5,6 +5,7 @@
 /* Base class for all 2D brenderables*/
 namespace graphics
 {
+	// Vertex Data a batch sprite holds
 	struct Vertex
 	{
 		maths::vec3f pos;
@@ -15,6 +16,7 @@ namespace graphics
 	
 	class Renderable2D
 	{
+		/* Based class for a 2D renderable object*/
 	public:
 		inline maths::vec3f GetPos() const { return pos; }
 		inline maths::vec2f GetSize() const { return size; }
@@ -40,10 +42,8 @@ namespace graphics
 	private:
 		maths::vec3f pos;
 		maths::vec2f size;
-		
 		maths::vec2f texPos;
 		maths::vec2f texSize;
-
 		maths::vec4f colour;
 
 	};

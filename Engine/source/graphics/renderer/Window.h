@@ -6,8 +6,8 @@
 
 namespace graphics 
 {
-	/*Window class creates a window using glfw. Also collects events from mouse
-	and keyboard.*/
+	/* Window class creates and manages a window using glfw. And activates
+	an event call back when event occurs. */
 	class Window
 	{
 	public:
@@ -29,6 +29,7 @@ namespace graphics
 		static GLFWwindow* window;
 		static int width, height;
 		const char* title;
+		// Callable variable which holds the event call back
 		std::function<void(EventMessage&)> eventCallBack;
 
 	};

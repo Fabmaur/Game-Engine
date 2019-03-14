@@ -191,6 +191,7 @@ namespace maths
 	static inline mat4<T> Ortho(T left, T right, T top, T bottom, T zNear = -1, T zFar = 1)
 	{
 		mat4<T> ans((T)1);
+		// Creates orthographic projection matrix
 
 		ans.elements[0] = (T)2 / (right - left);
 		ans.elements[5] = (T)2 / (top - bottom);
@@ -241,8 +242,10 @@ namespace maths
 	template <typename T>
 	static inline mat4<T> Perspective(T fov, T aspectRatio, T zNear, T zFar)
 	{
+
+		// Creates a perspective projection matrix
 		mat4<T> ans(0);
-		
+
 		float cotHalfFOV = (T)1 / tan(GetRadians((T)0.5 * fov));
 		
 		ans.elements[0] = cotHalfFOV / aspectRatio;

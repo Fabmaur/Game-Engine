@@ -15,7 +15,7 @@ namespace graphics
 		height(0),
 		numColourChannels(0)
 	{
-
+		// Caches texture with map if not created
 		auto textureCache = texUnitMap.find(path);
 		if (textureCache == texUnitMap.end())
 		{
@@ -67,6 +67,7 @@ namespace graphics
 
 	void Texture::GenFontTexture(FT_Face& font)
 	{
+		// Set the tex image ID for fonts
 		GLCheck(glTexImage2D(
 			GL_TEXTURE_2D,
 			0,
@@ -95,6 +96,7 @@ namespace graphics
 
 	void Texture::LoadTexture(const std::string& path)
 	{
+		// Loads texture using stbi to load png file
 		stbi_set_flip_vertically_on_load(1);
 		localBuffer = stbi_load(path.c_str(), &width, &height, &numColourChannels, 4);
 	}

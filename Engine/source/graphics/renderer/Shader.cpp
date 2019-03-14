@@ -18,6 +18,7 @@ namespace graphics
 		std::stringstream ss[2];
 		std::string line;
 
+		// Parses a flie for the vertex shader and the fragment shader
 		while (std::getline(in, line))
 		{
 			if (line.find("#shader") != std::string::npos)
@@ -61,6 +62,9 @@ namespace graphics
 
 	Shader::Shader(const std::string& filename)
 	{
+		/* Checks if the shader has been created and if so
+		uses the cached version, else it creates the
+		shader and caches it. */
 		auto shaderCache = shaderMap.find(filename);
 		if (shaderCache == shaderMap.end())
 		{
@@ -124,6 +128,7 @@ namespace graphics
 
 	unsigned int Shader::CreateShader(const std::string& vertexSrc, const std::string& fragmentSrc)
 	{
+		// Creates and links the shader program
 		GLCheck(unsigned int program = glCreateProgram());
 		unsigned int vertexID = CompileShader(GL_VERTEX_SHADER, vertexSrc);
 		unsigned int fragmentID = CompileShader(GL_FRAGMENT_SHADER, fragmentSrc);
@@ -139,6 +144,7 @@ namespace graphics
 
 	const int Shader::GetUniformLoc(const std::string& name)
 	{
+		// Gets the uniform location
 		GLCheck(int loc = glGetUniformLocation(id, name.c_str()));
 		if (loc == -1)
 		{

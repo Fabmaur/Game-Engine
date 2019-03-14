@@ -3,6 +3,7 @@
 
 namespace debug
 {
+	// Defining static variables
 	const HANDLE Console::consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	std::chrono::hours   Console::h;
 	std::chrono::minutes Console::m;

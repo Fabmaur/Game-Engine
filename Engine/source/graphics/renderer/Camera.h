@@ -3,7 +3,7 @@
 
 namespace graphics
 {
-	/*FPS camera used to look around.*/
+	/*FPS camera used to look around in 3D space.*/
 
 	class Camera
 	{

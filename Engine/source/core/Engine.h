@@ -15,6 +15,7 @@ namespace core
 	class Engine 
 	{
 	public:
+		// Constructor with default parameters
 		Engine(const char* title = "Hyperion Engine", const int width = 800,
 			const int height = 600); 
 		void Start();

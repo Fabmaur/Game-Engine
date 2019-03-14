@@ -6,6 +6,7 @@ namespace maths
 {
 	class Quaternion
 	{
+	/* Quaternion class which does arithmetic */
 	public:
 		Quaternion(const vec4f quaternion)
 			:quaternion(quaternion)

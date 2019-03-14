@@ -38,3 +38,27 @@ float Input::GetY()
 	glfwGetCursorPos(graphics::Window::GetGLFWWinPointer(), &xpos, &ypos);
 	return (float)ypos;
 }
+
+maths::vec2f Input::GetWindowSize()
+{
+	HP_ASSERT(graphics::Window::GetGLFWWinPointer() != nullptr, "Window must be initialized!")
+	int width, height;
+	glfwGetWindowSize(graphics::Window::GetGLFWWinPointer(), &width, &height);
+	return { width, height };
+}
+
+float Input::GetWidth()
+{
+	HP_ASSERT(graphics::Window::GetGLFWWinPointer() != nullptr, "Window must be initialized!")
+	int width, height;
+	glfwGetWindowSize(graphics::Window::GetGLFWWinPointer(), &width, &height);
+	return width;
+}
+
+float Input::GetHeight()
+{
+	HP_ASSERT(graphics::Window::GetGLFWWinPointer() != nullptr, "Window must be initialized!")
+	int width, height;
+	glfwGetWindowSize(graphics::Window::GetGLFWWinPointer(), &width, &height);
+	return height;
+}

@@ -13,9 +13,10 @@ namespace maths
 		mat2(const mat<T, 2> rhs)
 			: mat<T, 2>(rhs) {}
 		
-		static mat2<T> RotateMat(const T theta);
+		// Rotation matrices
+		static mat2<T> RotateMat(const T theta); 
 		inline mat2<T> Rotate(const float rad) const;
-		inline T Det() const;
+		inline T Det() const; // Calculates determinant
 	};
 
 	template<typename T>

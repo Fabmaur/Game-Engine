@@ -4,7 +4,7 @@
 namespace maths 
 {
 
-	/* Matrix Base Class Template
+	/* Matrix Base Class 
 	using column major layout
 	__     __
 	|m0 m3 m6|
@@ -17,10 +17,11 @@ namespace maths
 	//Decleration
 	////////////////
 
+	// Templates for the width of the matrix and the type
 	template <typename T, int width>
 	struct mat
 	{
-		
+		// Creating an array the size of the matrix
 		static const int cells = width * width;
 		T elements[cells];
 
@@ -47,13 +48,17 @@ namespace maths
 	template<typename T, int width>
 	inline mat<T, width>::mat(const T scalar)
 	{
+		// Creating a scaling matrix
 		for (int i = 0; i < cells; i++)
+			/*Checking if the element is in the middle diagonal an if so assigning the 
+			element to the scalar, otherwise elemnent is assigned to 0 */
 			((i % (width+1)) == 0) ? (elements[i] = (T)1 * scalar)  : (elements[i] = (T)0);
 	}
 
 	template<typename T, int width>
 	inline mat<T, width>::mat(const T* pointer)
 	{
+		// Recieves an array of type T and assigns it to the matrix
 		for (int i = 0; i < cells; i++)
 			elements[i] = pointer + i;
 	}
@@ -62,6 +67,7 @@ namespace maths
 	template<typename T, int width>
 	inline mat<T, width> mat<T, width>::operator+(const mat<T, width>& rhs) const
 	{
+		// Goes through all the elements in matrix and adds corresponding value from rhs
 		mat<T, width> ans;
 		for (int i = 0; i < cells; i++)
 			ans.elements[i] = elements[i] + rhs.elements[i];
@@ -71,6 +77,7 @@ namespace maths
 	template<typename T, int width>
 	inline mat<T, width> mat<T, width>::operator-(const mat<T, width>& rhs) const
 	{
+		// Goes through all the elements in matrix and takes away corresponding value from rhs
 		mat<T, width> ans;
 		for (int i = 0; i < cells; i++)
 			ans.elements[i] = elements[i] - rhs.elements[i];
@@ -80,8 +87,9 @@ namespace maths
 	template<typename T, int width>
 	inline mat<T, width> mat<T, width>::operator*(const mat<T, width>& rhs) const
 	{
-		mat<T, width> ans;
 
+		// Described in documented design
+		mat<T, width> ans;
 		for (int y = 0; y < width; y++)
 		{
 			for (int x = 0; x < width; x++) {
@@ -98,6 +106,7 @@ namespace maths
 	template<typename T, int width>
 	inline mat<T, width> mat<T, width>::operator*(const T & scale) const
 	{
+		// Going through all elements and multiplying by scalar
 		mat<T, width> ans;
 		for (int i = 0; i < cells; i++)
 			ans.elements[i] = elements[i] * scale;
@@ -107,6 +116,7 @@ namespace maths
 	template<typename T, int width>
 	inline  void mat<T, width>::operator=(const mat<T, width>& rhs)
 	{
+		// Assigning lhs to rhs
 		for (int i = 0; i < cells; i++)
 			elements[i] = rhs.elements[i];
 	}

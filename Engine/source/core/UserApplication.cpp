@@ -5,17 +5,19 @@ namespace core
 {
 	void UserApplication::EventCallBack(EventMessage & event)
 	{
+		// Running event code for list of layers
 		for (auto& layer : layers)
 			if (layer->IsActive())
 				layer->onEvent(event);
 	}
 	std::function<void(EventMessage&)> UserApplication::GetEventCallBack()
 	{
+		// Binding EventCallBack function into callable object and then returning it
 		return std::bind(&UserApplication::EventCallBack, this, std::placeholders::_1);
 	}
 	void UserApplication::Init()
 	{
-		//Initializing list of layers
+		// Initializing list of layers
 		for (auto& layer : layers)
 			layer->Init();
 	}

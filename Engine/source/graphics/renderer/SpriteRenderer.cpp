@@ -11,6 +11,7 @@ namespace graphics
 
 	void SpriteRenderer::RenderAndPop()
 	{
+		// Draws sprites while the queue isn't empty
 		while (!spriteQueue.empty())
 		{
 			const SingleSprite* curSprite = spriteQueue.front();

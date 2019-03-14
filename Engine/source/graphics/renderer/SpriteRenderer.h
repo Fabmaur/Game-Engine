@@ -9,7 +9,7 @@
 
 namespace graphics
 {
-	/*Derived class of renderer - used to render sprites and shapes*/
+	/*Used to render single sprites and shapes*/
 
 	class SpriteRenderer : public Renderer2D
 	{

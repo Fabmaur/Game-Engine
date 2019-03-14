@@ -3,16 +3,23 @@
 #include "ProjectLog.h"
 #include "GL/glew.h"
 
+
+// Macros will only be defined if DEBUG macro is set
 #ifdef DEBUG
 
+// If statement x is false then stop program and write erro message
 #define HP_ASSERT(x, ...){ if(!(x)){\
 							 HP_FATAL(__VA_ARGS__);\
 							 __debugbreak();}}
+
 #define GAME_ASSERT(x, ...){ if(!(x)){\
 								GAME_FATAL(__VA_ARGS__);\
 								__debugbreak();}}
 
 #define ASSERT(x) { if(!(x)) __debugbreak();}
+
+
+//Clear past error flags and check for any new errors
 #define GLCheck(x) debug::ClearError();\
     x;\
     ASSERT(debug::LogCall(#x, __FILE__, __LINE__))
@@ -36,6 +43,8 @@ namespace debug
 	{
 		const int totalFlagCount{ 7 };
 		int flagNum{ 0 };
+
+		//Loops through all the error flags and print outs if there is an error
 		while (GLenum errorCode = glGetError())
 		{
 			

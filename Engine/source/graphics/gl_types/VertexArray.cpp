@@ -28,6 +28,7 @@ namespace graphics
 
 	void VertexArray::BindIBO(const IndexBuffer& IBO) const
 	{
+		// Binds IBO to vertex array
 		Bind();
 		IBO.Bind();
 		Unbind();
@@ -36,10 +37,12 @@ namespace graphics
 
 	void VertexArray::SetVertexAttribArray(const VertexBuffer& vb)
 	{
+		// Binds a vertex array to a vertex buffer and sets up the memory
 		Bind();
 		vb.Bind();
 		const auto& layout = vb.GetLayout();
 		unsigned int offset = 0;
+		// For each vertex attribute in the vertex buffer layout, the buffer is being formatted
 		for (std::size_t i = 0; i < layout.size(); i++)
 		{
 			const auto&[layoutSize, type, normalized] = layout[i];
@@ -53,6 +56,7 @@ namespace graphics
 
 	void graphics::VertexArray::SetVertexAttrib(const VertexBuffer& vb, const int vertexArrayPos)
 	{
+		// Bind vertex buffer to vertex array position
 		Bind();
 		vb.Bind();
 		static int offset = 0;

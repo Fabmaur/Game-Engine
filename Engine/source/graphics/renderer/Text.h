@@ -10,7 +10,8 @@ namespace graphics
 {
 	class Text
 	{
-
+	/* Text class used to manage a font and store text
+	to be rendered. */
 	public:
 		Text() = default;
 		Text(const std::string& fontPath, std::string text);

@@ -4,15 +4,18 @@
 #include <sstream>
 #include <chrono>
 
-/*Console class used to write important information and details
-to debugger.*/
-
 namespace debug
 {
+	/* Console class used to write information to the log.*/
 	class Console
 	{
 	public:
 		Console(const char* name) :name(name) {};
+
+		/* Fold expressions and templates used to get a 
+		a variable amount of arguments with varying types.
+		This enables any variable to be printed into the
+		console as long as they overload the ostream operator.*/
 		template<typename ...T>
 		void Success(T&& ...args)
 		{
@@ -64,6 +67,8 @@ namespace debug
 		{
 			using namespace std;
 			using namespace std::chrono;
+
+			// Calculating time
 			typedef duration<int, ratio_multiply<hours::period, ratio<24> >::type> days;
 			system_clock::time_point now = system_clock::now();
 			system_clock::duration tp = now.time_since_epoch();
@@ -76,13 +81,13 @@ namespace debug
 			s = duration_cast<seconds>(tp);
 			tp -= s;
 
+			// Formating and returning time as string stream
 			stringstream ss;
 			ss << "[" << h.count() << ":"
 				<< m.count() << ":"
 				<< s.count() << "]";
 			return ss.str();
 		}
-		template<typename ...T>
 		void SetTextColour(const int& colour)
 		{
 			SetConsoleTextAttribute(consoleHandle, colour);
@@ -114,6 +119,5 @@ namespace debug
 		static constexpr int  LIGHTMAGENTA = 13;
 		static constexpr int  YELLOW = 14;
 		static constexpr int  WHITE = 15;
-
 	};
 }

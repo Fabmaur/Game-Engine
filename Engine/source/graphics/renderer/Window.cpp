@@ -12,6 +12,8 @@ namespace graphics
 
 	Window::Window()
 	{
+
+		// Initializes glfw
 		glfwInit();
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -63,14 +65,14 @@ namespace graphics
 		glfwInit();
 		glEnable(GL_DEPTH_TEST);
 
+		// Initializes glew
 		if (GLEW_OK != err)
 		{
-			/* Problem: glewInit failed, something is seriously wrong. */
 			fprintf(stderr, "Error: %s\n", glewGetErrorString(err));
 		}
 		fprintf(stdout, "Status: Using GLEW %s\n", glewGetString(GLEW_VERSION));
 
-		// Sets glfw call back functions
+		// Sets glfw call back functions with lambdas
 
 		glfwSetFramebufferSizeCallback(window, [](GLFWwindow* window, int widthIn, int heightIn)
 		{
@@ -149,6 +151,7 @@ namespace graphics
 
 	void Window::Update() const
 	{
+		// Updates window buffers
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

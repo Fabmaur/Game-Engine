@@ -14,12 +14,15 @@ namespace graphics
 		BUFFER_SIZE(SHAPE_SIZE * MAX_SHAPES),
 		IBO_COUNT(MAX_SHAPES * 6)
 	{
-
 		fontShader = new Shader("../Game/resources/Font.shader");
+
+		// Creates texture unit id list
 		int texUnitID[] = {
 			0, 1, 2, 3, 4, 5, 6, 7, 8,
 			9, 10, 11, 12, 13, 14, 15
 		};
+
+		// Set the texture units to a list of sampler2D's in the shader
 		shader->Bind();
 		shader->SetUniformiv("textures", 16, texUnitID);
 		shader->Unbind();
@@ -35,7 +38,8 @@ namespace graphics
 		unsigned int* indices = new unsigned int[IBO_COUNT];
 
 		int offset = 0;
-		for (int i = 0; i < IBO_COUNT; i += 6) // For every rect make index buffer
+		// For the max amounts of shapes allowed make an index buffer
+		for (int i = 0; i < IBO_COUNT; i += 6) 
 		{
 			indices[i] = offset;
 			indices[i + 1] = offset + 1;
@@ -57,6 +61,7 @@ namespace graphics
 	{
 		BatchSprite* rect = (BatchSprite*)renderable;
 		
+		//Extracts vertex information from the sprite
 		maths::vec3f pos = rect->GetPos();
 		pos = transMat.back().MultiplyByVec3f(pos);
 		const float sizeX = rect->GetSize().x;
@@ -73,6 +78,7 @@ namespace graphics
 		const unsigned int texUnit = rect->GetTexture() == nullptr ? 0 : rect->GetTexture()->GetTUID();
 		
 		bool found = false;
+		// If TUID is not found in usedTextUnits add it to the list
 		for (int i = 0; i < usedTexUnits.size(); i++)
 			if (usedTexUnits[i] == texUnit)
 				found = true;
@@ -80,6 +86,7 @@ namespace graphics
 		if (!found)
 			usedTexUnits.push_back(texUnit);
 
+		// Sets the vertices for the sprite
 		float vertices[]
 		{
 			//position				  			   Texture Coords								TexUnit		Colour
@@ -88,6 +95,7 @@ namespace graphics
 			pos.x + sizeX, pos.y,		  pos.z,	texPos.x + texSizeX, texPos.y + texSizeY,	texUnit,	r, g, b, a,		//top right
 			pos.x + sizeX, pos.y - sizeY, pos.z,	texPos.x + texSizeX, texPos.y,				texUnit,	r, g, b, a		//bottom right
 		};
+		// Sends the vertex data to the vertex buffer
 		GLCheck(glBufferSubData(GL_ARRAY_BUFFER, offset, sizeof(vertices), vertices));
 		offset += sizeof(vertices);
 	}
@@ -96,6 +104,7 @@ namespace graphics
 	{
 
 		shader->Bind();
+		// Binds the texture units corresponding the texture ID's
 		for (int i = 0; i < usedTexUnits.size(); i++)
 		{
 			glActiveTexture(GL_TEXTURE0 + i + 1);
@@ -103,6 +112,7 @@ namespace graphics
 		}
 
 		VAO.Bind();
+		// Draws elements
 		glDrawElements(GL_TRIANGLES, IBO_COUNT, GL_UNSIGNED_INT, 0);
 
 		offset = 0;

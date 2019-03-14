@@ -13,22 +13,25 @@
 namespace graphics
 {
 	/*Batch renderer which can be used to render 2D sprites and shapes*/
-	//Will only work with shapes at the start
 	class BatchRenderer2D : public Renderer2D
 	{
 	public:
 		BatchRenderer2D(Shader* shader, const int MAX_SHAPES);
-		void Push(const Renderable2D* shape) override;
+		void Push(const Renderable2D* sprite) override; 
 		void RenderAndPop() override;
 		void RenderText(Text& text, maths::vec2f pos, maths::vec4f colour) override;
 		void SetShader(Shader* aShader);
 	private:
+		// Batch renderers shader and buffers
 		Shader* shader;
 		Shader* fontShader;
 		VertexArray VAO;
 		VertexBuffer VBO;
+		// list of used texture units
 		std::vector<unsigned int> usedTexUnits;
 		
+
+		// Calculated constants
 		const int MAX_SHAPES;
 		const int VERTEX_SIZE;
 		const int SHAPE_SIZE;

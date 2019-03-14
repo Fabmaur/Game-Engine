@@ -39,6 +39,9 @@ private:
 	int mods;
 };
 
+
+//Keycodes mapped to macros
+
 #define KEY_UNKNOWN   -1
 #define KEY_SPACE   32
 #define KEY_APOSTROPHE   39 /* ' */

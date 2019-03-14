@@ -4,7 +4,8 @@
 
 namespace graphics 
 {
-	/*Stores index data of vertices*/
+	/*Stores vertex data to a number so that vertices don't have to
+	be redefined in a vertex buffer.*/
 	class IndexBuffer
 	{
 	public:
