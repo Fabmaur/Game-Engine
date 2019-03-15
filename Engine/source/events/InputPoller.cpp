@@ -44,7 +44,7 @@ maths::vec2f Input::GetWindowSize()
 	HP_ASSERT(graphics::Window::GetGLFWWinPointer() != nullptr, "Window must be initialized!")
 	int width, height;
 	glfwGetWindowSize(graphics::Window::GetGLFWWinPointer(), &width, &height);
-	return { width, height };
+	return { (float)width, (float)height };
 }
 
 float Input::GetWidth()
@@ -52,7 +52,7 @@ float Input::GetWidth()
 	HP_ASSERT(graphics::Window::GetGLFWWinPointer() != nullptr, "Window must be initialized!")
 	int width, height;
 	glfwGetWindowSize(graphics::Window::GetGLFWWinPointer(), &width, &height);
-	return width;
+	return (float)width;
 }
 
 float Input::GetHeight()
@@ -60,5 +60,5 @@ float Input::GetHeight()
 	HP_ASSERT(graphics::Window::GetGLFWWinPointer() != nullptr, "Window must be initialized!")
 	int width, height;
 	glfwGetWindowSize(graphics::Window::GetGLFWWinPointer(), &width, &height);
-	return height;
+	return (float)height;
 }

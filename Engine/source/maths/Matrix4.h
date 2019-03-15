@@ -242,10 +242,8 @@ namespace maths
 	template <typename T>
 	static inline mat4<T> Perspective(T fov, T aspectRatio, T zNear, T zFar)
 	{
-
-		// Creates a perspective projection matrix
 		mat4<T> ans(0);
-
+		
 		float cotHalfFOV = (T)1 / tan(GetRadians((T)0.5 * fov));
 		
 		ans.elements[0] = cotHalfFOV / aspectRatio;
@@ -282,7 +280,7 @@ namespace maths
 	template<typename T>
 	inline void mat4<T>::Rotate(const T rad, const vec3<T>& axis)
 	{
-		*this = RotateMat(GetRadians(rad), axis) * *this;
+		*this =  *this * RotateMat(GetRadians(rad), axis);
 	}
 
 	template<typename T>
@@ -307,19 +305,19 @@ namespace maths
 	template<typename T>
 	inline void mat4<T>::RotateX(const T rad)
 	{
-		*this = RotateXMat(rad) * *this;
+		*this = *this * RotateXMat(rad);
 	}
 
 	template<typename T>
 	inline void mat4<T>::RotateY(const T rad)
 	{
-		*this = RotateYMat(rad) * *this;
+		*this = *this * RotateYMat(rad);
 	}
 
 	template<typename T>
 	inline void mat4<T>::RotateZ(const T rad)
 	{
-		*this = RotateZMat(rad) * *this;
+		*this = *this * RotateZMat(rad);
 	}
 
 	typedef mat4<int> mat4i;

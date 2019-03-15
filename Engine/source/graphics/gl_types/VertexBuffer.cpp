@@ -13,12 +13,13 @@ namespace graphics
 		GLCheck(glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW));
 	}
 
-	VertexBuffer::VertexBuffer(std::vector<float> vertices, const unsigned int size)
+	VertexBuffer::VertexBuffer(std::vector<float> vertices)
 	{
 		// Generates vertex buffer with std::vector
 		GLCheck(glGenBuffers(1, &id));
 		GLCheck(glBindBuffer(GL_ARRAY_BUFFER, id));
-		GLCheck(glBufferData(GL_ARRAY_BUFFER, size, &vertices[0], GL_STATIC_DRAW));
+		GLCheck(glBufferData(GL_ARRAY_BUFFER, (unsigned int)(size(vertices) * sizeof(float)),
+			&vertices[0], GL_STATIC_DRAW));
 	}
 
 	VertexBuffer::VertexBuffer(const unsigned int bufferSize)

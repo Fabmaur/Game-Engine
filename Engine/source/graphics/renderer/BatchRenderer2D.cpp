@@ -136,7 +136,6 @@ namespace graphics
 			aVAO.Bind();
 			aVBO.Bind();
 			Glyph glyph = text.GetFont().GetGlyph(text.GetTextStr()[i]);
-
 			
 			float x = pos.x + glyph.bearing.x;
 			float y = pos.y - (glyph.size.y - glyph.bearing.y);
@@ -163,7 +162,7 @@ namespace graphics
 			// Render quad
 			glDrawArrays(GL_TRIANGLES, 0, 6);
 			// Add advance to position
-			pos.x += (glyph.advance >> 6); // Bitshift to get amount in pixels
+			pos.x += (glyph.advance >> 6);
 		}
 		aVBO.Delete();
 		aVAO.Delete();

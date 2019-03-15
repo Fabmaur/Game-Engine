@@ -12,7 +12,7 @@ namespace core
 		
 		HP_STATUS("Initializing Engine");
 		// Sets default colour for window
-		window.SetColour(0.4f, 0.2f, 0.6f, 1.0f); 
+		window.SetColour(1.0f, 1.0f, 1.0f, 1.0f); 
 	}
 
 	void Engine::Start()

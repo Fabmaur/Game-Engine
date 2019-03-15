@@ -179,7 +179,6 @@
     <ClCompile Include="source\graphics\renderer\CameraFPS.cpp" />
     <ClCompile Include="source\graphics\renderer\Font.cpp" />
     <ClCompile Include="source\graphics\renderer\Mesh.cpp" />
-    <ClCompile Include="source\graphics\renderer\SpriteGroup.cpp" />
     <ClCompile Include="source\graphics\renderer\Shader.cpp" />
     <ClCompile Include="source\graphics\renderer\SpriteRenderer.cpp" />
     <ClCompile Include="source\graphics\renderer\Text.cpp" />
@@ -192,13 +191,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="source\vendor\imgui\imgui.cpp" />
-    <ClCompile Include="source\vendor\imgui\imgui_demo.cpp" />
-    <ClCompile Include="source\vendor\imgui\imgui_draw.cpp" />
-    <ClCompile Include="source\vendor\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="source\vendor\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="source\vendor\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="source\vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\core\UserApplication.h" />
@@ -223,7 +215,6 @@
     <ClInclude Include="source\graphics\renderer\Font.h" />
     <ClInclude Include="source\graphics\renderer\Mesh.h" />
     <ClInclude Include="source\graphics\renderer\Renderable3D.h" />
-    <ClInclude Include="source\graphics\renderer\SpriteGroup.h" />
     <ClInclude Include="source\graphics\renderer\Layer.h" />
     <ClInclude Include="source\graphics\renderer\Renderable2D.h" />
     <ClInclude Include="source\graphics\renderer\Renderer2D.h" />
@@ -249,18 +240,8 @@
     <ClInclude Include="source\graphics\renderer\simple_shapes\Cube.h" />
     <ClInclude Include="source\misc\Timer.h" />
     <ClInclude Include="source\pch.h" />
-    <ClInclude Include="source\vendor\imgui\imconfig.h" />
-    <ClInclude Include="source\vendor\imgui\imgui.h" />
-    <ClInclude Include="source\vendor\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="source\vendor\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="source\vendor\imgui\imgui_internal.h" />
-    <ClInclude Include="source\vendor\imgui\imstb_rectpack.h" />
-    <ClInclude Include="source\vendor\imgui\imstb_textedit.h" />
-    <ClInclude Include="source\vendor\imgui\imstb_truetype.h" />
-    <ClInclude Include="source\vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="source\graphics\renderer\resources\Default.shader" />
     <None Include="source\graphics\renderer\resources\Material2D.shader" />
   </ItemGroup>

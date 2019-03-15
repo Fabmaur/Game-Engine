@@ -6,7 +6,6 @@
 #include "graphics/renderer/Shader.h"
 #include "graphics/renderer/Texture.h"
 #include "maths/Vector.h"
-#include "graphics/renderer/SpriteGroup.h"
 #include <map>
 #include "Text.h"
 

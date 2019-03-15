@@ -4,7 +4,6 @@
 #include "Sprite.h"
 #include "graphics/renderer/Shader.h"
 #include "maths/maths.h"
-#include "SpriteGroup.h"
 #include <deque>
 
 namespace graphics
@@ -16,7 +15,6 @@ namespace graphics
 	public:
 		void Push(const Renderable2D* sprite)  override;
 		void RenderAndPop()  override;
-		void PushGroup(const SpriteGroup& group);
 		void DrawSquare(graphics::Shader& shader, maths::vec3f pos , maths::vec3f size); // colour must be defined via a uniform
 		void DrawTriangle(graphics::Shader& shader, maths::vec3f pos1, maths::vec3f pos2, maths::vec3f pos3);
 		void DrawLine(maths::vec3f pos1, maths::vec3f pos2);

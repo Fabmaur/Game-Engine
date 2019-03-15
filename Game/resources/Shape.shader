@@ -2,12 +2,15 @@
 
 #version 330 core
 layout(location = 0) in vec3 pos;
+layout(location = 1) in vec2 texPos;
 
 uniform mat4 mvp;
+out vec2 TexPos;
 
 void main()
 {
 	gl_Position = mvp * vec4(pos, 1.0f);
+	TexPos = texPos;
 }
 
 #shader fragment
@@ -16,9 +19,12 @@ void main()
 
 
 uniform vec3 colour;
+in vec2 TexPos;
+uniform sampler2D text;
+
 out vec4 FragColour;
 
 void main()
 {
-	FragColour = vec4(colour, 1.0);
+	FragColour = texture(text, TexPos);
 }

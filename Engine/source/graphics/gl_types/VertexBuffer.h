@@ -19,7 +19,7 @@ namespace graphics
 		//glType refers to the vertix attributes type such as a GLFloat
 		VertexBuffer() = default;
 		VertexBuffer(const void* verticesArray, const unsigned int sizeInBytes);
-		VertexBuffer(std::vector<float> verticesArray, const unsigned int size);
+		VertexBuffer(std::vector<float> verticesArray);
 		VertexBuffer(const unsigned int bufferSize); // Maximum buffer size in bytes
 		void Delete();
 		void Bind() const;

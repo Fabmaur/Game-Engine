@@ -8,8 +8,8 @@ namespace graphics
 	struct MeshVertex
 	{
 		maths::vec3f pos;
-		maths::vec3f normal;
 		maths::vec3f texCoords;
+		maths::vec3f normal;
 		maths::vec4f colour;
 	};
 

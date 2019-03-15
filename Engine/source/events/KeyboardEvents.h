@@ -40,7 +40,7 @@ private:
 };
 
 
-//Keycodes mapped to macros
+//Keycodes mapped to macros (from GLFW)
 
 #define KEY_UNKNOWN   -1
 #define KEY_SPACE   32

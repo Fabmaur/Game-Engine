@@ -125,19 +125,19 @@ namespace maths
 	template<typename T, int width>
 	inline void mat<T, width>::operator+=(const mat<T, width>& rhs)
 	{
-		this = *this + rhs;
+		*this = *this + rhs;
 	}
 
 	template<typename T, int width>
 	inline void mat<T, width>::operator-=(const mat<T, width>& rhs)
 	{
-		this = *this - rhs;
+		*this = *this - rhs;
 	}
 
 	template<typename T, int width>
 	inline void mat<T, width>::operator*=(const mat<T, width>& rhs)
 	{
-		this = *this * rhs;
+		*this = *this * rhs;
 	}
 
 	template<typename T, int width>

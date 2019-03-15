@@ -5,6 +5,7 @@ namespace graphics
 {
 	Font::Font(FT_Library& ft, const std::string& fontPath)
 	{
+		// Initialize FreeType
 		if (FT_New_Face(ft, fontPath.c_str(), 0, &font))
 			HP_ERROR("ERROR::FREETYPE: Failed to load font");
 		else

@@ -1,6 +1,7 @@
 #shader vertex
 
 #version 330 core
+// Load vertex attributes
 layout(location = 0) in vec3 aPos;
 layout(location = 1) in vec2 aTex;
 
@@ -10,6 +11,7 @@ uniform mat4 mvp;
 
 void main()
 {
+	// Set out variables
 	texCoord = aTex;
 	gl_Position = vec4(aPos, 1.0f);
 }
@@ -25,5 +27,6 @@ uniform sampler2D tex;
 
 void main()
 {
+	//Set colour to textures colour
 	FragColour = texture(tex, texCoord);
 }
