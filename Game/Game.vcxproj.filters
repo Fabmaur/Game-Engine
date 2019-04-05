@@ -3,16 +3,31 @@
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
     <ClCompile Include="source\DemoMenu.cpp" />
+    <ClCompile Include="source\Demo2\Demo2.cpp" />
+    <ClCompile Include="source\Demo3\Demo3.cpp" />
+    <ClCompile Include="source\Demo4\Demo4.cpp" />
+    <ClCompile Include="source\Demo5\Demo5.cpp" />
+    <ClCompile Include="source\Demo6\Demo6.cpp" />
+    <ClCompile Include="source\Demo7\Demo7.cpp" />
+    <ClCompile Include="source\Demo8\Demo8.cpp" />
     <ClCompile Include="source\Demo1\Demo1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\Default.shader" />
-    <None Include="resources\Shape.shader" />
     <None Include="resources\batch.shader" />
+    <None Include="resources\Font.shader" />
+    <None Include="resources\Object.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\DemoMenu.h" />
+    <ClInclude Include="source\Demo2\Demo2.h" />
+    <ClInclude Include="source\Demo3\Demo3.h" />
+    <ClInclude Include="source\Demo4\Demo4.h" />
+    <ClInclude Include="source\Demo5\Demo5.h" />
+    <ClInclude Include="source\Demo6\Demo6.h" />
+    <ClInclude Include="source\Demo7\Demo7.h" />
+    <ClInclude Include="source\Demo8\Demo8.h" />
     <ClInclude Include="source\Demo1\Demo1.h" />
   </ItemGroup>
 </Project>

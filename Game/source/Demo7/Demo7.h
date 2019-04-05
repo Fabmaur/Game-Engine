@@ -4,19 +4,21 @@
 #include "graphics/renderer/Shader.h"
 #include "graphics/renderer/Mesh.h"
 #include "graphics/renderer/Texture.h"
+#include "graphics/renderer/CameraFPS.h"
+#include "graphics/renderer/Renderer2D.h"
+#include "graphics/renderer/Text.h"
 
-class Demo1 : public graphics::Layer
+
+class Demo7 : public graphics::Layer
 {
-	/* Demo to show model loading with the mesh class. */
+	/* Demo to show the event system. */
 public:
-	Demo1() = default;
+	Demo7() = default;
 	virtual void onEvent(EventMessage& event) override;
 	virtual void Init() override;
 	virtual void RunMain() override;
-	~Demo1();
+	~Demo7();
 private:
-	graphics::Shader shader;
-	graphics::Texture* tex;
-	graphics::Mesh dragon;
-	maths::mat4f proj;
+	graphics::Renderer2D* renderer;
+	graphics::Text text;
 };

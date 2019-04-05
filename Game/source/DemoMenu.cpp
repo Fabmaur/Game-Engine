@@ -46,7 +46,6 @@ void DemoMenu::onEvent(EventMessage & event)
 
 void DemoMenu::Init()
 {
-	SetActive(true);
 	// Creating the context for ImGui
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
@@ -95,8 +94,8 @@ void DemoMenu::RunMain()
 	{
 		if (ImGui::Button(demo.first.c_str()))
 		{
-			demo.second->SetActive(true);
 			currentDemo = demo.first;
+			demo.second->SetActive(true);
 			break;
 		}
 	}

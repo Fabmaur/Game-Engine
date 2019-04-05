@@ -5,18 +5,19 @@
 #include "graphics/renderer/Mesh.h"
 #include "graphics/renderer/Texture.h"
 
-class Demo1 : public graphics::Layer
+class Demo6 : public graphics::Layer
 {
-	/* Demo to show model loading with the mesh class. */
+	/* Demo to show rendering from mesh class from 
+	raw vertex and index data. */
 public:
-	Demo1() = default;
+	Demo6() = default;
 	virtual void onEvent(EventMessage& event) override;
 	virtual void Init() override;
 	virtual void RunMain() override;
-	~Demo1();
+	~Demo6();
 private:
 	graphics::Shader shader;
 	graphics::Texture* tex;
-	graphics::Mesh dragon;
+	graphics::Mesh block;
 	maths::mat4f proj;
 };

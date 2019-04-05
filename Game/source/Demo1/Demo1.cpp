@@ -1,16 +1,8 @@
 #include "Demo1.h"
-#include "graphics/shapes/Cube.h"
 #include "graphics/gl_types/Buffers.h"
 #include "events/Events.h"
 #include "graphics/renderer/Texture.h"
-
-#include <iostream>
-#include <iterator>
-
-
-#include <vector>
-
-
+#include "graphics/renderer/CameraFPS.h"
 
 void Demo1::onEvent(EventMessage & event)
 {
@@ -20,33 +12,37 @@ void Demo1::Init()
 {
 	using namespace graphics;
 
-	SetActive(true);
+	// Loading in file data
+	shader = Shader("resources/Object.shader");
+	tex = new Texture("resources/img.jpg");
+	dragon = graphics::Mesh("resources/dragon.obj");
 
-	shader = Shader("resources/Shape.shader");
-	tex = new Texture("resources/LogoRealFinal.jpg");
-	//proj = maths::Ortho(0.0f, 1920.0f, 0.0f, 1080.0f);
-
-	proj = maths::Perspective(90.0f, ((float)1920 / (float)1080), 0.1f, 100.0f) * maths::TranslateMat(0.0f, -3.0f, -10.0f);
-	
-
+	// Creating perspective matrix and changing view position
+	proj = maths::Perspective(90.0f, ((float)1920 / (float)1080), 0.1f, 100.0f);
+	proj.Translate(0.0f, -3.0f, -10.0f);
+	// Setting shininess of material
+	float shininess = 0.3f;
+	float shineDampness = 0.5f;
+	// Setting uniform settings for shader
 	shader.Bind();
-
-
-	tex->Bind();
-	shader.SetUniformMat4f("mvp", proj);
-	//shader.SetUniform3v("colour", { 1.0f, 0.1f, 0.2f });
-	cube = graphics::Mesh("resources/dragon.obj");
-	//cube = graphics::Mesh(cube::vertices, cube::indices);
+	shader.SetUniform3v("lightPos", { 0.0f, 0.0f, -3.0f });
+	shader.SetUniform3v("lightColour", { 0.6f, 1.0f , 0.7f });
+	shader.SetUniform1f("shininess", shininess);
+	shader.SetUniform1f("shineDampness", shineDampness);
 }
 
 void Demo1::RunMain()
 {
+	shader.Bind();
 	tex->Bind();
-	proj.RotateY(0.001f);
+	// Rotating object
+	proj.RotateY(0.0003f);
 	shader.SetUniformMat4f("mvp", proj);
-	cube.Draw(shader);
+
+	dragon.Draw();
 }
 
 Demo1::~Demo1()
 {
+	delete tex;
 }

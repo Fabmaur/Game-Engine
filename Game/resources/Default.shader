@@ -8,12 +8,11 @@ layout(location = 1) in vec2 aTex;
 out vec2 texCoord;
 uniform mat4 mvp;
 
-
 void main()
 {
 	// Set out variables
 	texCoord = aTex;
-	gl_Position = vec4(aPos, 1.0f);
+	gl_Position = mvp * vec4(aPos, 1.0f);
 }
 
 #shader fragment
